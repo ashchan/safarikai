@@ -41,15 +41,12 @@
 
       left = clientX + scrollX
       overflowX = clientX + popup.offsetWidth - window.innerWidth + margin
-      if overflowX > 0
-        left -= overflowX
+      left -= overflowX if overflowX > 0
       popup.style.left = left + "px"
 
-      top = clientY + scrollY
-      overflowY = clientY + popup.offsetHeight - window.innerHeight + margin * 2
-      if overflowY > 0
-        top -= overflowY
-      popup.style.top = top + margin + "px"
+      top = clientY + scrollY + margin
+      top = clientY + scrollY - popup.offsetHeight - margin if clientY > window.innerHeight / 2
+      popup.style.top = top + "px"
 
   messageEventHandler = (e) ->
     messageName = e.name

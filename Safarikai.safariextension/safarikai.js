@@ -34,7 +34,7 @@
       return getPopup().style.display = "none";
     };
     showResult = function(word, result) {
-      var left, margin, overflowX, overflowY, popup, top;
+      var left, margin, overflowX, popup, top;
       injectPopup();
       popup = getPopup();
       popup.style.display = "block";
@@ -49,12 +49,11 @@
           left -= overflowX;
         }
         popup.style.left = left + "px";
-        top = clientY + scrollY;
-        overflowY = clientY + popup.offsetHeight - window.innerHeight + margin * 2;
-        if (overflowY > 0) {
-          top -= overflowY;
+        top = clientY + scrollY + margin;
+        if (clientY > window.innerHeight / 2) {
+          top = clientY + scrollY - popup.offsetHeight - margin;
         }
-        return popup.style.top = top + margin + "px";
+        return popup.style.top = top + "px";
       }
     };
     messageEventHandler = function(e) {
