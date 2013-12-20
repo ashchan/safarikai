@@ -1,25 +1,50 @@
-(->
-  readDataFile = (file) ->
-    req = new XMLHttpRequest()
-    req.open "GET", safari.extension.baseURI + "data/" + file, false
-    req.send null
-    fileContent = req.responseText
+Safarikai =
+  initialize: ->
+    @enabled   = false
+    @queryWord = ""
+    @result    = ""
 
-  queryWord = ""
-  result = ""
-  lookupWord = (word) ->
-    if queryWord != word
-      queryWord = word
-      result = queryWord
-    safari.application.activeBrowserWindow.activeTab.page.dispatchMessage "showResult", { word: queryWord, result: result }
+  sendStatus: (page) ->
+    page.dispatchMessage "status", { enabled: @enabled }
 
-  messageEventHandler = (e) ->
-    messageName = e.name
-    messageData = e.message
+  toggle: ->
+    @enabled = !@enabled
+    for win in safari.application.browserWindows
+      for tab in win.tabs
+        @sendStatus tab.page
 
-    switch messageName
-      when "lookupWord" then lookupWord messageData
+  lookup: (word, page) ->
+    if @enabled
+      if @queryWord != word
+        @queryWord = word
+      @result = @queryWord #TODO query real results
+      page.dispatchMessage "showResult", { word: @queryWord, result: @result }
 
-  safari.application.addEventListener "message", messageEventHandler, false
-  console.log "Safarikai global script booted."
-)()
+  status: (page) ->
+    @sendStatus page
+
+Safarikai.initialize()
+
+Commands =
+  toggle:
+    invoke: (event) ->
+      Safarikai.toggle()
+      event.target.validate()
+    validate: (event) ->
+      event.target.toolTip  = if Safarikai.enabled then "Disable Safarikai" else "Enable Safarikai"
+      event.target.image    = safari.extension.baseURI + (if Safarikai.enabled then "IconEnabled.png" else "IconDisabled.png")
+
+safari.application.addEventListener "command", (e) ->
+  Commands[e.command]?.invoke?(e)
+
+safari.application.addEventListener 'validate', (e) ->
+  Commands[e.command]?.validate?(e)
+
+safari.application.addEventListener "message", (e) ->
+  messageName = e.name
+  messageData = e.message
+  switch messageName
+    when "lookupWord" then Safarikai.lookup messageData, e.target.page
+    when "queryStatus" then Safarikai.status e.target.page
+
+console.log "Safarikai global script booted."

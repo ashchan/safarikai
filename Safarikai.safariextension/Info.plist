@@ -20,6 +20,23 @@
 	<dict>
 		<key>Global Page</key>
 		<string>global.html</string>
+		<key>Toolbar Items</key>
+		<array>
+			<dict>
+				<key>Command</key>
+				<string>toggle</string>
+				<key>Identifier</key>
+				<string>toggleSafarikai</string>
+				<key>Image</key>
+				<string>IconDisabled.png</string>
+				<key>Label</key>
+				<string>Safarikari</string>
+				<key>Palette Label</key>
+				<string>Safarikai</string>
+				<key>Tool Tip</key>
+				<string>Enable Safarikai</string>
+			</dict>
+		</array>
 	</dict>
 	<key>Content</key>
 	<dict>

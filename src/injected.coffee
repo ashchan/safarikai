@@ -2,7 +2,13 @@
   clientX = 0
   clientY = 0
   popupTagId = "safarikai-popup"
+  enabled = false
+
   mouseEventHandler = (e) ->
+    unless enabled
+      hidePopup
+      return
+
     clientX = e.clientX
     clientY = e.clientY
     range = doc.caretRangeFromPoint e.clientX, e.clientY
@@ -48,12 +54,17 @@
       top = clientY + scrollY - popup.offsetHeight - margin if clientY > window.innerHeight / 2
       popup.style.top = top + "px"
 
-  messageEventHandler = (e) ->
+  updateStatus = (status) ->
+    enabled = status.enabled
+
+  safari.self.addEventListener "message", (e) ->
     messageName = e.name
     messageData = e.message
 
     switch messageName
       when "showResult" then showResult messageData.word, messageData.result
+      when "status" then updateStatus messageData
 
-  safari.self.addEventListener "message", messageEventHandler, false
+  # Ask statut on load
+  safari.self.tab.dispatchMessage "queryStatus"
 )(document, window)
