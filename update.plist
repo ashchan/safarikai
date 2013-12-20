@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+   <key>Extension Updates</key>
+   <array>
+     <dict>
+       <key>CFBundleIdentifier</key>
+       <string>com.ashchan.safarikai</string>
+       <key>Developer Identifier</key>
+       <string>35U48ELFMF</string>
+       <key>CFBundleVersion</key>
+       <string>1</string>
+       <key>CFBundleShortVersionString</key>
+       <string>1.0</string>
+       <key>URL</key>
+       <string>https://s3.amazonaws.com/assets.ashchan.com/Safarikai.safariextz</string>
+     </dict>
+   </array>
+</dict>
+</plist>
