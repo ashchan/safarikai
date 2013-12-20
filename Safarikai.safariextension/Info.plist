@@ -66,6 +66,8 @@
 			<string>All</string>
 		</dict>
 	</dict>
+	<key>Update Manifest URL</key>
+	<string>https://raw.github.com/ashchan/safarikai/master/update.plist</string>
 	<key>Website</key>
 	<string>http://ashchan.github.io/safarikai/</string>
 </dict>
