@@ -27,7 +27,7 @@
 		<dict>
 			<key>Start</key>
 			<array>
-				<string>safarikai.js</string>
+				<string>injected.js</string>
 			</array>
 		</dict>
 		<key>Stylesheets</key>

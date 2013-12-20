@@ -65,6 +65,7 @@
           return showResult(messageData.word, messageData.result);
       }
     };
+    console.log('injected');
     return safari.self.addEventListener("message", messageEventHandler, false);
   })(document, window);
 

@@ -1,4 +1,4 @@
-window.Safarikai = (->
+(->
   readDataFile = (file) ->
     req = new XMLHttpRequest()
     req.open "GET", safari.extension.baseURI + "data/" + file, false
@@ -8,7 +8,6 @@ window.Safarikai = (->
   queryWord = ""
   result = ""
   lookupWord = (word) ->
-    console.log "lookup word: " + word
     if queryWord != word
       queryWord = word
       result = queryWord
@@ -21,7 +20,6 @@ window.Safarikai = (->
     switch messageName
       when "lookupWord" then lookupWord messageData
 
-  boot: ->
-    safari.application.addEventListener "message", messageEventHandler, false
-    console.log "Safarikai global script booted."
+  safari.application.addEventListener "message", messageEventHandler, false
+  console.log "Safarikai global script booted."
 )()
