@@ -5,11 +5,21 @@ window.Safarikai = (->
     req.send null
     fileContent = req.responseText
 
+  queryWord = ""
+  result = ""
+  lookupWord = (word) ->
+    console.log "lookup word: " + word
+    if queryWord != word
+      queryWord = word
+      result = queryWord
+    safari.application.activeBrowserWindow.activeTab.page.dispatchMessage "showResult", { word: queryWord, result: result }
+
   messageEventHandler = (e) ->
     messageName = e.name
     messageData = e.message
-    console.log messageData
-    # TODO: filter and dispatch messages
+
+    switch messageName
+      when "lookupWord" then lookupWord messageData
 
   boot: ->
     safari.application.addEventListener "message", messageEventHandler, false

@@ -1,0 +1,12 @@
+#safarikai-popup {
+  position: absolute;
+  width: auto;
+  min-width: 200px;
+  max-width: 50%;
+  height: auto;
+  min-height: 40px;
+  max-height: 50%;
+  padding: 20px;
+  background: #95A5C5;
+  border-radius: 8px;
+}
