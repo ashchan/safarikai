@@ -51,7 +51,8 @@ class Client
   decorateRow: (row) ->
     kanji = row.kanji
     kanji = row.kana if kanji.length is 0
-    "<li><div class='kanji'>" + kanji + "</div><div class='kana'>" + row.kana + "</div><div class='translation'>" + row.translation + "</div></li>"
+    translation = row.translation.replace /;/g, "; "
+    "<li><div class='kanji'>" + kanji + "</div><div class='kana'>" + row.kana + "</div><div class='translation'>" + translation + "</div></li>"
 
   showResult: (word, url, result) ->
     return if @window.location.href isnt url
