@@ -6,7 +6,7 @@
   height: auto;
   min-height: 40px;
   max-height: 80%;
-  padding: 10px 12px;
+  padding: 10px 12px !important;
   background: #FDFDFD !important;
   border-radius: 6px !important;
   border: solid 1px #ccc;
@@ -37,10 +37,11 @@
 }
 
 #safarikai-popup ul li .kana {
+  font-weight: bold;
   font-size: 18px;
   color: #00f;
   display: inline-block;
-  margin-left: 40px;
+  margin-left: 30px !important;
 }
 
 #safarikai-popup ul li .kana {
