@@ -5,11 +5,46 @@
   max-width: 50%;
   height: auto;
   min-height: 40px;
-  max-height: 50%;
+  max-height: 80%;
   padding: 10px 12px;
   background: #FDFDFD !important;
   border-radius: 6px !important;
   border: solid 1px #ccc;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 99999;
+}
+
+#safarikai-popup ul {
+  text-align: left;
+  list-style: none;
+  margin: 0 0 !important;
+  padding: 0 0 !important;
+}
+
+#safarikai-popup ul li {
+  border-bottom: solid 1px #ccc;
+}
+
+#safarikai-popup ul li:last-child {
+  border: none;
+}
+
+#safarikai-popup ul li .kanji {
+  font-weight: bold;
+  font-size: 18px;
+  color: #f00;
+  display: inline-block;
+}
+
+#safarikai-popup ul li .kana {
+  font-size: 18px;
+  color: #00f;
+  display: inline-block;
+  margin-left: 40px;
+}
+
+#safarikai-popup ul li .kana {
+  font-size: 14px;
+  color: #555;
+  clear: both;
 }

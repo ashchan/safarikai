@@ -45,14 +45,19 @@ class Client
   hidePopup: ->
     @getPopup().style.display = "none"
 
+  decorateRow: (row) ->
+    "<li><div class='kanji'>" + row.kanji + "</div><div class='kana'>" + row.kana + "</div><div class='translation'>" + row.translation + "</div></li>"
+
   showResult: (word, result) ->
     @injectPopup()
     popup = @getPopup()
     popup.style.display = "block"
-    popup.innerHTML     = result
-    if result is ""
+    if result.length is 0
       @hidePopup()
     else
+      htmlRows = (@decorateRow row for row in result)
+      popup.innerHTML = "<ul>" + htmlRows.join("\n") + "</ul>"
+
       margin = 30
 
       left = @clientX + @window.scrollX
