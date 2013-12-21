@@ -3,7 +3,8 @@ class Dictionary
     console.log "Create dictionary instance"
 
   find: (word) ->
-    indexes = @index?[word] || []
+    return [] unless @index and @dict
+    indexes = @index[word] || []
     @findItemsByIndexes indexes
 
   findItemsByIndexes: (indexes) ->
@@ -27,18 +28,23 @@ class Dictionary
     }
 
   load: ->
-    eval @readDataFile("index.js") # @index
-    eval @readDataFile("dict.js")  # @dict
+    @readDataFile "index.js", (data) =>
+      eval data # var loadedIndex = {...}
+      @index = loadedIndex
+    @readDataFile "dict.js", (data) =>
+      eval data # var loadedDict = []
+      @dict = loadedDict
 
   unload: ->
     @index = null
     @dict  = null
 
-  readDataFile: (file) ->
+  readDataFile: (file, success) ->
     req = new XMLHttpRequest()
-    req.open "GET", safari.extension.baseURI + "data/" + file, false
+    req.open "GET", safari.extension.baseURI + "data/" + file, true
+    req.onload = (e) ->
+      success req.responseText if req.readyState is 4
     req.send null
-    req.responseText
 
 Safarikai =
   initialize: ->
