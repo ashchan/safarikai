@@ -7,7 +7,7 @@ class Client
 
     @doc.onmousemove = (e) =>
       unless @enabled
-        @hidePopup
+        @hidePopup()
         return
 
       @clientX = e.clientX
@@ -20,6 +20,9 @@ class Client
         safari.self.tab.dispatchMessage "lookupWord", { word: word, url: @window.location.href }
         #sel.removeAllRanges()
         #sel.addRange range
+
+    @doc.onmouseout = (e) =>
+      @hidePopup()
 
     safari.self.addEventListener "message", (e) =>
       messageName = e.name
@@ -75,5 +78,6 @@ class Client
 
   updateStatus: (status) ->
     @enabled = status.enabled
+    @hidePopup() if not @enabled
 
 client = new Client document, window
