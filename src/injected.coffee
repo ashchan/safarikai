@@ -17,7 +17,7 @@ class Client
         range.expand "word"
         sel = @doc.defaultView.getSelection()
         word = range.toString().trim()
-        safari.self.tab.dispatchMessage "lookupWord", word
+        safari.self.tab.dispatchMessage "lookupWord", { word: word, url: @window.location.href }
         #sel.removeAllRanges()
         #sel.addRange range
 
@@ -26,7 +26,7 @@ class Client
       messageData = e.message
 
       switch messageName
-        when "showResult" then @showResult messageData.word, messageData.result
+        when "showResult" then @showResult messageData.word, messageData.url, messageData.result
         when "status" then @updateStatus messageData
 
     # Ask status on load
@@ -48,7 +48,9 @@ class Client
   decorateRow: (row) ->
     "<li><div class='kanji'>" + row.kanji + "</div><div class='kana'>" + row.kana + "</div><div class='translation'>" + row.translation + "</div></li>"
 
-  showResult: (word, result) ->
+  showResult: (word, url, result) ->
+    return if @window.location.href isnt url
+
     @injectPopup()
     popup = @getPopup()
     popup.style.display = "block"

@@ -57,12 +57,12 @@ Safarikai =
       for tab in win.tabs
         @sendStatus tab.page
 
-  lookup: (word, page) ->
+  lookup: (word, url, page) ->
     if @enabled
       if @queryWord != word
         @queryWord = word
       @result = @dict.find @queryWord
-      page.dispatchMessage "showResult", { word: @queryWord, result: @result }
+      page.dispatchMessage "showResult", { word: @queryWord, url: url, result: @result }
 
   status: (page) ->
     @sendStatus page
@@ -96,5 +96,5 @@ safari.application.addEventListener "message", (e) ->
   messageName = e.name
   messageData = e.message
   switch messageName
-    when "lookupWord" then Safarikai.lookup messageData, e.target.page
+    when "lookupWord" then Safarikai.lookup messageData.word, messageData.url, e.target.page
     when "queryStatus" then Safarikai.status e.target.page
