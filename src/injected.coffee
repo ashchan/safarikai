@@ -46,7 +46,9 @@ class Client
     @getPopup().style.display = "none"
 
   decorateRow: (row) ->
-    "<li><div class='kanji'>" + row.kanji + "</div><div class='kana'>" + row.kana + "</div><div class='translation'>" + row.translation + "</div></li>"
+    kanji = row.kanji
+    kanji = row.kana if kanji.length is 0
+    "<li><div class='kanji'>" + kanji + "</div><div class='kana'>" + row.kana + "</div><div class='translation'>" + row.translation + "</div></li>"
 
   showResult: (word, url, result) ->
     return if @window.location.href isnt url
