@@ -9,7 +9,7 @@
   padding: 10px 12px;
   background: #FDFDFD !important;
   border-radius: 6px !important;
-  border: solid 4px rgba(96, 150, 249, 0.75) !important;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  border: solid 1px #ccc;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   z-index: 99999;
 }
