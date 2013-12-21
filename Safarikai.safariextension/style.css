@@ -22,16 +22,19 @@
 }
 
 #safarikai-popup ul li {
-  border-bottom: solid 1px #ccc;
+  border-bottom: solid 1px #ccc !important;
+  padding-bottom: 6px !important;
+  margin-bottom: 6px !important;
 }
 
 #safarikai-popup ul li:last-child {
-  border: none;
+  border: none !important;
 }
 
 #safarikai-popup ul li .kanji {
   font-weight: bold;
   font-size: 18px;
+  font-family: "Hiragino Kaku Gothic", "ヒラギノ角ゴ Pro W3", sans-serif !important;
   color: #f00;
   display: inline-block;
 }
@@ -39,13 +42,15 @@
 #safarikai-popup ul li .kana {
   font-weight: bold;
   font-size: 18px;
+  font-family: "Hiragino Kaku Gothic", "ヒラギノ角ゴ Pro W3", sans-serif !important;
   color: #00f;
   display: inline-block;
   margin-left: 30px !important;
 }
 
-#safarikai-popup ul li .kana {
+#safarikai-popup ul li .translation {
   font-size: 14px;
+  font-family: "Hiragino Kaku Gothic", "ヒラギノ角ゴ Pro W3", sans-serif !important;
   color: #555;
-  clear: both;
+  line-height: 1.2em;
 }
