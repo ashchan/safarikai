@@ -5,7 +5,21 @@ class Client
     @popupTagId = "safarikai-popup"
     @enabled    = false
 
-    @doc.onmousemove = @doc.onmouseover = @doc.onmouseout = @mouseEventHandler
+    @doc.onmousemove = (e) =>
+      unless @enabled
+        @hidePopup
+        return
+
+      @clientX = e.clientX
+      @clientY = e.clientY
+      range = @doc.caretRangeFromPoint e.clientX, e.clientY
+      if range
+        range.expand "word"
+        sel = @doc.defaultView.getSelection()
+        word = range.toString().trim()
+        safari.self.tab.dispatchMessage "lookupWord", word
+        #sel.removeAllRanges()
+        #sel.addRange range
 
     safari.self.addEventListener "message", (e) =>
       messageName = e.name
@@ -15,24 +29,8 @@ class Client
         when "showResult" then @showResult messageData.word, messageData.result
         when "status" then @updateStatus messageData
 
-    # Ask statut on load
+    # Ask status on load
     safari.self.tab.dispatchMessage "queryStatus"
-
-  mouseEventHandler: (e) =>
-    unless @enabled
-      @hidePopup
-      return
-
-    @clientX = e.clientX
-    @clientY = e.clientY
-    range = @doc.caretRangeFromPoint e.clientX, e.clientY
-    if range
-      range.expand "word"
-      sel = @doc.defaultView.getSelection()
-      word = range.toString().trim()
-      safari.self.tab.dispatchMessage "lookupWord", word
-      #sel.removeAllRanges()
-      #sel.addRange range
 
   getPopup: ->
     @doc.getElementById @popupTagId
