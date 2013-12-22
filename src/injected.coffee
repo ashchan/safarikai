@@ -47,7 +47,13 @@ class Client
   decorateRow: (row) ->
     kanji = if row.kanji.length isnt 0 then row.kanji else row.kana
     translation = row.translation.replace /;/g, "; "
-    "<li><div class='kanji'>#{kanji}</div><div class='kana'>#{row.kana}</div><div class='translation'>#{translation}</div></li>"
+    """
+    <li>
+      <div class='kanji'>#{ kanji }</div>
+      <div class='kana'>#{ row.kana }</div>
+      <div class='translation'>#{ translation }</div>
+    </li>
+    """
 
   showResult: (word, url, result) ->
     return if @window.location.href isnt url
@@ -59,7 +65,7 @@ class Client
       @hidePopup()
     else
       htmlRows = (@decorateRow row for row in result)
-      popup.innerHTML = "<ul>" + htmlRows.join("\n") + "</ul>"
+      popup.innerHTML = "<ul>#{ htmlRows.join '' }</ul>"
 
       margin = 30
 
