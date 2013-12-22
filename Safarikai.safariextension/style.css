@@ -15,42 +15,47 @@
 }
 
 #safarikai-popup ul {
-  text-align: left;
-  list-style: none;
+  text-align: left !important;
+  list-style: none !important;
   margin: 0 0 !important;
   padding: 0 0 !important;
 }
 
 #safarikai-popup ul li {
-  border-bottom: solid 1px #ccc !important;
+  border-bottom: solid 1px #E8E8E8 !important;
   padding-bottom: 6px !important;
-  margin-bottom: 6px !important;
+  margin-bottom: 4px !important;
+  font-family: "Hiragino Kaku Gothic", "ヒラギノ角ゴ Pro W3", sans-serif !important;
 }
 
 #safarikai-popup ul li:last-child {
   border: none !important;
-}
-
-#safarikai-popup ul li .kanji {
-  font-weight: bold;
-  font-size: 18px;
-  font-family: "Hiragino Kaku Gothic", "ヒラギノ角ゴ Pro W3", sans-serif !important;
-  color: #f00;
-  display: inline-block;
+  padding-bottom: 0 !important;
 }
 
 #safarikai-popup ul li .kana {
-  font-weight: bold;
-  font-size: 18px;
-  font-family: "Hiragino Kaku Gothic", "ヒラギノ角ゴ Pro W3", sans-serif !important;
+  display: inline-block !important;
+  font-weight: bold !important;
+  font-size: 12px !important;
   color: #00f;
-  display: inline-block;
-  margin-left: 30px !important;
+}
+
+#safarikai-popup ul li .romaji {
+  display: inline-block !important;
+  color: #000;
+  font-size: 14px !important;
+  margin-left: 24px !important;
+}
+
+#safarikai-popup ul li .kanji {
+  line-height: 18px !important;
+  font-weight: bold !important;
+  font-size: 18px !important;
+  color: #f00;
 }
 
 #safarikai-popup ul li .translation {
-  font-size: 14px;
-  font-family: "Hiragino Kaku Gothic", "ヒラギノ角ゴ Pro W3", sans-serif !important;
+  font-size: 14px !important;
   color: #555;
-  line-height: 1.2em;
+  line-height: 1.2em !important;
 }

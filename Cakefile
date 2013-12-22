@@ -7,7 +7,7 @@ task 'build', 'Build from src', ->
   buildInjectedScript()
 
 buildGlobalScript = ->
-  files = ["dictionary", "romaji", "commands", "global"]
+  files = ["romaji", "dictionary", "commands", "global"]
   coffee = spawn "coffee", ["-j", "global.js", "-c", "-o", distDir].concat ("src/#{file}.coffee" for file in files)
   coffee.on 'error', (error) ->
     process.stderr.write error.toString() + "\n"

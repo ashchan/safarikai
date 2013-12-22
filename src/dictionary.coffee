@@ -19,7 +19,7 @@ class Dictionary
       pivot = Math.floor (stop + start) / 2
 
     item = @dict[pivot]
-    kana:  item[1], kanji: item[2], translation: item[3]
+    kana: item[1], kanji: item[2], translation: item[3], romaji: Romaji.toRomaji item[1]
 
   load: ->
     @readDataFile "index.js", (data) =>

@@ -49,8 +49,9 @@ class Client
     translation = row.translation.replace /;/g, "; "
     """
     <li>
-      <div class='kanji'>#{ kanji }</div>
       <div class='kana'>#{ row.kana }</div>
+      <div class='romaji'>#{ row.romaji }</div>
+      <div class='kanji'>#{ kanji }</div>
       <div class='translation'>#{ translation }</div>
     </li>
     """

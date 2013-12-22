@@ -53,7 +53,7 @@
 		</array>
 	</dict>
 	<key>Description</key>
-	<string>Translate Japanese words on web pages. Inspired by rikaichan and rikaikun, with love for Safari.</string>
+	<string>Translate Japanese words on web pages.</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>
