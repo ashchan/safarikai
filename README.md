@@ -8,7 +8,7 @@ Translate Japanese words on web pages. Inspired by rikaichan and rikaikun, with 
 * Enable translating by clicking the Safarikai toggle button on Safari toolbar
 * Hover over Japanese word; if Safarikai finds translation(s) for that word a popup will show
 
-Safarikai has > 20MB dictionary data files and it usually takes 5~20 seconds for it to load these files and be ready to search Japanese words. By default translating is disabled to make little impact on your browsing experience.
+Safarikai has > 20MB dictionary data files and it usually takes 3~5 seconds for it to load these files and be ready to search Japanese words. By default translating is disabled to make little impact on your browsing experience.
 
 This means every time Safari is relaunched, you have to enable translating manually.
 
