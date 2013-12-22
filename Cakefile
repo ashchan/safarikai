@@ -1,11 +1,18 @@
-{print} = require 'util'
 {spawn} = require 'child_process'
 
+distDir = "Safarikai.safariextension/"
+
 task 'build', 'Build from src', ->
-  coffee = spawn 'coffee', ['-c', '-o', 'Safarikai.safariextension', 'src']
-  coffee.stderr.on 'data', (data) ->
-    process.stderr.write data.toString()
-  coffee.stdout.on 'data', (data) ->
-    print data.toString()
-  coffee.on 'exit', (code) ->
-    callback?() if code is 0
+  buildGlobalScript()
+  buildInjectedScript()
+
+buildGlobalScript = ->
+  files = ["dictionary", "romaji", "commands", "global"]
+  coffee = spawn "coffee", ["-j", "global.js", "-c", "-o", distDir].concat ("src/#{file}.coffee" for file in files)
+  coffee.on 'error', (error) ->
+    process.stderr.write error.toString() + "\n"
+
+buildInjectedScript = ->
+  coffee = spawn "coffee", ["-c", "-o", distDir, "src/injected.coffee"]
+  coffee.on 'error', (error) ->
+    process.stderr.write error.toString() + "\n"
