@@ -2,7 +2,7 @@
 
 Translate Japanese words on web pages. Inspired by rikaichan and rikaikun, with love for Safari.
 
-# How to Use
+## How to Use
 
 * Download and install [Safarikai.safariextz](http://bit.ly/safarikai-dl)
 * Enable translating by clicking the Safarikai toggle button on Safari toolbar
