@@ -1,14 +1,12 @@
 class Dictionary
-  constructor: ->
-    console.log "Create dictionary instance"
+  constructor: -> console.log "Create dictionary instance"
 
   find: (word) ->
     return [] unless @index and @dict
     indexes = @index[word] || []
     @findItemsByIndexes indexes
 
-  findItemsByIndexes: (indexes) ->
-    @findItemByIndex i for i in indexes
+  findItemsByIndexes: (indexes) -> @findItemByIndex i for i in indexes
 
   findItemByIndex: (i) ->
     start = 0
@@ -21,11 +19,7 @@ class Dictionary
       pivot = Math.floor (stop + start) / 2
 
     item = @dict[pivot]
-    {
-      kana:  item[1],
-      kanji: item[2],
-      translation: item[3]
-    }
+    kana:  item[1], kanji: item[2], translation: item[3]
 
   load: ->
     @readDataFile "index.js", (data) =>
@@ -42,8 +36,7 @@ class Dictionary
   readDataFile: (file, success) ->
     req = new XMLHttpRequest()
     req.open "GET", safari.extension.baseURI + "data/" + file, true
-    req.onload = (e) ->
-      success req.responseText if req.readyState is 4
+    req.onload = (e) -> success req.responseText if req.readyState is 4
     req.send null
 
 Safarikai =
@@ -52,26 +45,23 @@ Safarikai =
     @queryWord = ""
     @result    = ""
 
-  sendStatus: (page) ->
-    page.dispatchMessage "status", { enabled: @enabled }
+  sendStatus: (page) -> page.dispatchMessage "status", enabled: @enabled
 
   toggle: ->
     @enabled = !@enabled
     @prepareDictionary()
 
     for win in safari.application.browserWindows
-      for tab in win.tabs
-        @sendStatus tab.page
+      @sendStatus tab.page for tab in win.tabs
 
   lookup: (word, url, page) ->
     if @enabled
-      if @queryWord != word
+      if @queryWord isnt word
         @queryWord = word
-      @result = @dict.find @queryWord
-      page.dispatchMessage "showResult", { word: @queryWord, url: url, result: @result }
+        @result = @dict.find @queryWord
+      page.dispatchMessage "showResult", word: @queryWord, url: url, result: @result
 
-  status: (page) ->
-    @sendStatus page
+  status: (page) -> @sendStatus page
 
   prepareDictionary: ->
     if @enabled
@@ -99,8 +89,7 @@ safari.application.addEventListener 'validate', (e) ->
   Commands[e.command]?.validate?(e)
 
 safari.application.addEventListener "message", (e) ->
-  messageName = e.name
   messageData = e.message
-  switch messageName
+  switch e.name
     when "lookupWord" then Safarikai.lookup messageData.word, messageData.url, e.target.page
     when "queryStatus" then Safarikai.status e.target.page

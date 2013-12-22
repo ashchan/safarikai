@@ -17,26 +17,23 @@ class Client
         range.expand "word"
         sel = @doc.defaultView.getSelection()
         word = range.toString().trim()
-        safari.self.tab.dispatchMessage "lookupWord", { word: word, url: @window.location.href }
+        safari.self.tab.dispatchMessage "lookupWord", word: word, url: @window.location.href
         #sel.removeAllRanges()
         #sel.addRange range
 
-    @doc.onmouseout = (e) =>
-      @hidePopup()
+    @doc.onmouseout = (e) => @hidePopup()
 
     safari.self.addEventListener "message", (e) =>
-      messageName = e.name
       messageData = e.message
 
-      switch messageName
+      switch e.name
         when "showResult" then @showResult messageData.word, messageData.url, messageData.result
         when "status" then @updateStatus messageData
 
     # Ask status on load
     safari.self.tab.dispatchMessage "queryStatus"
 
-  getPopup: ->
-    @doc.getElementById @popupTagId
+  getPopup: -> @doc.getElementById @popupTagId
 
   injectPopup: ->
     return if @getPopup()
@@ -45,12 +42,10 @@ class Client
     popup.id = "safarikai-popup"
     @doc.body.appendChild popup
 
-  hidePopup: ->
-    @getPopup().style.display = "none"
+  hidePopup: -> @getPopup().style.display = "none"
 
   decorateRow: (row) ->
-    kanji = row.kanji
-    kanji = row.kana if kanji.length is 0
+    kanji = if row.kanji.length isnt 0 then row.kanji else row.kana
     translation = row.translation.replace /;/g, "; "
     "<li><div class='kanji'>" + kanji + "</div><div class='kana'>" + row.kana + "</div><div class='translation'>" + translation + "</div></li>"
 
@@ -79,6 +74,6 @@ class Client
 
   updateStatus: (status) ->
     @enabled = status.enabled
-    @hidePopup() if not @enabled
+    @hidePopup() unless @enabled
 
 client = new Client document, window
