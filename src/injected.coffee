@@ -12,14 +12,8 @@ class Client
 
       @clientX = e.clientX
       @clientY = e.clientY
-      range = @doc.caretRangeFromPoint e.clientX, e.clientY
-      if range
-        range.expand "word"
-        sel = @doc.defaultView.getSelection()
-        word = range.toString().trim()
-        safari.self.tab.dispatchMessage "lookupWord", word: word, url: @window.location.href
-        #sel.removeAllRanges()
-        #sel.addRange range
+      [word, range] = @wordAndRangeFromPoint e.clientX, e.clientY
+      safari.self.tab.dispatchMessage "lookupWord", word: word, url: @window.location.href if word?.length > 0
 
     @doc.onmouseout = (e) => @hidePopup()
 
@@ -33,6 +27,22 @@ class Client
     # Ask status on load
     safari.self.tab.dispatchMessage "queryStatus"
 
+  wordAndRangeFromPoint: (x, y) ->
+    ele = @doc.elementFromPoint(x, y)
+    if ele.tagName is "IMG"
+      [ele.alt.trim(), null]
+    else
+      range = @doc.caretRangeFromPoint x, y
+      if range
+        range.expand "word"
+        sel = @doc.defaultView.getSelection()
+        word = range.toString().trim()
+        #sel.removeAllRanges()
+        #sel.addRange range
+        [word, range]
+      else
+        [null, null]
+
   getPopup: -> @doc.getElementById @popupTagId
 
   injectPopup: ->
@@ -42,7 +52,7 @@ class Client
     popup.id = "safarikai-popup"
     @doc.body.appendChild popup
 
-  hidePopup: -> @getPopup().style.display = "none"
+  hidePopup: -> @getPopup()?.style.display = "none"
 
   decorateRow: (row) ->
     kanji = if row.kanji.length isnt 0 then row.kanji else row.kana
