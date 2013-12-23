@@ -28,13 +28,13 @@
 				<key>Identifier</key>
 				<string>toggleSafarikai</string>
 				<key>Image</key>
-				<string>IconDisabled.png</string>
+				<string>IconEnabled.png</string>
 				<key>Label</key>
 				<string>Safarikari</string>
 				<key>Palette Label</key>
 				<string>Safarikai</string>
 				<key>Tool Tip</key>
-				<string>Enable Safarikai</string>
+				<string>Disable Safarikai</string>
 			</dict>
 		</array>
 	</dict>

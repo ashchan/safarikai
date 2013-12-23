@@ -5,12 +5,7 @@ Translate Japanese words on web pages. Inspired by rikaichan and rikaikun, with 
 ## How to Use
 
 * Download and install [Safarikai.safariextz](http://bit.ly/safarikai-dl).
-* Enable translating by clicking the Safarikai toggle button ![toggle button](https://raw.github.com/ashchan/safarikai/master/Safarikai.safariextension/IconDisabled@2x.png) on Safari toolbar.
 * Hover over Japanese word; if Safarikai finds translation(s) for that word a popup will show.
-
-Safarikai has > 20MB dictionary data files and it usually takes 3~5 seconds for it to load these files and be ready to search Japanese words. By default translating is disabled to make little impact on your browsing experience.
-
-This means every time Safari is relaunched, you have to enable translating manually.
 
 ## Special Thanks
 

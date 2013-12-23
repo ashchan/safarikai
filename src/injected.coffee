@@ -3,7 +3,7 @@ class Client
     @clientX       = 0
     @clientY       = 0
     @popupTagId    = "safarikai-popup"
-    @enabled       = false
+    @enabled       = true
     @mouseDown     = false
     @highlighted   = false
     @highlightText = true
@@ -117,7 +117,7 @@ class Client
 
   updateStatus: (status) ->
     @enabled       = status.enabled
-    @highlightText = status.highlightText is "on"
+    @highlightText = status.highlightText
     @hidePopup() unless @enabled
 
 client = new Client document, window
