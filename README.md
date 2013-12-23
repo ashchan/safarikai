@@ -17,6 +17,7 @@ This means every time Safari is relaunched, you have to enable translating manua
 * [yaku](https://code.google.com/p/yaku/): A project from [Bryan McKelvey](http://www.brymck.com/) which has dict data as JavaScript files. I took them with some modifications.
 * [Rikaichan](http://www.polarcloud.com/rikaichan/): A popup Japanese-English/German/French/Russian dictionary tool for Firefox, Thunderbird and Seamonkey.
 * [rikaikun](https://code.google.com/p/rikaikun): A port of rikaichan for chrome. Translate Japanese by hovering over words.
+* [Electronic Dictionary Research and Development Group](http://www.edrdg.org): The home of the "EDICT Project" which has led to the compilation of a number of major Japanese-English dictionary files. Dictionary files used in Safarikai were converted from [EDICT](http://www.edrdg.org/jmdict/edict_doc.html), [ENAMDICT](http://www.edrdg.org/enamdict/enamdict_doc.html) and others.
 
 ## License
 
