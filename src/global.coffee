@@ -4,14 +4,12 @@ Safarikai =
     @queryWord = ""
     @result    = ""
 
-  sendStatus: (page) -> page.dispatchMessage "status", enabled: @enabled
+  sendStatus: (page) -> page.dispatchMessage "status", enabled: @enabled, highlightText: safari.extension.settings.highlightText
 
   toggle: ->
     @enabled = !@enabled
     @prepareDictionary()
-
-    for win in safari.application.browserWindows
-      @sendStatus tab.page for tab in win.tabs
+    @updateStatus()
 
   lookup: (word, url, page) ->
     if @enabled
@@ -21,6 +19,10 @@ Safarikai =
       page.dispatchMessage "showResult", word: @queryWord, url: url, result: @result
 
   status: (page) -> @sendStatus page
+
+  updateStatus: ->
+    for win in safari.application.browserWindows
+      @sendStatus tab.page for tab in win.tabs
 
   prepareDictionary: ->
     if @enabled
@@ -37,6 +39,9 @@ safari.application.addEventListener "command", (e) ->
 
 safari.application.addEventListener 'validate', (e) ->
   Commands[e.command]?.validate?(e)
+
+safari.extension.settings.addEventListener "change", (e) ->
+  Safarikai.updateStatus()
 
 safari.application.addEventListener "message", (e) ->
   messageData = e.message

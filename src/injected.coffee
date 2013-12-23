@@ -1,21 +1,31 @@
 class Client
   constructor: (@doc, @window) ->
-    @clientX = 0
-    @clientY = 0
-    @popupTagId = "safarikai-popup"
-    @enabled    = false
+    @clientX       = 0
+    @clientY       = 0
+    @popupTagId    = "safarikai-popup"
+    @enabled       = false
+    @mouseDown     = false
+    @highlighted   = false
+    @highlightText = true
 
     @doc.onmousemove = (e) =>
-      unless @enabled
+      unless @enabled and not @mouseDown
         @hidePopup()
         return
 
       @clientX = e.clientX
       @clientY = e.clientY
-      [word, range] = @wordAndRangeFromPoint e.clientX, e.clientY
-      safari.self.tab.dispatchMessage "lookupWord", word: word, url: @window.location.href if word?.length > 0
+      @createRange e.clientX, e.clientY
+      safari.self.tab.dispatchMessage "lookupWord", word: @selectionText, url: @window.location.href if @selectionText?.length > 0
 
-    @doc.onmouseout = (e) => @hidePopup()
+    @doc.onmouseout  = (e) => @hidePopup()
+    @doc.onmousedown = (e) =>
+      return if e.button isnt 0
+      @mouseDown = true
+      @clearHighlight()
+    @doc.onmouseup   = (e) =>
+      return if e.button isnt 0
+      @mouseDown = false
 
     safari.self.addEventListener "message", (e) =>
       messageData = e.message
@@ -27,21 +37,35 @@ class Client
     # Ask status on load
     safari.self.tab.dispatchMessage "queryStatus"
 
-  wordAndRangeFromPoint: (x, y) ->
+  createRange: (x, y) ->
     ele = @doc.elementFromPoint(x, y)
     if ele.tagName is "IMG"
-      [ele.alt.trim(), null]
+      @selectionText = ele.alt.trim()
     else
       range = @doc.caretRangeFromPoint x, y
       if range
         range.expand "word"
-        sel = @doc.defaultView.getSelection()
-        word = range.toString().trim()
-        #sel.removeAllRanges()
-        #sel.addRange range
-        [word, range]
-      else
-        [null, null]
+        text = range.toString()
+        if text.length > 0 and text isnt @selectionText
+          @highlight range
+          @selectionText = text
+
+  highlight: (range) ->
+    return unless @highlightText
+    return if @mouseDown
+    sel = @doc.defaultView.getSelection()
+    if not @highlighted and sel.toString().length > 0
+      return
+    sel.removeAllRanges()
+    sel.addRange range
+    @highlighted = true
+
+  clearHighlight: ->
+    return unless @highlightText
+    if @highlighted
+      sel = @doc.defaultView.getSelection()
+      sel.removeAllRanges
+      @highlighted = false
 
   getPopup: -> @doc.getElementById @popupTagId
 
@@ -90,7 +114,8 @@ class Client
       popup.style.top = top + "px"
 
   updateStatus: (status) ->
-    @enabled = status.enabled
+    @enabled       = status.enabled
+    @highlightText = status.highlightText is "on"
     @hidePopup() unless @enabled
 
 client = new Client document, window
