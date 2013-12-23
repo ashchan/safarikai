@@ -47,24 +47,24 @@ class Client
         range.expand "word"
         text = range.toString()
         if text.length > 0 and text isnt @selectionText
-          @highlight range
+          @range = range
           @selectionText = text
 
-  highlight: (range) ->
-    return unless @highlightText
+  highlight: ->
+    return unless @highlightText and @range
     return if @mouseDown
     sel = @doc.defaultView.getSelection()
     if not @highlighted and sel.toString().length > 0
       return
     sel.removeAllRanges()
-    sel.addRange range
+    sel.addRange @range
     @highlighted = true
 
   clearHighlight: ->
     return unless @highlightText
     if @highlighted
       sel = @doc.defaultView.getSelection()
-      sel.removeAllRanges
+      sel.removeAllRanges()
       @highlighted = false
 
   getPopup: -> @doc.getElementById @popupTagId
@@ -97,8 +97,10 @@ class Client
     popup = @getPopup()
     popup.style.display = "block"
     if result.length is 0
+      @clearHighlight()
       @hidePopup()
     else
+      @highlight()
       htmlRows = (@decorateRow row for row in result)
       popup.innerHTML = "<ul>#{ htmlRows.join '' }</ul>"
 
