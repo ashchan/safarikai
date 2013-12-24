@@ -1,0 +1,27 @@
+{
+  "name": "safarikai",
+  "version": "0.0.0",
+  "description": "Safari extension for translating Japanese words.",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ashchan/safarikai.git"
+  },
+  "keywords": [
+    "safari",
+    "japanese",
+    "dictionary"
+  ],
+  "author": "James Chen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ashchan/safarikai/issues"
+  },
+  "homepage": "http://ashchan.github.io/safarikai/",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "japanese-kit": "~0.0.1",
+    "coffee-script": "1.6.x"
+  }
+}

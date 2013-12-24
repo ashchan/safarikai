@@ -1,4 +1,4 @@
-Safarikai =
+window.Safarikai =
   initialize: ->
     @queryWord = ""
     @result    = ""

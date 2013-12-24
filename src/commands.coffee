@@ -1,4 +1,4 @@
-Commands =
+window.Commands =
   toggle:
     invoke: (event) ->
       Safarikai.toggle()
