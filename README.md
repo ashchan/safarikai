@@ -10,7 +10,7 @@ Translate Japanese words on web pages. Inspired by rikaichan and rikaikun, with 
 ## Development Dependencies
 
 * [CoffeeScript](http://coffeescript.org)
-* [japanese-kit)[https://github.com/ashchan/japanese-coffee-kit)
+* [japanese-kit](https://github.com/ashchan/japanese-coffee-kit)
 
 ## Special Thanks
 
