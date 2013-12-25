@@ -7,6 +7,11 @@ Translate Japanese words on web pages. Inspired by rikaichan and rikaikun, with 
 * Download and install [Safarikai.safariextz](http://bit.ly/safarikai-dl).
 * Hover over Japanese word; if Safarikai finds translation(s) for that word a popup will show.
 
+## Development Dependencies
+
+* [CoffeeScript](http://coffeescript.org)
+* [japanese-kit)[https://github.com/ashchan/japanese-coffee-kit)
+
 ## Special Thanks
 
 * [yaku](https://code.google.com/p/yaku/): A project from [Bryan McKelvey](http://www.brymck.com/) which has dict data as JavaScript files. I took them with some modifications.
