@@ -3,12 +3,23 @@ class window.Dictionary
 
   find: (word) ->
     return [] unless @index and @dict
-    indexes = @index[word] || []
-    @findItemsByIndexes indexes
 
-  findItemsByIndexes: (indexes) -> @findItemByIndex i for i in indexes
+    results = []
+    for w in (word.substring 0, l for l in [word.length..1])
+      results = results.concat @searchWord w
+    console.log results
+    results
 
-  findItemByIndex: (i) ->
+  searchWord: (word) ->
+    results = []
+    for variant in Deinflector.deinflect word
+      results = results.concat @searchItemsByIndexes @index[variant]
+    results
+
+  searchItemsByIndexes: (indexes = []) ->
+    @searchItemByIndex i for i in indexes
+
+  searchItemByIndex: (i) ->
     start = 0
     stop  = @dict.length - 1
     pivot = Math.floor (start + stop) / 2
