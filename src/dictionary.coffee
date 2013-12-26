@@ -4,17 +4,12 @@ class window.Dictionary
   find: (word) ->
     return [] unless @index and @dict
 
-    results = []
-    for w in (word.substring 0, l for l in [word.length..1])
-      results = results.concat @searchWord w
-    console.log results
-    results
+    results = (@searchWord w for w in (word.substring 0, l for l in [word.length..1]))
+    flatten results
 
   searchWord: (word) ->
-    results = []
-    for variant in Deinflector.deinflect word
-      results = results.concat @searchItemsByIndexes @index[variant]
-    results
+    results = (@searchItemsByIndexes @index[variant] for variant in Deinflector.deinflect word)
+    flatten results
 
   searchItemsByIndexes: (indexes = []) ->
     @searchItemByIndex i for i in indexes
@@ -33,10 +28,10 @@ class window.Dictionary
     kana: item[1], kanji: item[2], translation: item[3], romaji: Romaji.toRomaji item[1]
 
   load: ->
-    @readDataFile "index.js", (data) =>
+    readDataFile "index.js", (data) =>
       eval data # var loadedIndex = {...}
       @index = loadedIndex
-    @readDataFile "dict.js", (data) =>
+    readDataFile "dict.js", (data) =>
       eval data # var loadedDict = []
       @dict = loadedDict
 
@@ -44,8 +39,17 @@ class window.Dictionary
     @index = null
     @dict  = null
 
-  readDataFile: (file, success) ->
-    req = new XMLHttpRequest()
-    req.open "GET", safari.extension.baseURI + "data/" + file, true
-    req.onload = (e) -> success req.responseText if req.readyState is 4
-    req.send null
+flatten = (array) ->
+  flattened = []
+  for element in array
+    if element instanceof Array
+      flattened = flattened.concat flatten element
+    else
+      flattened.push element
+  flattened
+
+readDataFile = (file, success) ->
+  req = new XMLHttpRequest()
+  req.open "GET", safari.extension.baseURI + "data/" + file, true
+  req.onload = (e) -> success req.responseText if req.readyState is 4
+  req.send null
