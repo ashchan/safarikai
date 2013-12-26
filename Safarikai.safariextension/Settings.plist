@@ -28,5 +28,33 @@
 		<key>Type</key>
 		<string>CheckBox</string>
 	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<real>5</real>
+		<key>Key</key>
+		<string>resultsLimit</string>
+		<key>Title</key>
+		<string>Results Limit</string>
+		<key>Titles</key>
+		<array>
+			<string>3</string>
+			<string>4</string>
+			<string>5</string>
+			<string>6</string>
+			<string>7</string>
+			<string>8</string>
+		</array>
+		<key>Type</key>
+		<string>PopUpButton</string>
+		<key>Values</key>
+		<array>
+			<real>3</real>
+			<real>4</real>
+			<real>5</real>
+			<real>6</real>
+			<real>7</real>
+			<real>8</real>
+		</array>
+	</dict>
 </array>
 </plist>

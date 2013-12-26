@@ -1,10 +1,9 @@
 class window.Dictionary
   constructor: -> console.log "Create dictionary instance"
 
-  find: (word) ->
+  find: (word, limit) ->
     return [] unless @index and @dict
 
-    limit = 8
     results = (@searchWord w for w in (word.substring 0, l for l in [word.length..1]))
     result for result, idx in flatten results when idx < limit
 
