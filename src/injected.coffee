@@ -53,7 +53,7 @@ class Client
       offset = range.startOffset
       if range
         range.setStart container, offset
-        range.setEnd container, Math.min(container.data.length, offset + 10)
+        range.setEnd container, Math.min(container.data?.length, offset + 10)
         text = range.toString()
         if text.length > 0 and text isnt @selectionText
           @range = range
@@ -68,7 +68,7 @@ class Client
     sel.removeAllRanges()
     if @range
       container = @range.startContainer
-      @range.setEnd container, Math.min(container.data.length, @rangeOffset + word.length)
+      @range.setEnd container, Math.min(container.data?.length, @rangeOffset + word.length)
       sel.addRange @range
     @highlighted = true
 
