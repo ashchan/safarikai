@@ -11,21 +11,23 @@ class Client
     @doc.onmousemove = (e) =>
       unless @enabled and not @mouseDown
         @hidePopup()
-        return
-
-      @clientX = e.clientX
-      @clientY = e.clientY
-      @createRange e.clientX, e.clientY
-      safari.self.tab.dispatchMessage "lookupWord", word: @selectionText, url: @window.location.href if @selectionText?.length > 0
+      else
+        @clientX = e.clientX
+        @clientY = e.clientY
+        @createRange e.clientX, e.clientY
+        safari.self.tab.dispatchMessage "lookupWord", word: @selectionText, url: @window.location.href if @selectionText?.length > 0
+      true
 
     @doc.onmouseout  = (e) => @hidePopup()
     @doc.onmousedown = (e) =>
-      return if e.button isnt 0
-      @mouseDown = true
-      @clearHighlight()
+      if e.button is 0
+        @mouseDown = true
+        @clearHighlight()
+      true
     @doc.onmouseup   = (e) =>
-      return if e.button isnt 0
-      @mouseDown = false
+      if e.button is 0
+        @mouseDown = false
+      true
 
     safari.self.addEventListener "message", (e) =>
       messageData = e.message
