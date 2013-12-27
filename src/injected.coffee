@@ -7,6 +7,7 @@ class Client
     @mouseDown     = false
     @highlighted   = false
     @highlightText = true
+    @rangeOffset   = 0
 
     @doc.onmousemove = (e) =>
       unless @enabled and not @mouseDown
@@ -41,25 +42,34 @@ class Client
 
   createRange: (x, y) ->
     ele = @doc.elementFromPoint(x, y)
-    if ele.tagName is "IMG"
+    @range = null
+    if ele.tagName in @_ignoreElements
+      @selectionText = ""
+    else if ele.tagName is "IMG"
       @selectionText = ele.alt.trim()
     else
       range = @doc.caretRangeFromPoint x, y
+      container = range.startContainer
+      offset = range.startOffset
       if range
-        range.expand "word"
+        range.setStart container, offset
+        range.setEnd container, Math.min(container.data.length, offset + 10)
         text = range.toString()
         if text.length > 0 and text isnt @selectionText
           @range = range
+          @rangeOffset = offset
           @selectionText = text
 
-  highlight: ->
+  highlight: (word) ->
     return unless @highlightText and @range
     return if @mouseDown
     sel = @doc.defaultView.getSelection()
-    if not @highlighted and sel.toString().length > 0
-      return
+    return if not @highlighted and sel.toString().length > 0
     sel.removeAllRanges()
-    sel.addRange @range
+    if @range
+      container = @range.startContainer
+      @range.setEnd container, Math.min(container.data.length, @rangeOffset + word.length)
+      sel.addRange @range
     @highlighted = true
 
   clearHighlight: ->
@@ -102,7 +112,7 @@ class Client
       @clearHighlight()
       @hidePopup()
     else
-      @highlight()
+      @highlight(word)
       htmlRows = (@decorateRow row for row in result)
       popup.innerHTML = "<ul>#{ htmlRows.join '' }</ul>"
 
@@ -121,5 +131,8 @@ class Client
     @enabled       = status.enabled
     @highlightText = status.highlightText
     @hidePopup() unless @enabled
+
+  _ignoreElements:
+    ["TEXTAREA", "INPUT"]
 
 client = new Client document, window

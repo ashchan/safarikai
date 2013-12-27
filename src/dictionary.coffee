@@ -4,8 +4,13 @@ class window.Dictionary
   find: (word, limit) ->
     return [] unless @index and @dict
 
-    results = (@searchWord w for w in (word.substring 0, l for l in [word.length..1]))
-    result for result, idx in flatten results when idx < limit
+    longest = null
+    results = []
+    for w in (word.substring 0, l for l in [word.length..1])
+      result = @searchWord w
+      longest or= w if result.length > 0
+      results.push result
+    results: (result for result, idx in flatten results when idx < limit), match: longest
 
   searchWord: (word) ->
     results = (@searchItemsByIndexes @index[variant] for variant in Deinflector.deinflect word)

@@ -18,7 +18,7 @@ window.Safarikai =
       if @queryWord isnt word
         @queryWord = word
         @result = @dict.find @queryWord, safari.extension.settings.resultsLimit
-      page.dispatchMessage "showResult", word: @queryWord, url: url, result: @result
+      page.dispatchMessage "showResult", word: @result.match, url: url, result: @result.results
 
   status: (page) -> @sendStatus page
 
