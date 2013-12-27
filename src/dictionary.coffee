@@ -4,6 +4,7 @@ class window.Dictionary
   find: (word, limit) ->
     return [] unless @index and @dict
 
+    @indexCache = {}
     longest = null
     results = []
     for w in (word.substring 0, l for l in [word.length..1])
@@ -17,9 +18,10 @@ class window.Dictionary
     flatten results
 
   searchItemsByIndexes: (indexes = []) ->
-    @searchItemByIndex i for i in indexes
+    @searchItemByIndex i for i in indexes when not @indexCache[i]
 
   searchItemByIndex: (i) ->
+    @indexCache[i] = true
     start = 0
     stop  = @dict.length - 1
     pivot = Math.floor (start + stop) / 2
