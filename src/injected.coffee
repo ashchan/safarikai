@@ -13,10 +13,12 @@ class Client
       unless @enabled and not @mouseDown
         @hidePopup()
       else
-        @clientX = e.clientX
-        @clientY = e.clientY
-        @createRange e.clientX, e.clientY
-        safari.self.tab.dispatchMessage "lookupWord", word: @selectionText, url: @window.location.href if @selectionText?.length > 0
+        @createRange e
+        if @selectionText?.length > 0
+          safari.self.tab.dispatchMessage "lookupWord", word: @selectionText, url: @window.location.href
+        else
+          @clearHighlight()
+          @hidePopup()
       true
 
     @doc.onmouseout  = (e) => @hidePopup()
@@ -40,31 +42,39 @@ class Client
     # Ask status on load
     safari.self.tab.dispatchMessage "queryStatus"
 
-  createRange: (x, y) ->
-    ele = @doc.elementFromPoint(x, y)
+  createRange: (e) ->
+    @clientX = e.clientX
+    @clientY = e.clientY
+    ele = @doc.elementFromPoint(@clientX, @clientY)
     @range = null
     if ele.tagName in @_ignoreElements
       @selectionText = ""
     else if ele.tagName is "IMG"
       @selectionText = ele.alt.trim()
     else
-      range = @doc.caretRangeFromPoint x, y
+      range = @doc.caretRangeFromPoint @clientX, @clientY
       container = range.startContainer
       offset = range.startOffset
-      if range
-        range.setStart container, offset
-        range.setEnd container, Math.min(container.data?.length, offset + 10)
-        text = range.toString()
-        if text.length > 0 and text isnt @selectionText
-          @range = range
-          @rangeOffset = offset
-          @selectionText = text
+
+      if offset is container.data?.length
+        if @_isInlineNode(e.target) and container.parentNode.innerText isnt e.target.innerText
+          container = e.target.firstChild
+          offset = 0
+
+      range.setStart container, offset
+      range.setEnd container, Math.min(container.data?.length, offset + 10)
+
+      text = range.toString()
+      if text isnt @selectionText
+        @range = range
+        @rangeOffset = offset
+        @selectionText = text
 
   highlight: (word) ->
     return unless @highlightText and @range
     return if @mouseDown
     sel = @doc.defaultView.getSelection()
-    return if not @highlighted and sel.toString().length > 0
+    return if not @highlighted and sel.toString().length > 0 # user selection
     sel.removeAllRanges()
     if @range
       container = @range.startContainer
@@ -131,6 +141,11 @@ class Client
     @enabled       = status.enabled
     @highlightText = status.highlightText
     @hidePopup() unless @enabled
+
+  _isInlineNode: (node) ->
+    return true if node.nodeName is "#text"
+    display = @doc.defaultView.getComputedStyle(node, null).getPropertyValue "display"
+    display is "inline" or display is "inline-block"
 
   _ignoreElements:
     ["TEXTAREA", "INPUT"]
