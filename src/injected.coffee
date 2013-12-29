@@ -62,7 +62,7 @@ class Client
           offset = 0
 
       range.setStart container, offset
-      range.setEnd container, Math.min(container.data?.length, offset + 10)
+      range.setEnd container, Math.min(container.data?.length, offset + 12)
 
       text = range.toString()
       if text isnt @selectionText
