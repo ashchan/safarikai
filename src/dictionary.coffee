@@ -10,8 +10,8 @@ class window.Dictionary
     for w in (word.substring 0, l for l in [word.length..1])
       result = @searchWord w
       longest or= w if result.length > 0
-      results.push result
-    results: (result for result, idx in flatten results when idx < limit), match: longest
+      results.push result...
+    results: (result for result, idx in results when idx < limit), match: longest
 
   searchWord: (word) ->
     results = (@searchItemsByIndexes @index[variant] for variant in Deinflector.deinflect word)
@@ -50,7 +50,7 @@ flatten = (array) ->
   flattened = []
   for element in array
     if element instanceof Array
-      flattened = flattened.concat flatten element
+      flattened.push flatten(element)...
     else
       flattened.push element
   flattened
