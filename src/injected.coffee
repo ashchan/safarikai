@@ -102,13 +102,12 @@ class Client
 
   decorateRow: (row) ->
     kanji = if row.kanji.length isnt 0 then row.kanji else row.kana
-    translation = row.translation.replace /;/g, "; "
     """
     <li>
       <div class='kana'>#{ row.kana }</div>
       <div class='romaji'>#{ row.romaji }</div>
       <div class='kanji'>#{ kanji }</div>
-      <div class='translation'>#{ translation }</div>
+      <div class='translation'>#{ row.translation }</div>
     </li>
     """
 

@@ -2,9 +2,8 @@ class window.Dictionary
   constructor: -> console.log "Create dictionary instance"
 
   find: (word, limit) ->
-    return [] unless @index and @dict
+    return [] unless @dict
 
-    @indexCache = {}
     longest = null
     results = []
     for w in (word.substring 0, l for l in [word.length..1])
@@ -14,36 +13,38 @@ class window.Dictionary
     results: (result for result, idx in results when idx < limit), match: longest
 
   searchWord: (word) ->
-    results = (@searchItemsByIndexes @index[variant] for variant in Deinflector.deinflect word)
-    flatten results
+    results = []
+    for variant in Deinflector.deinflect word
+      item = @dict.words[variant]
+      results.push @parseResult variant, result for result in item if item
+      indexes = @dict.indexes[variant]
+      if indexes
+        for index in indexes
+          item = @dict.words[index]
+          results.push @parseResult index, result for result in item if item
+    results
 
-  searchItemsByIndexes: (indexes = []) ->
-    @searchItemByIndex i for i in indexes when not @indexCache[i]
+  parseResult: (kanji, result) ->
+    if result[0] is "["
+      parts = result.split /[\[\]]/
+      kana = parts[1]
+      translation = parts[2].substring 1
+    else
+      kana = kanji
+      translation = result
 
-  searchItemByIndex: (i) ->
-    @indexCache[i] = true
-    start = 0
-    stop  = @dict.length - 1
-    pivot = Math.floor (start + stop) / 2
+    translation = translation.replace /^\/\(\S+\) /, ""
+    translation = translation.replace /\(P\)\/$/, ""
+    translation = translation[0..-2].split("/").join "; "
 
-    while @dict[pivot][0] isnt i and start < stop
-      stop  = pivot - 1 if i < @dict[pivot][0]
-      start = pivot + 1 if i > @dict[pivot][0]
-      pivot = Math.floor (stop + start) / 2
-
-    item = @dict[pivot]
-    kana: item[1], kanji: item[2], translation: item[3], romaji: Romaji.toRomaji item[1]
+    { kana: kana, kanji: kanji, translation: translation, romaji: Romaji.toRomaji kana }
 
   load: ->
-    readDataFile "index.js", (data) =>
-      eval data # var loadedIndex = {...}
-      @index = loadedIndex
-    readDataFile "dict.js", (data) =>
-      eval data # var loadedDict = []
+    readDataFile "dictionary.js", (data) =>
+      eval data # var loadedDict = {}
       @dict = loadedDict
 
   unload: ->
-    @index = null
     @dict  = null
 
 flatten = (array) ->
