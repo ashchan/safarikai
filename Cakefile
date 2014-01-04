@@ -27,13 +27,12 @@ generateData = ->
   recordIndexLine = (line) ->
     columns = line.split ","
     word = columns[0]
-    unless dictionary.words[word]
-      offsets = columns[1..-1]
-      dictionary.indexes[word] or= []
-      for offset in offsets
-        item = data.substring offset, data.indexOf "\n", offset
-        ref = item.split(" ")[0]
-        dictionary.indexes[word].push ref if -1 is dictionary.indexes[word].indexOf ref
+    offsets = columns[1..-1]
+    dictionary.indexes[word] or= []
+    for offset in offsets
+      item = data.substring offset, data.indexOf "\n", offset
+      ref = item.split(" ")[0]
+      dictionary.indexes[word].push ref if -1 is dictionary.indexes[word].indexOf ref
 
   recordDataLine = (line) ->
     columns = line.split " "
