@@ -24,16 +24,25 @@ generateData = ->
   data = fs.readFileSync "data/dict.dat", "utf8"
   indexes = fs.readFileSync "data/dict.idx", "utf8"
 
-  recordLine = (line) ->
+  recordIndexLine = (line) ->
     columns = line.split ","
     word = columns[0]
-    offsets = columns[1..-1]
-    dictionary[word] or= []
-    for offset in offsets
-      item = data.substring offset, data.indexOf "\n", offset
-      dictionary[word].push item.replace "[#{word}]", ""
+    unless dictionary.words[word]
+      offsets = columns[1..-1]
+      dictionary.indexes[word] or= []
+      for offset in offsets
+        item = data.substring offset, data.indexOf "\n", offset
+        ref = item.split(" ")[0]
+        dictionary.indexes[word].push ref if -1 is dictionary.indexes[word].indexOf ref
 
-  dictionary = {}
-  recordLine line for line in indexes.split "\n"
+  recordDataLine = (line) ->
+    columns = line.split " "
+    word = columns[0]
+    dictionary.words[word] or= []
+    dictionary.words[word].push columns[1..-1].join " "
 
-  fs.writeFileSync "Safarikai.safariextension/data/dictionary.js", "var loadedDict = #{JSON.stringify dictionary};"
+  dictionary = words: {}, indexes: {}
+  recordDataLine line for line in data.split "\n"
+  recordIndexLine line for line in indexes.split "\n"
+
+  fs.writeFileSync "Safarikai.safariextension/data/dictionary.js", "var loadedDict = #{JSON.stringify dictionary, undefined, 0};"

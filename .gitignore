@@ -1,3 +1,4 @@
 Safarikai.safariextension/*.js
 node_modules
-data/
+data/*.idx
+data/*.dat
