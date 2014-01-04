@@ -4,6 +4,7 @@ class window.Dictionary
   find: (word, limit) ->
     return [] unless @dict
 
+    @cachedWord = {}
     longest = null
     results = []
     for w in (word.substring 0, l for l in [word.length..1])
@@ -12,16 +13,23 @@ class window.Dictionary
       results.push result...
     results: (result for result, idx in results when idx < limit), match: longest
 
+  pushWordToResults: (results, word) ->
+    if not @cachedWord[word]
+      @cachedWord[word] = true
+      item = @dict.words[word]
+      results.push @parseResult word, result for result in item if item
+
   searchWord: (word) ->
     results = []
-    for variant in Deinflector.deinflect word
-      item = @dict.words[variant]
-      results.push @parseResult variant, result for result in item if item
+    variants = Deinflector.deinflect word
+    if word.length > 2
+      hiragana = Romaji.toHiragana(word).join ""
+      variants.push hiragana if hiragana.length > 0
+    for variant in variants
+      @pushWordToResults results, variant
       indexes = @dict.indexes[variant]
       if indexes
-        for index in indexes
-          item = @dict.words[index]
-          results.push @parseResult index, result for result in item if item
+        @pushWordToResults results, index for index in indexes
     results
 
   parseResult: (kanji, result) ->
