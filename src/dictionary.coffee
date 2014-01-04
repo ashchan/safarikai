@@ -13,23 +13,23 @@ class window.Dictionary
       results.push result...
     results: (result for result, idx in results when idx < limit), match: longest
 
-  pushWordToResults: (results, word) ->
-    if not @cachedWord[word]
+  pushWordToResults: (results, word, matchedWord = null) ->
+    unless @cachedWord[word]
       @cachedWord[word] = true
-      item = @dict.words[word]
-      results.push @parseResult word, result for result in item if item
+      if record = @dict.words[word]
+        parsed = (@parseResult word, item for item in record)
+        results.push pending for pending in parsed when (not matchedWord) or (pending.kana is matchedWord or pending.kanji is matchedWord)
 
   searchWord: (word) ->
     results = []
-    variants = Deinflector.deinflect word
-    if word.length > 2
-      hiragana = Romaji.toHiragana(word).join ""
-      variants.push hiragana if hiragana.length > 0
+    variants = if word.length > 1 then Deinflector.deinflect word else [word]
+    hiragana = Romaji.toHiragana(word).join ""
+    variants.push hiragana if hiragana.length > 0
     for variant in variants
       @pushWordToResults results, variant
-      indexes = @dict.indexes[variant]
-      if indexes
-        @pushWordToResults results, index for index in indexes
+    for variant in variants
+      if indexes = @dict.indexes[variant]
+        @pushWordToResults results, index, variant for index in indexes
     results
 
   parseResult: (kanji, result) ->
