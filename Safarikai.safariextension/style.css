@@ -37,6 +37,7 @@
   display: inline-block !important;
   font-weight: bold !important;
   font-size: 12px !important;
+  line-height: 12px !important;
   color: #00f;
 }
 
@@ -48,7 +49,7 @@
 }
 
 #safarikai-popup ul li .kanji {
-  line-height: 18px !important;
+  margin-top: -6px !important;
   font-weight: bold !important;
   font-size: 18px !important;
   color: #f00;

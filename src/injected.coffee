@@ -121,17 +121,17 @@ class Client
       @clearHighlight()
       @hidePopup()
     else
-      @highlight(word)
+      @highlight word
       htmlRows = (@decorateRow row for row in result)
       popup.innerHTML = "<ul>#{ htmlRows.join '' }</ul>"
-
-      margin = 30
+      popup.style.maxWidth = if @window.innerWidth < 400 then "80%" else "560px"
 
       left = @clientX + @window.scrollX
-      overflowX = @clientX + popup.offsetWidth - @window.innerWidth + margin
+      overflowX = @clientX + popup.offsetWidth - @window.innerWidth + 10
       left -= overflowX if overflowX > 0
       popup.style.left = left + "px"
 
+      margin = 30
       top = @clientY + @window.scrollY + margin
       top = @clientY + @window.scrollY - popup.offsetHeight - margin if @clientY > @window.innerHeight / 2
       popup.style.top = top + "px"
