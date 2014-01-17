@@ -1,7 +1,7 @@
 #safarikai-popup {
-  position: absolute;
+  position: absolute !important;
   width: auto;
-  min-width: 200px;
+  min-width: 200px !important;
   max-width: 80%;
   height: auto;
   min-height: 40px;
@@ -22,41 +22,47 @@
 }
 
 #safarikai-popup ul li {
+  padding: 6px !important;
   border-bottom: solid 1px #E8E8E8 !important;
-  padding-bottom: 6px !important;
-  margin-bottom: 4px !important;
   font-family: "Hiragino Kaku Gothic", "ヒラギノ角ゴ Pro W3", sans-serif !important;
 }
 
 #safarikai-popup ul li:last-child {
   border: none !important;
-  padding-bottom: 0 !important;
 }
 
 #safarikai-popup ul li .kana {
   display: inline-block !important;
-  font-weight: bold !important;
-  font-size: 12px !important;
-  line-height: 14px !important;
-  color: #00f;
-}
-
-#safarikai-popup ul li .romaji {
-  display: inline-block !important;
-  color: #000;
-  font-size: 14px !important;
-  margin-left: 24px !important;
+  font-weight: 600 !important;
+  font-size: 17px !important;
+  color: #55ACEE !important;
 }
 
 #safarikai-popup ul li .kanji {
-  margin-top: -4px !important;
-  font-weight: bold !important;
+  display: inline-block !important;
+  font-weight: 600 !important;
   font-size: 17px !important;
-  color: #f00;
+  color: #A83834 !important;
+}
+
+#safarikai-popup ul li .kanji:before {
+  content: "【";
+}
+
+#safarikai-popup ul li .kanji:after {
+  content: "】";
+}
+
+#safarikai-popup ul li .romaji {
+  color: #000 !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  display: inline-block !important;
+  margin-right: 8px;
 }
 
 #safarikai-popup ul li .translation {
   font-size: 14px !important;
-  color: #555;
+  color: #000 !important;
   line-height: 1.2em !important;
 }

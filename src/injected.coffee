@@ -101,13 +101,15 @@ class Client
   hidePopup: -> @getPopup()?.style.display = "none"
 
   decorateRow: (row) ->
-    kanji = if row.kanji.length isnt 0 then row.kanji else row.kana
+    kanji = if row.kanji isnt row.kana then row.kanji else ""
     """
     <li>
       <div class='kana'>#{ row.kana }</div>
-      <div class='romaji'>#{ row.romaji }</div>
-      <div class='kanji'>#{ kanji }</div>
-      <div class='translation'>#{ row.translation }</div>
+      #{ if kanji.length > 0 then "<div class='kanji'>" + kanji + "</div>" else "" }
+      <div class='translation'>
+        <div class='romaji'>[#{ row.romaji }]</div>
+        #{ row.translation }
+      </div>
     </li>
     """
 
@@ -123,8 +125,8 @@ class Client
     else
       @highlight word
       htmlRows = (@decorateRow row for row in result)
-      popup.innerHTML = "<ul>#{ htmlRows.join '' }</ul>"
-      popup.style.maxWidth = if @window.innerWidth < 400 then "80%" else "560px"
+      popup.innerHTML = "<ul class='results'>#{ htmlRows.join '' }</ul>"
+      popup.style.maxWidth = if @window.innerWidth < 400 then "80%" else "500px"
 
       left = @clientX + @window.scrollX
       overflowX = @clientX + popup.offsetWidth - @window.innerWidth + 10
