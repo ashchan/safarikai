@@ -1,12 +1,14 @@
 class Client
   constructor: (@doc, @window) ->
-    @clientX       = 0
-    @clientY       = 0
-    @popupTagId    = "safarikai-popup"
-    @enabled       = true
-    @mouseDown     = false
-    @highlighted   = false
-    @highlightText = true
+    @clientX         = 0
+    @clientY         = 0
+    @popupTagId      = "safarikai-popup"
+    @enabled         = true
+    @mouseDown       = false
+    @highlighted     = false
+    @highlightText   = true
+    @showRomaji      = true
+    @showTranslation = true
     @rangeOffset   = 0
 
     @doc.onmousemove = (e) =>
@@ -106,10 +108,10 @@ class Client
     <li>
       <div class='kana'>#{ row.kana }</div>
       #{ if kanji.length > 0 then "<div class='kanji'>" + kanji + "</div>" else "" }
-      <div class='translation'>
-        <div class='romaji'>[#{ row.romaji }]</div>
-        #{ row.translation }
-      </div>
+      #{ if @showRomaji or @showTranslation then "<div class='translation'>" else "" }
+        #{ if @showRomaji then "<div class='romaji'>[" + row.romaji + "]</div>" else "" }
+        #{ if @showTranslation then "#{row.translation}" else "" }
+      #{ if @showRomaji or @showTranslation then "</div>" else "" }
     </li>
     """
 
@@ -139,8 +141,10 @@ class Client
       popup.style.top = top + "px"
 
   updateStatus: (status) ->
-    @enabled       = status.enabled
-    @highlightText = status.highlightText
+    @enabled         = status.enabled
+    @highlightText   = status.highlightText
+    @showRomaji      = status.showRomaji
+    @showTranslation = status.showTranslation
     @hidePopup() unless @enabled
 
   _isInlineNode: (node) ->

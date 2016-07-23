@@ -4,10 +4,16 @@ window.Safarikai =
     @result    = ""
 
   sendStatus: (page) ->
-    page.dispatchMessage "status", enabled: @enabled(), highlightText: safari.extension.settings.highlightText is 'on'
+    page.dispatchMessage "status", enabled: @enabled(), highlightText: safari.extension.settings.highlightText is 'on', showRomaji: @showRomaji(), showTranslation: @showTranslation()
 
   enabled: ->
     safari.extension.settings.enabled is 'on'
+
+  showRomaji: ->
+    safari.extension.settings.showRomaji is 'on'
+
+  showTranslation: ->
+    safari.extension.settings.showTranslation is 'on'
 
   toggle: ->
     safari.extension.settings.enabled = if @enabled() then 'off' else 'on'
