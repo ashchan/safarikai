@@ -9,11 +9,15 @@
 import SafariServices
 
 class SafariExtensionHandler: SFSafariExtensionHandler {
-    
     override func messageReceived(withName messageName: String, from page: SFSafariPage, userInfo: [String : Any]?) {
-        // This method will be called when a content script provided by your extension calls safari.extension.dispatchMessage("message").
-        page.getPropertiesWithCompletionHandler { properties in
-            NSLog("The extension received a message (\(messageName)) from a script injected into (\(properties?.url)) with userInfo (\(userInfo))")
+        if messageName == "lookupWord" {
+            let word = userInfo!["word"] as! String
+            let url = userInfo!["url"] as! String
+            let result = [
+                ["kana": "じちく", "kanji": "自治区", "translation": "territory; autonomous region", "romaji": "jichiku"],
+                ["kana": "じち", "kanji": "自治", "translation": "self-government; autonomy", "romaji": "jichi"]
+            ]
+            page.dispatchMessageToScript(withName: "showResult", userInfo: ["word": word, "url": url, "result": result])
         }
     }
     

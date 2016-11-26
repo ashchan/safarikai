@@ -165,6 +165,9 @@
 
     Client.prototype.showResult = function(word, url, result) {
       var htmlRows, left, margin, overflowX, popup, row, top;
+      console.log("---");
+      console.log("Result for " + word);
+      console.log(result);
       if (this.window.location.href !== url) {
         return;
       }

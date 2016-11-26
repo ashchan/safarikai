@@ -54,17 +54,17 @@ window.Safarikai =
 Safarikai.initialize()
 Safarikai.prepareDictionary()
 
-safari.application.addEventListener "command", (e) ->
-  Commands[e.command]?.invoke?(e)
+#safari.application.addEventListener "command", (e) ->
+  #Commands[e.command]?.invoke?(e)
 
-safari.application.addEventListener 'validate', (e) ->
-  Commands[e.command]?.validate?(e)
+#safari.application.addEventListener 'validate', (e) ->
+  #Commands[e.command]?.validate?(e)
 
 #safari.extension.settings.addEventListener "change", (e) ->
   #Safarikai.updateStatus()
 
-safari.application.addEventListener "message", (e) ->
-  messageData = e.message
-  switch e.name
-    when "lookupWord" then Safarikai.lookup messageData.word, messageData.url, e.target.page
-    when "queryStatus" then Safarikai.status e.target.page
+#safari.application.addEventListener "message", (e) ->
+  #messageData = e.message
+  #switch e.name
+    #when "lookupWord" then Safarikai.lookup messageData.word, messageData.url, e.target.page
+    #when "queryStatus" then Safarikai.status e.target.page

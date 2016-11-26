@@ -85,25 +85,4 @@
 
   Safarikai.prepareDictionary();
 
-  safari.application.addEventListener("command", function(e) {
-    var ref;
-    return (ref = Commands[e.command]) != null ? typeof ref.invoke === "function" ? ref.invoke(e) : void 0 : void 0;
-  });
-
-  safari.application.addEventListener('validate', function(e) {
-    var ref;
-    return (ref = Commands[e.command]) != null ? typeof ref.validate === "function" ? ref.validate(e) : void 0 : void 0;
-  });
-
-  safari.application.addEventListener("message", function(e) {
-    var messageData;
-    messageData = e.message;
-    switch (e.name) {
-      case "lookupWord":
-        return Safarikai.lookup(messageData.word, messageData.url, e.target.page);
-      case "queryStatus":
-        return Safarikai.status(e.target.page);
-    }
-  });
-
 }).call(this);

@@ -116,6 +116,9 @@ class Client
     """
 
   showResult: (word, url, result) ->
+    console.log "---"
+    console.log "Result for " + word
+    console.log result
     return if @window.location.href isnt url
 
     @injectPopup()
