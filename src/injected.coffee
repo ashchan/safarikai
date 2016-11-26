@@ -17,7 +17,7 @@ class Client
       else
         @createRange e
         if @selectionText?.length > 0
-          safari.self.tab.dispatchMessage "lookupWord", word: @selectionText, url: @window.location.href
+          safari.extension.dispatchMessage "lookupWord", word: @selectionText, url: @window.location.href
         else
           @clearHighlight()
           @hidePopup()
@@ -42,7 +42,7 @@ class Client
         when "status" then @updateStatus messageData
 
     # Ask status on load
-    safari.self.tab.dispatchMessage "queryStatus"
+    safari.extension.dispatchMessage "queryStatus"
 
   createRange: (e) ->
     @clientX = e.clientX

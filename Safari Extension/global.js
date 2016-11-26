@@ -8,29 +8,34 @@
     sendStatus: function(page) {
       return page.dispatchMessage("status", {
         enabled: this.enabled(),
-        highlightText: safari.extension.settings.highlightText === 'on',
+        highlightText: this.highlightText(),
         showRomaji: this.showRomaji(),
         showTranslation: this.showTranslation()
       });
     },
+    highlightText: function() {
+      return true;
+    },
     enabled: function() {
-      return safari.extension.settings.enabled === 'on';
+      return true;
     },
     showRomaji: function() {
-      return safari.extension.settings.showRomaji === 'on';
+      return true;
     },
     showTranslation: function() {
-      return safari.extension.settings.showTranslation === 'on';
+      return true;
     },
     toggle: function() {
-      safari.extension.settings.enabled = this.enabled() ? 'off' : 'on';
       return this.updateStatus();
+    },
+    resultsLimit: function() {
+      return 5;
     },
     lookup: function(word, url, page) {
       if (this.enabled()) {
         if (this.queryWord !== word) {
           this.queryWord = word;
-          this.result = this.dict.find(this.queryWord, safari.extension.settings.resultsLimit);
+          this.result = this.dict.find(this.queryWord, this.resultsLimit());
         }
         return page.dispatchMessage("showResult", {
           word: this.result.match,
@@ -88,10 +93,6 @@
   safari.application.addEventListener('validate', function(e) {
     var ref;
     return (ref = Commands[e.command]) != null ? typeof ref.validate === "function" ? ref.validate(e) : void 0 : void 0;
-  });
-
-  safari.extension.settings.addEventListener("change", function(e) {
-    return Safarikai.updateStatus();
   });
 
   safari.application.addEventListener("message", function(e) {

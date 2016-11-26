@@ -25,7 +25,7 @@
           } else {
             _this.createRange(e);
             if (((ref = _this.selectionText) != null ? ref.length : void 0) > 0) {
-              safari.self.tab.dispatchMessage("lookupWord", {
+              safari.extension.dispatchMessage("lookupWord", {
                 word: _this.selectionText,
                 url: _this.window.location.href
               });
@@ -71,7 +71,7 @@
           }
         };
       })(this));
-      safari.self.tab.dispatchMessage("queryStatus");
+      safari.extension.dispatchMessage("queryStatus");
     }
 
     Client.prototype.createRange = function(e) {

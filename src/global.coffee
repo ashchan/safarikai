@@ -4,26 +4,36 @@ window.Safarikai =
     @result    = ""
 
   sendStatus: (page) ->
-    page.dispatchMessage "status", enabled: @enabled(), highlightText: safari.extension.settings.highlightText is 'on', showRomaji: @showRomaji(), showTranslation: @showTranslation()
+    page.dispatchMessage "status", enabled: @enabled(), highlightText: @highlightText(), showRomaji: @showRomaji(), showTranslation: @showTranslation()
+
+  highlightText: ->
+    true
 
   enabled: ->
-    safari.extension.settings.enabled is 'on'
+    true
+    #safari.extension.settings.enabled is 'on'
 
   showRomaji: ->
-    safari.extension.settings.showRomaji is 'on'
+    true
+    #safari.extension.settings.showRomaji is 'on'
 
   showTranslation: ->
-    safari.extension.settings.showTranslation is 'on'
+    true
+    #safari.extension.settings.showTranslation is 'on'
 
   toggle: ->
-    safari.extension.settings.enabled = if @enabled() then 'off' else 'on'
+    #todo
+    #safari.extension.settings.enabled = if @enabled() then 'off' else 'on'
     @updateStatus()
+
+  resultsLimit: ->
+    5
 
   lookup: (word, url, page) ->
     if @enabled()
       if @queryWord isnt word
         @queryWord = word
-        @result = @dict.find @queryWord, safari.extension.settings.resultsLimit
+        @result = @dict.find @queryWord, @resultsLimit()
       page.dispatchMessage "showResult", word: @result.match, url: url, result: @result.results
 
   status: (page) -> @sendStatus page
@@ -50,8 +60,8 @@ safari.application.addEventListener "command", (e) ->
 safari.application.addEventListener 'validate', (e) ->
   Commands[e.command]?.validate?(e)
 
-safari.extension.settings.addEventListener "change", (e) ->
-  Safarikai.updateStatus()
+#safari.extension.settings.addEventListener "change", (e) ->
+  #Safarikai.updateStatus()
 
 safari.application.addEventListener "message", (e) ->
   messageData = e.message
