@@ -44,4 +44,4 @@ generateData = ->
   recordDataLine line for line in data.split "\n"
   recordIndexLine line for line in indexes.split "\n"
 
-  fs.writeFileSync "Safarikai.safariextension/data/dictionary.js", "var loadedDict = #{JSON.stringify dictionary, undefined, 0};"
+  fs.writeFileSync "Safari\ Extension/data/data.js", "var loadedDict = #{JSON.stringify dictionary, undefined, 0};"

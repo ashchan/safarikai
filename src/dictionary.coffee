@@ -48,7 +48,7 @@ class window.Dictionary
     { kana: kana, kanji: kanji, translation: translation, romaji: Romaji.toRomaji kana }
 
   load: ->
-    readDataFile "dictionary.js", (data) =>
+    readDataFile "data.js", (data) =>
       eval data # var loadedDict = {}
       @dict = loadedDict
 
@@ -66,6 +66,6 @@ flatten = (array) ->
 
 readDataFile = (file, success) ->
   req = new XMLHttpRequest()
-  req.open "GET", safari.extension.baseURI + "data/" + file, true
+  req.open "GET", safari.extension.baseURI + file, true
   req.onload = (e) -> success req.responseText if req.readyState is 4
   req.send null

@@ -122,7 +122,7 @@
     };
 
     Dictionary.prototype.load = function() {
-      return readDataFile("dictionary.js", (function(_this) {
+      return readDataFile("data.js", (function(_this) {
         return function(data) {
           eval(data);
           return _this.dict = loadedDict;
@@ -155,7 +155,7 @@
   readDataFile = function(file, success) {
     var req;
     req = new XMLHttpRequest();
-    req.open("GET", safari.extension.baseURI + "data/" + file, true);
+    req.open("GET", safari.extension.baseURI + file, true);
     req.onload = function(e) {
       if (req.readyState === 4) {
         return success(req.responseText);
