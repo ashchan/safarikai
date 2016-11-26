@@ -10,11 +10,11 @@
        <key>Developer Identifier</key>
        <string>35U48ELFMF</string>
        <key>CFBundleVersion</key>
-       <string>1.1.1</string>
+       <string>1.1.2</string>
        <key>CFBundleShortVersionString</key>
-       <string>1.1.1</string>
+       <string>1.1.2</string>
        <key>URL</key>
-       <string>http://ashchan.com/uploads/Safarikai.safariextz</string>
+       <string>https://ashchan.com/uploads/Safarikai.safariextz</string>
      </dict>
    </array>
 </dict>
