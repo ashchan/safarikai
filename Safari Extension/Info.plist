@@ -32,7 +32,34 @@
 		<array>
 			<dict>
 				<key>Script</key>
-				<string>script.js</string>
+				<string>commands.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>dictionary.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>romaji.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>deinflect.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>global.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>injected.js</string>
+			</dict>
+		</array>
+		<key>SFSafariStyleSheet</key>
+		<array>
+			<dict>
+				<key>Style Sheet</key>
+				<string>style.css</string>
 			</dict>
 		</array>
 		<key>SFSafariToolbarItem</key>
@@ -44,7 +71,7 @@
 			<key>Image</key>
 			<string>ToolbarItemIcon.pdf</string>
 			<key>Label</key>
-			<string>Your Button</string>
+			<string>Enable Safari</string>
 		</dict>
 		<key>SFSafariWebsiteAccess</key>
 		<dict>
@@ -59,6 +86,6 @@
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2016 ashchan.com. All rights reserved.</string>
 	<key>NSHumanReadableDescription</key>
-	<string>This is a Safari Extension. You should tell us what your extension does here.</string>
+	<string>Translate Japanese words on web pages.</string>
 </dict>
 </plist>

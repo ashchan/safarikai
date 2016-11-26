@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A06AA971DE9807C001595EE /* commands.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA911DE9807B001595EE /* commands.js */; };
+		1A06AA981DE9807C001595EE /* deinflect.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA921DE9807B001595EE /* deinflect.js */; };
+		1A06AA991DE9807C001595EE /* dictionary.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA931DE9807C001595EE /* dictionary.js */; };
+		1A06AA9A1DE9807C001595EE /* global.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA941DE9807C001595EE /* global.js */; };
+		1A06AA9B1DE9807C001595EE /* injected.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA951DE9807C001595EE /* injected.js */; };
+		1A06AA9C1DE9807C001595EE /* romaji.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA961DE9807C001595EE /* romaji.js */; };
 		1A5D35421DE9749600827D78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D35411DE9749600827D78 /* AppDelegate.swift */; };
 		1A5D35441DE9749600827D78 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D35431DE9749600827D78 /* ViewController.swift */; };
 		1A5D35461DE9749600827D78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A5D35451DE9749600827D78 /* Assets.xcassets */; };
@@ -15,7 +21,6 @@
 		1A5D355C1DE9756600827D78 /* SafariExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D355B1DE9756600827D78 /* SafariExtensionHandler.swift */; };
 		1A5D355E1DE9756600827D78 /* SafariExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D355D1DE9756600827D78 /* SafariExtensionViewController.swift */; };
 		1A5D35611DE9756600827D78 /* SafariExtensionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A5D355F1DE9756600827D78 /* SafariExtensionViewController.xib */; };
-		1A5D35641DE9756600827D78 /* script.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A5D35631DE9756600827D78 /* script.js */; };
 		1A5D35661DE9756600827D78 /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1A5D35651DE9756600827D78 /* ToolbarItemIcon.pdf */; };
 		1A5D35691DE9756600827D78 /* Safari Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1A5D35541DE9756600827D78 /* Safari Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -45,6 +50,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A06AA911DE9807B001595EE /* commands.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = commands.js; sourceTree = "<group>"; };
+		1A06AA921DE9807B001595EE /* deinflect.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = deinflect.js; sourceTree = "<group>"; };
+		1A06AA931DE9807C001595EE /* dictionary.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dictionary.js; sourceTree = "<group>"; };
+		1A06AA941DE9807C001595EE /* global.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = global.js; sourceTree = "<group>"; };
+		1A06AA951DE9807C001595EE /* injected.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = injected.js; sourceTree = "<group>"; };
+		1A06AA961DE9807C001595EE /* romaji.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = romaji.js; sourceTree = "<group>"; };
 		1A5D353E1DE9749600827D78 /* Safarikai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Safarikai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A5D35411DE9749600827D78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A5D35431DE9749600827D78 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,7 +69,6 @@
 		1A5D355D1DE9756600827D78 /* SafariExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionViewController.swift; sourceTree = "<group>"; };
 		1A5D35601DE9756600827D78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SafariExtensionViewController.xib; sourceTree = "<group>"; };
 		1A5D35621DE9756600827D78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1A5D35631DE9756600827D78 /* script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
 		1A5D35651DE9756600827D78 /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +91,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A06AA9D1DE98081001595EE /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				1A06AA911DE9807B001595EE /* commands.js */,
+				1A06AA931DE9807C001595EE /* dictionary.js */,
+				1A06AA961DE9807C001595EE /* romaji.js */,
+				1A06AA921DE9807B001595EE /* deinflect.js */,
+				1A06AA941DE9807C001595EE /* global.js */,
+				1A06AA951DE9807C001595EE /* injected.js */,
+			);
+			name = Scripts;
+			sourceTree = "<group>";
+		};
 		1A5D35351DE9749600827D78 = {
 			isa = PBXGroup;
 			children = (
@@ -123,11 +146,11 @@
 		1A5D35581DE9756600827D78 /* Safari Extension */ = {
 			isa = PBXGroup;
 			children = (
+				1A06AA9D1DE98081001595EE /* Scripts */,
 				1A5D355B1DE9756600827D78 /* SafariExtensionHandler.swift */,
 				1A5D355D1DE9756600827D78 /* SafariExtensionViewController.swift */,
 				1A5D355F1DE9756600827D78 /* SafariExtensionViewController.xib */,
 				1A5D35621DE9756600827D78 /* Info.plist */,
-				1A5D35631DE9756600827D78 /* script.js */,
 				1A5D35651DE9756600827D78 /* ToolbarItemIcon.pdf */,
 				1A5D35591DE9756600827D78 /* Supporting Files */,
 			);
@@ -236,9 +259,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A06AA9B1DE9807C001595EE /* injected.js in Resources */,
 				1A5D35661DE9756600827D78 /* ToolbarItemIcon.pdf in Resources */,
+				1A06AA981DE9807C001595EE /* deinflect.js in Resources */,
+				1A06AA971DE9807C001595EE /* commands.js in Resources */,
+				1A06AA9A1DE9807C001595EE /* global.js in Resources */,
 				1A5D35611DE9756600827D78 /* SafariExtensionViewController.xib in Resources */,
-				1A5D35641DE9756600827D78 /* script.js in Resources */,
+				1A06AA9C1DE9807C001595EE /* romaji.js in Resources */,
+				1A06AA991DE9807C001595EE /* dictionary.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,6 +490,7 @@
 				1A5D354F1DE9749600827D78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1A5D356A1DE9756600827D78 /* Build configuration list for PBXNativeTarget "Safari Extension" */ = {
 			isa = XCConfigurationList;
@@ -470,6 +499,7 @@
 				1A5D356C1DE9756600827D78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

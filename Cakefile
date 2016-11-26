@@ -1,7 +1,7 @@
 {spawn} = require 'child_process'
 fs = require 'fs'
 
-distDir = "Safarikai.safariextension/"
+distDir = "Safari\ Extension/"
 
 task 'build', 'Build from src', ->
   buildDependenceFiles()
