@@ -65,7 +65,9 @@ flatten = (array) ->
   flattened
 
 readDataFile = (file, success) ->
-  req = new XMLHttpRequest()
-  req.open "GET", safari.extension.baseURI + file, true
-  req.onload = (e) -> success req.responseText if req.readyState is 4
-  req.send null
+  success "var loadedDict = {}"
+  # TODO: load actual data file
+  #req = new XMLHttpRequest()
+  #req.open "GET", safari.extension.baseURI + file, true
+  #req.onload = (e) -> success req.responseText if req.readyState is 4
+  #req.send null

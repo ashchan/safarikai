@@ -153,15 +153,7 @@
   };
 
   readDataFile = function(file, success) {
-    var req;
-    req = new XMLHttpRequest();
-    req.open("GET", safari.extension.baseURI + file, true);
-    req.onload = function(e) {
-      if (req.readyState === 4) {
-        return success(req.responseText);
-      }
-    };
-    return req.send(null);
+    return success("var loadedDict = {}");
   };
 
 }).call(this);
