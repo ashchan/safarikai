@@ -1,6 +1,6 @@
 {
   "name": "safarikai",
-  "version": "0.0.0",
+  "version": "1.1.2",
   "description": "Safari extension for translating Japanese words.",
   "private": true,
   "repository": {
@@ -21,7 +21,7 @@
   "dependencies": {
   },
   "devDependencies": {
-    "japanese-kit": "~0.0.1",
-    "coffee-script": "1.6.x"
+    "japanese-kit": "~0.0.2",
+    "coffee-script": "1.11.x"
   }
 }
