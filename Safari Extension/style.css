@@ -1,0 +1,68 @@
+#safarikai-popup {
+  position: absolute !important;
+  width: auto;
+  min-width: 200px !important;
+  max-width: 80%;
+  height: auto;
+  min-height: 40px;
+  max-height: 80%;
+  padding: 10px 12px !important;
+  background: #FDFDFD !important;
+  border-radius: 6px !important;
+  border: solid 1px #ccc;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 99999;
+}
+
+#safarikai-popup ul {
+  text-align: left !important;
+  list-style: none !important;
+  margin: 0 0 !important;
+  padding: 0 0 !important;
+}
+
+#safarikai-popup ul li {
+  padding: 6px !important;
+  border-bottom: solid 1px #E8E8E8 !important;
+  font-family: "Hiragino Kaku Gothic", "ヒラギノ角ゴ Pro W3", sans-serif !important;
+}
+
+#safarikai-popup ul li:last-child {
+  border: none !important;
+}
+
+#safarikai-popup ul li .kana {
+  display: inline-block !important;
+  font-weight: 600 !important;
+  font-size: 17px !important;
+  color: #55ACEE !important;
+}
+
+#safarikai-popup ul li .kanji {
+  display: inline-block !important;
+  font-weight: 600 !important;
+  font-size: 17px !important;
+  color: #A83834 !important;
+}
+
+#safarikai-popup ul li .kanji:before {
+  content: "【";
+}
+
+#safarikai-popup ul li .kanji:after {
+  content: "】";
+}
+
+#safarikai-popup ul li .romaji {
+  color: #000 !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  display: inline-block !important;
+  margin-right: 8px;
+}
+
+#safarikai-popup ul li .translation {
+  font-size: 14px !important;
+  color: #000 !important;
+  line-height: 1.2em !important;
+}

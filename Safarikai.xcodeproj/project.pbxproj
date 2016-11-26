@@ -14,6 +14,7 @@
 		1A06AA9B1DE9807C001595EE /* injected.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA951DE9807C001595EE /* injected.js */; };
 		1A06AA9C1DE9807C001595EE /* romaji.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA961DE9807C001595EE /* romaji.js */; };
 		1A47A3BD1DE9960300770A0E /* data.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A47A3BC1DE9960300770A0E /* data.js */; };
+		1A522F061DE9B41D005C3D70 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 1A522F051DE9B41D005C3D70 /* style.css */; };
 		1A5D35421DE9749600827D78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D35411DE9749600827D78 /* AppDelegate.swift */; };
 		1A5D35441DE9749600827D78 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D35431DE9749600827D78 /* ViewController.swift */; };
 		1A5D35461DE9749600827D78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A5D35451DE9749600827D78 /* Assets.xcassets */; };
@@ -58,6 +59,7 @@
 		1A06AA951DE9807C001595EE /* injected.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = injected.js; sourceTree = "<group>"; };
 		1A06AA961DE9807C001595EE /* romaji.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = romaji.js; sourceTree = "<group>"; };
 		1A47A3BC1DE9960300770A0E /* data.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = data.js; path = data/data.js; sourceTree = "<group>"; };
+		1A522F051DE9B41D005C3D70 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		1A5D353E1DE9749600827D78 /* Safarikai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Safarikai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A5D35411DE9749600827D78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1A5D35431DE9749600827D78 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,14 @@
 			name = data;
 			sourceTree = "<group>";
 		};
+		1A522F041DE9B3D8005C3D70 /* Style sheet */ = {
+			isa = PBXGroup;
+			children = (
+				1A522F051DE9B41D005C3D70 /* style.css */,
+			);
+			name = "Style sheet";
+			sourceTree = "<group>";
+		};
 		1A5D35351DE9749600827D78 = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +168,7 @@
 			children = (
 				1A47A3BB1DE9957B00770A0E /* data */,
 				1A06AA9D1DE98081001595EE /* Scripts */,
+				1A522F041DE9B3D8005C3D70 /* Style sheet */,
 				1A5D355B1DE9756600827D78 /* SafariExtensionHandler.swift */,
 				1A5D355D1DE9756600827D78 /* SafariExtensionViewController.swift */,
 				1A5D355F1DE9756600827D78 /* SafariExtensionViewController.xib */,
@@ -277,6 +288,7 @@
 				1A06AA9A1DE9807C001595EE /* global.js in Resources */,
 				1A5D35611DE9756600827D78 /* SafariExtensionViewController.xib in Resources */,
 				1A47A3BD1DE9960300770A0E /* data.js in Resources */,
+				1A522F061DE9B41D005C3D70 /* style.css in Resources */,
 				1A06AA9C1DE9807C001595EE /* romaji.js in Resources */,
 				1A06AA991DE9807C001595EE /* dictionary.js in Resources */,
 			);
