@@ -7,20 +7,20 @@
 //
 
 import Cocoa
+import SafarikaiEngine
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
-
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        let dir = DictionaryFileManager.default.directory()
+        print(try! String(contentsOf: dir.appendingPathComponent("test.txt")))
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
-
 
 }
 
