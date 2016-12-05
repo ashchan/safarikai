@@ -29,6 +29,9 @@
 		1A5D35611DE9756600827D78 /* SafariExtensionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A5D355F1DE9756600827D78 /* SafariExtensionViewController.xib */; };
 		1A5D35661DE9756600827D78 /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1A5D35651DE9756600827D78 /* ToolbarItemIcon.pdf */; };
 		1A5D35691DE9756600827D78 /* Safari Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1A5D35541DE9756600827D78 /* Safari Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1A7BED371DF54AE500A80095 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A7BED361DF54AE500A80095 /* libsqlite3.tbd */; };
+		1A7BED3C1DF55D5800A80095 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A7BED3B1DF55D5800A80095 /* SQLite.framework */; };
+		1A7BED3E1DF5605E00A80095 /* SQLite.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1A7BED3B1DF55D5800A80095 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +74,16 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1A7BED3D1DF5604D00A80095 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1A7BED3E1DF5605E00A80095 /* SQLite.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +113,9 @@
 		1A5D35601DE9756600827D78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SafariExtensionViewController.xib; sourceTree = "<group>"; };
 		1A5D35621DE9756600827D78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A5D35651DE9756600827D78 /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
+		1A7BED361DF54AE500A80095 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		1A7BED3A1DF54E6B00A80095 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = ../SwiftLibSqlite3/module.modulemap; sourceTree = "<group>"; };
+		1A7BED3B1DF55D5800A80095 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = Carthage/Build/Mac/SQLite.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +123,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A7BED371DF54AE500A80095 /* libsqlite3.tbd in Frameworks */,
+				1A7BED3C1DF55D5800A80095 /* SQLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +166,7 @@
 			children = (
 				1A15B5691DED817E00206094 /* SafarikaiEngine.h */,
 				1A15B5731DED819300206094 /* DictionaryFileManager.swift */,
+				1A7BED3A1DF54E6B00A80095 /* module.modulemap */,
 				1A15B56A1DED817E00206094 /* Info.plist */,
 			);
 			path = SafarikaiEngine;
@@ -198,6 +217,8 @@
 		1A5D35551DE9756600827D78 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1A7BED3B1DF55D5800A80095 /* SQLite.framework */,
+				1A7BED361DF54AE500A80095 /* libsqlite3.tbd */,
 				1A5D35561DE9756600827D78 /* Cocoa.framework */,
 			);
 			name = Frameworks;
@@ -248,6 +269,7 @@
 				1A15B5631DED817E00206094 /* Frameworks */,
 				1A15B5641DED817E00206094 /* Headers */,
 				1A15B5651DED817E00206094 /* Resources */,
+				1A7BED3D1DF5604D00A80095 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -463,13 +485,19 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/";
 				INFOPLIST_FILE = SafarikaiEngine/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ashchan.SafarikaiEngine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftLibSqlite3";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -489,13 +517,19 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				FRAMEWORK_VERSION = A;
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/";
 				INFOPLIST_FILE = SafarikaiEngine/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ashchan.SafarikaiEngine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftLibSqlite3";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -670,6 +704,7 @@
 				1A15B5721DED817E00206094 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1A5D35391DE9749600827D78 /* Build configuration list for PBXProject "Safarikai" */ = {
 			isa = XCConfigurationList;

@@ -12,3 +12,8 @@ data/*.dat
 *.perspectivev3
 !default.perspectivev3
 xcuserdata/
+
+Carthage/Checkouts/
+Carthage/Build/iOS/
+Carthage/Build/tvOS/
+Carthage/Build/watchOS/
