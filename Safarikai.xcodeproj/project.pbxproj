@@ -32,6 +32,7 @@
 		1A5D35691DE9756600827D78 /* Safari Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1A5D35541DE9756600827D78 /* Safari Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1A7BED3C1DF55D5800A80095 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A7BED3B1DF55D5800A80095 /* SQLite.framework */; };
 		1A7BED3E1DF5605E00A80095 /* SQLite.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1A7BED3B1DF55D5800A80095 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1AAD85AE1DF58771001A6B1A /* Deinflector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAD85AD1DF58771001A6B1A /* Deinflector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,7 @@
 		1A5D35621DE9756600827D78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A5D35651DE9756600827D78 /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
 		1A7BED3B1DF55D5800A80095 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = Carthage/Build/Mac/SQLite.framework; sourceTree = "<group>"; };
+		1AAD85AD1DF58771001A6B1A /* Deinflector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deinflector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 			children = (
 				1A15B5691DED817E00206094 /* SafarikaiEngine.h */,
 				1A1206661DF5636D00930307 /* Dictionary.swift */,
+				1AAD85AD1DF58771001A6B1A /* Deinflector.swift */,
 				1A15B5731DED819300206094 /* DictionaryFileManager.swift */,
 				1A15B56A1DED817E00206094 /* Info.plist */,
 			);
@@ -414,6 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A15B5741DED819300206094 /* DictionaryFileManager.swift in Sources */,
+				1AAD85AE1DF58771001A6B1A /* Deinflector.swift in Sources */,
 				1A1206671DF5636D00930307 /* Dictionary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

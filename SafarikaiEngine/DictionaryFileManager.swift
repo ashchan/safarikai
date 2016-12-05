@@ -15,7 +15,7 @@ public class DictionaryFileManager: NSObject {
 
     public func directory() -> URL {
         let rootDirectory = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.com.ashchan.Safarikai")!
-        return rootDirectory.appendingPathComponent("Dict")
+        return rootDirectory//.appendingPathComponent("Dict")
     }
 
     var dbPath: String {
