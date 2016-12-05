@@ -34,6 +34,8 @@
 		1A7BED3E1DF5605E00A80095 /* SQLite.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1A7BED3B1DF55D5800A80095 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1AAD85AE1DF58771001A6B1A /* Deinflector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAD85AD1DF58771001A6B1A /* Deinflector.swift */; };
 		1AAD85C71DF5964A001A6B1A /* Romaji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAD85C61DF5964A001A6B1A /* Romaji.swift */; };
+		1AAD85C91DF59F29001A6B1A /* Regex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AAD85C81DF59F29001A6B1A /* Regex.framework */; };
+		1AAD85CA1DF59F36001A6B1A /* Regex.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AAD85C81DF59F29001A6B1A /* Regex.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				1AAD85CA1DF59F36001A6B1A /* Regex.framework in CopyFiles */,
 				1A7BED3E1DF5605E00A80095 /* SQLite.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -119,6 +122,7 @@
 		1A7BED3B1DF55D5800A80095 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = Carthage/Build/Mac/SQLite.framework; sourceTree = "<group>"; };
 		1AAD85AD1DF58771001A6B1A /* Deinflector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deinflector.swift; sourceTree = "<group>"; };
 		1AAD85C61DF5964A001A6B1A /* Romaji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Romaji.swift; sourceTree = "<group>"; };
+		1AAD85C81DF59F29001A6B1A /* Regex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Regex.framework; path = Carthage/Build/Mac/Regex.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AAD85C91DF59F29001A6B1A /* Regex.framework in Frameworks */,
 				1A7BED3C1DF55D5800A80095 /* SQLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -221,6 +226,7 @@
 		1A5D35551DE9756600827D78 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1AAD85C81DF59F29001A6B1A /* Regex.framework */,
 				1A7BED3B1DF55D5800A80095 /* SQLite.framework */,
 				1A5D35561DE9756600827D78 /* Cocoa.framework */,
 			);
