@@ -30,7 +30,6 @@
 		1A5D35611DE9756600827D78 /* SafariExtensionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A5D355F1DE9756600827D78 /* SafariExtensionViewController.xib */; };
 		1A5D35661DE9756600827D78 /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1A5D35651DE9756600827D78 /* ToolbarItemIcon.pdf */; };
 		1A5D35691DE9756600827D78 /* Safari Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1A5D35541DE9756600827D78 /* Safari Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		1A7BED371DF54AE500A80095 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A7BED361DF54AE500A80095 /* libsqlite3.tbd */; };
 		1A7BED3C1DF55D5800A80095 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A7BED3B1DF55D5800A80095 /* SQLite.framework */; };
 		1A7BED3E1DF5605E00A80095 /* SQLite.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1A7BED3B1DF55D5800A80095 /* SQLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -115,7 +114,6 @@
 		1A5D35601DE9756600827D78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SafariExtensionViewController.xib; sourceTree = "<group>"; };
 		1A5D35621DE9756600827D78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A5D35651DE9756600827D78 /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
-		1A7BED361DF54AE500A80095 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		1A7BED3B1DF55D5800A80095 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = Carthage/Build/Mac/SQLite.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,7 +122,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A7BED371DF54AE500A80095 /* libsqlite3.tbd in Frameworks */,
 				1A7BED3C1DF55D5800A80095 /* SQLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,7 +216,6 @@
 			isa = PBXGroup;
 			children = (
 				1A7BED3B1DF55D5800A80095 /* SQLite.framework */,
-				1A7BED361DF54AE500A80095 /* libsqlite3.tbd */,
 				1A5D35561DE9756600827D78 /* Cocoa.framework */,
 			);
 			name = Frameworks;
