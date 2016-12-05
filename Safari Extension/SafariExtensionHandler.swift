@@ -14,11 +14,8 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
         if messageName == "lookupWord" {
             let word = userInfo!["word"] as! String
             let url = userInfo!["url"] as! String
-            let result = [
-                ["kana": "じちく", "kanji": "自治区", "translation": "todo", "romaji": "jichiku"],
-                ["kana": "じち", "kanji": "自治", "translation": "todo", "romaji": "jichi"]
-            ]
-            page.dispatchMessageToScript(withName: "showResult", userInfo: ["word": word, "url": url, "result": result])
+            let result = SafarikaiEngine.Dictionary.search(word: word)
+            page.dispatchMessageToScript(withName: "showResult", userInfo: ["word": word, "url": url, "result": result.map { $0.toJSON() }])
         }
     }
 
