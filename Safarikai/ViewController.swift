@@ -14,7 +14,7 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        DictionaryFileManager.default.test()
+        SafarikaiEngine.Dictionary.test()
     }
 
     override var representedObject: Any? {
