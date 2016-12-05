@@ -8,11 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1A06AA971DE9807C001595EE /* commands.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA911DE9807B001595EE /* commands.js */; };
-		1A06AA981DE9807C001595EE /* deinflect.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA921DE9807B001595EE /* deinflect.js */; };
 		1A06AA991DE9807C001595EE /* dictionary.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA931DE9807C001595EE /* dictionary.js */; };
 		1A06AA9A1DE9807C001595EE /* global.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA941DE9807C001595EE /* global.js */; };
 		1A06AA9B1DE9807C001595EE /* injected.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA951DE9807C001595EE /* injected.js */; };
-		1A06AA9C1DE9807C001595EE /* romaji.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA961DE9807C001595EE /* romaji.js */; };
 		1A1206671DF5636D00930307 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1206661DF5636D00930307 /* Dictionary.swift */; };
 		1A15B56B1DED817E00206094 /* SafarikaiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A15B5691DED817E00206094 /* SafarikaiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A15B56E1DED817E00206094 /* SafarikaiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A15B5671DED817E00206094 /* SafarikaiEngine.framework */; };
@@ -93,11 +91,9 @@
 
 /* Begin PBXFileReference section */
 		1A06AA911DE9807B001595EE /* commands.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = commands.js; sourceTree = "<group>"; };
-		1A06AA921DE9807B001595EE /* deinflect.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = deinflect.js; sourceTree = "<group>"; };
 		1A06AA931DE9807C001595EE /* dictionary.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dictionary.js; sourceTree = "<group>"; };
 		1A06AA941DE9807C001595EE /* global.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = global.js; sourceTree = "<group>"; };
 		1A06AA951DE9807C001595EE /* injected.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = injected.js; sourceTree = "<group>"; };
-		1A06AA961DE9807C001595EE /* romaji.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = romaji.js; sourceTree = "<group>"; };
 		1A1206661DF5636D00930307 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		1A15B54D1DED7DB400206094 /* Safarikai.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Safarikai.entitlements; sourceTree = "<group>"; };
 		1A15B5671DED817E00206094 /* SafarikaiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SafarikaiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,8 +156,6 @@
 			children = (
 				1A06AA911DE9807B001595EE /* commands.js */,
 				1A06AA931DE9807C001595EE /* dictionary.js */,
-				1A06AA961DE9807C001595EE /* romaji.js */,
-				1A06AA921DE9807B001595EE /* deinflect.js */,
 				1A06AA941DE9807C001595EE /* global.js */,
 				1A06AA951DE9807C001595EE /* injected.js */,
 			);
@@ -408,12 +402,10 @@
 			files = (
 				1A06AA9B1DE9807C001595EE /* injected.js in Resources */,
 				1A5D35661DE9756600827D78 /* ToolbarItemIcon.pdf in Resources */,
-				1A06AA981DE9807C001595EE /* deinflect.js in Resources */,
 				1A06AA971DE9807C001595EE /* commands.js in Resources */,
 				1A06AA9A1DE9807C001595EE /* global.js in Resources */,
 				1A5D35611DE9756600827D78 /* SafariExtensionViewController.xib in Resources */,
 				1A522F061DE9B41D005C3D70 /* style.css in Resources */,
-				1A06AA9C1DE9807C001595EE /* romaji.js in Resources */,
 				1A06AA991DE9807C001595EE /* dictionary.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

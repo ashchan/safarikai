@@ -40,14 +40,6 @@
 			</dict>
 			<dict>
 				<key>Script</key>
-				<string>romaji.js</string>
-			</dict>
-			<dict>
-				<key>Script</key>
-				<string>deinflect.js</string>
-			</dict>
-			<dict>
-				<key>Script</key>
 				<string>global.js</string>
 			</dict>
 			<dict>
