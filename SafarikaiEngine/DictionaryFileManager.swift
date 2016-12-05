@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import SwiftLibSqlite3
 import SQLite
 
 public class DictionaryFileManager: NSObject {

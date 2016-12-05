@@ -114,7 +114,6 @@
 		1A5D35621DE9756600827D78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A5D35651DE9756600827D78 /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
 		1A7BED361DF54AE500A80095 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		1A7BED3A1DF54E6B00A80095 /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; name = module.modulemap; path = ../SwiftLibSqlite3/module.modulemap; sourceTree = "<group>"; };
 		1A7BED3B1DF55D5800A80095 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = Carthage/Build/Mac/SQLite.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,7 +165,6 @@
 			children = (
 				1A15B5691DED817E00206094 /* SafarikaiEngine.h */,
 				1A15B5731DED819300206094 /* DictionaryFileManager.swift */,
-				1A7BED3A1DF54E6B00A80095 /* module.modulemap */,
 				1A15B56A1DED817E00206094 /* Info.plist */,
 			);
 			path = SafarikaiEngine;
@@ -490,14 +488,12 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				FRAMEWORK_VERSION = A;
-				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/";
 				INFOPLIST_FILE = SafarikaiEngine/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ashchan.SafarikaiEngine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftLibSqlite3";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -522,14 +518,12 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				FRAMEWORK_VERSION = A;
-				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/";
 				INFOPLIST_FILE = SafarikaiEngine/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ashchan.SafarikaiEngine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/SwiftLibSqlite3";
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
