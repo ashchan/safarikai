@@ -7,15 +7,21 @@
 //
 
 import Foundation
+import Regex
 
 class Romaji {
     class func romaji(from katakana: String) -> String {
-        let values = hiragana(from: katakana).map { return romaji[$0] ?? $0 }.joined()
-        return "todo"
+        var values = hiragana(from: katakana).map { return romaji[$0] ?? $0 }.joined()
+
+        for transform in hepburn {
+            values.replaceAllMatching(Regex(transform.first!), with: String(describing: transform.last!))
+        }
+
+        return values
     }
 
     class func hiragana(from katakana: String) -> [String] {
-        return katakana.components(separatedBy: "").map { return kana[$0] ?? $0 }
+        return katakana.characters.map { return kana[String($0)] ?? String($0) }
     }
 
     static let kana: [String: String] = [
@@ -189,7 +195,7 @@ class Romaji {
         "ー": "-"
     ]
 
-    static let hepburn: [[String]] = [
+    static let hepburn: [[StaticString]] = [
         ["n\\'([^aiueoy]|$)", "n$1"],
         ["ixy", "y"],
         ["z(?:(i)|y)", "j$1"],
