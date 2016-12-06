@@ -12,6 +12,7 @@
 		1A06AA9A1DE9807C001595EE /* global.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA941DE9807C001595EE /* global.js */; };
 		1A06AA9B1DE9807C001595EE /* injected.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA951DE9807C001595EE /* injected.js */; };
 		1A1206671DF5636D00930307 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1206661DF5636D00930307 /* Dictionary.swift */; };
+		1A1206691DF6329100930307 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1206681DF6329100930307 /* Result.swift */; };
 		1A15B56B1DED817E00206094 /* SafarikaiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A15B5691DED817E00206094 /* SafarikaiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A15B56E1DED817E00206094 /* SafarikaiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A15B5671DED817E00206094 /* SafarikaiEngine.framework */; };
 		1A15B56F1DED817E00206094 /* SafarikaiEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A15B5671DED817E00206094 /* SafarikaiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -95,6 +96,7 @@
 		1A06AA941DE9807C001595EE /* global.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = global.js; sourceTree = "<group>"; };
 		1A06AA951DE9807C001595EE /* injected.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = injected.js; sourceTree = "<group>"; };
 		1A1206661DF5636D00930307 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
+		1A1206681DF6329100930307 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		1A15B54D1DED7DB400206094 /* Safarikai.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Safarikai.entitlements; sourceTree = "<group>"; };
 		1A15B5671DED817E00206094 /* SafarikaiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SafarikaiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A15B5691DED817E00206094 /* SafarikaiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SafarikaiEngine.h; sourceTree = "<group>"; };
@@ -166,9 +168,10 @@
 			isa = PBXGroup;
 			children = (
 				1A15B5691DED817E00206094 /* SafarikaiEngine.h */,
-				1A1206661DF5636D00930307 /* Dictionary.swift */,
 				1AAD85AD1DF58771001A6B1A /* Deinflector.swift */,
 				1AAD85C61DF5964A001A6B1A /* Romaji.swift */,
+				1A1206681DF6329100930307 /* Result.swift */,
+				1A1206661DF5636D00930307 /* Dictionary.swift */,
 				1A15B5731DED819300206094 /* DictionaryFileManager.swift */,
 				1A15B56A1DED817E00206094 /* Info.plist */,
 			);
@@ -418,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A15B5741DED819300206094 /* DictionaryFileManager.swift in Sources */,
+				1A1206691DF6329100930307 /* Result.swift in Sources */,
 				1AAD85C71DF5964A001A6B1A /* Romaji.swift in Sources */,
 				1AAD85AE1DF58771001A6B1A /* Deinflector.swift in Sources */,
 				1A1206671DF5636D00930307 /* Dictionary.swift in Sources */,

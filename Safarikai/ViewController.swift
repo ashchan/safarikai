@@ -7,11 +7,13 @@
 //
 
 import Cocoa
+import SafarikaiEngine
 
 class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let (results, match) = SafarikaiEngine.Dictionary.extensionInstance.search(word: "精霊の守り人")
     }
 
     override var representedObject: Any? {
