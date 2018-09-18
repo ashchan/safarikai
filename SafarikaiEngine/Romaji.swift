@@ -14,14 +14,14 @@ class Romaji {
         var values = hiragana(from: katakana).map { return romaji[$0] ?? $0 }.joined()
 
         for transform in hepburn {
-            values.replaceAllMatching(Regex(transform.first!), with: String(describing: transform.last!))
+            values.replaceAll(matching: Regex(transform.first!), with: String(describing: transform.last!))
         }
 
         return values
     }
 
     class func hiragana(from katakana: String) -> [String] {
-        return katakana.characters.map { return kana[String($0)] ?? String($0) }
+        return katakana.map { return kana[String($0)] ?? String($0) }
     }
 
     static let kana: [String: String] = [
