@@ -11,22 +11,30 @@ import SafarikaiEngine
 
 class SafariExtensionHandler: SFSafariExtensionHandler {
     override func messageReceived(withName messageName: String, from page: SFSafariPage, userInfo: [String : Any]?) {
+        if !SafarikaiEngine.JSDictionary.shared.isEnabled {
+            return
+        }
+        
         if messageName == "lookupWord" {
             let word = userInfo!["word"] as! String
             let url = userInfo!["url"] as! String
-            let (results, match) = SafarikaiEngine.Dictionary.extensionInstance.search(word: word)
-            page.dispatchMessageToScript(withName: "showResult", userInfo: ["word": match ?? "", "url": url, "result": results.map { $0.toJSON() }])
+            let (results, match) = SafarikaiEngine.JSDictionary.shared.search(word: word)
+            page.dispatchMessageToScript(withName: "showResult", userInfo:
+                ["word": match ?? "", "url": url, "result": results]
+            )
         }
     }
 
     override func toolbarItemClicked(in window: SFSafariWindow) {
-        // This method will be called when your toolbar item is clicked.
-        NSLog("The extension's toolbar item was clicked")
+        SafarikaiEngine.JSDictionary.shared.isEnabled = !SafarikaiEngine.JSDictionary.shared.isEnabled
+        window.getToolbarItem { (toolbarItem) in
+            toolbarItem?.setBadgeText(SafarikaiEngine.JSDictionary.shared.isEnabled ? "ON" : "OFF")
+        }
     }
 
     override func validateToolbarItem(in window: SFSafariWindow, validationHandler: @escaping ((Bool, String) -> Void)) {
         // This is called when Safari's state changed in some way that would require the extension's toolbar item to be validated again.
-        validationHandler(true, "")
+        validationHandler(true, SafarikaiEngine.JSDictionary.shared.isEnabled ? "ON" : "OFF")
     }
 
     override func popoverViewController() -> SFSafariExtensionViewController {

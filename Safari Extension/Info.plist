@@ -32,18 +32,6 @@
 		<array>
 			<dict>
 				<key>Script</key>
-				<string>commands.js</string>
-			</dict>
-			<dict>
-				<key>Script</key>
-				<string>dictionary.js</string>
-			</dict>
-			<dict>
-				<key>Script</key>
-				<string>global.js</string>
-			</dict>
-			<dict>
-				<key>Script</key>
 				<string>injected.js</string>
 			</dict>
 		</array>

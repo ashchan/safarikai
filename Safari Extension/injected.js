@@ -168,9 +168,9 @@
       console.log("---");
       console.log("Result for " + word);
       console.log(result);
-      if (this.window.location.href !== url) {
-        return;
-      }
+      // if (this.window.location.href !== url) {
+      //   return;
+      // }
       this.injectPopup();
       popup = this.getPopup();
       popup.style.display = "block";

@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A06AA971DE9807C001595EE /* commands.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA911DE9807B001595EE /* commands.js */; };
-		1A06AA991DE9807C001595EE /* dictionary.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA931DE9807C001595EE /* dictionary.js */; };
-		1A06AA9A1DE9807C001595EE /* global.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA941DE9807C001595EE /* global.js */; };
 		1A06AA9B1DE9807C001595EE /* injected.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA951DE9807C001595EE /* injected.js */; };
 		1A1206671DF5636D00930307 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1206661DF5636D00930307 /* Dictionary.swift */; };
 		1A1206691DF6329100930307 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1206681DF6329100930307 /* Result.swift */; };
@@ -35,6 +32,11 @@
 		1AAD85C71DF5964A001A6B1A /* Romaji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAD85C61DF5964A001A6B1A /* Romaji.swift */; };
 		1AAD85C91DF59F29001A6B1A /* Regex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AAD85C81DF59F29001A6B1A /* Regex.framework */; };
 		1AAD85CA1DF59F36001A6B1A /* Regex.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AAD85C81DF59F29001A6B1A /* Regex.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		737C485C21563CCB00B16A35 /* JSDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737C485B21563CCB00B16A35 /* JSDictionary.swift */; };
+		73934976215664D8009B2500 /* deinflect.js in Resources */ = {isa = PBXBuildFile; fileRef = 7351682C21562FBF0057F89B /* deinflect.js */; };
+		73934977215664D8009B2500 /* dictionary.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA931DE9807C001595EE /* dictionary.js */; };
+		73934978215664D8009B2500 /* romaji.js in Resources */ = {isa = PBXBuildFile; fileRef = 7351682E21562FBF0057F89B /* romaji.js */; };
+		73934979215664ED009B2500 /* data.js in Resources */ = {isa = PBXBuildFile; fileRef = 73516832215633860057F89B /* data.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,9 +93,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1A06AA911DE9807B001595EE /* commands.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = commands.js; sourceTree = "<group>"; };
 		1A06AA931DE9807C001595EE /* dictionary.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dictionary.js; sourceTree = "<group>"; };
-		1A06AA941DE9807C001595EE /* global.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = global.js; sourceTree = "<group>"; };
 		1A06AA951DE9807C001595EE /* injected.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = injected.js; sourceTree = "<group>"; };
 		1A1206661DF5636D00930307 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		1A1206681DF6329100930307 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
@@ -121,6 +121,10 @@
 		1AAD85AD1DF58771001A6B1A /* Deinflector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deinflector.swift; sourceTree = "<group>"; };
 		1AAD85C61DF5964A001A6B1A /* Romaji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Romaji.swift; sourceTree = "<group>"; };
 		1AAD85C81DF59F29001A6B1A /* Regex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Regex.framework; path = Carthage/Build/Mac/Regex.framework; sourceTree = "<group>"; };
+		7351682C21562FBF0057F89B /* deinflect.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = deinflect.js; sourceTree = "<group>"; };
+		7351682E21562FBF0057F89B /* romaji.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = romaji.js; sourceTree = "<group>"; };
+		73516832215633860057F89B /* data.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = data.js; sourceTree = "<group>"; };
+		737C485B21563CCB00B16A35 /* JSDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSDictionary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,9 +160,6 @@
 		1A06AA9D1DE98081001595EE /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
-				1A06AA911DE9807B001595EE /* commands.js */,
-				1A06AA931DE9807C001595EE /* dictionary.js */,
-				1A06AA941DE9807C001595EE /* global.js */,
 				1A06AA951DE9807C001595EE /* injected.js */,
 			);
 			name = Scripts;
@@ -171,6 +172,7 @@
 				1AAD85AD1DF58771001A6B1A /* Deinflector.swift */,
 				1AAD85C61DF5964A001A6B1A /* Romaji.swift */,
 				1A1206681DF6329100930307 /* Result.swift */,
+				737C485B21563CCB00B16A35 /* JSDictionary.swift */,
 				1A1206661DF5636D00930307 /* Dictionary.swift */,
 				1A15B5731DED819300206094 /* DictionaryFileManager.swift */,
 				1A15B56A1DED817E00206094 /* Info.plist */,
@@ -233,6 +235,7 @@
 		1A5D35581DE9756600827D78 /* Safari Extension */ = {
 			isa = PBXGroup;
 			children = (
+				73581780215664A000461622 /* Dictionary */,
 				1A522F041DE9B3D8005C3D70 /* Style sheet */,
 				1A06AA9D1DE98081001595EE /* Scripts */,
 				1A5D355B1DE9756600827D78 /* SafariExtensionHandler.swift */,
@@ -251,6 +254,17 @@
 				1A5D355A1DE9756600827D78 /* Safari_Extension.entitlements */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		73581780215664A000461622 /* Dictionary */ = {
+			isa = PBXGroup;
+			children = (
+				73516832215633860057F89B /* data.js */,
+				7351682C21562FBF0057F89B /* deinflect.js */,
+				1A06AA931DE9807C001595EE /* dictionary.js */,
+				7351682E21562FBF0057F89B /* romaji.js */,
+			);
+			name = Dictionary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,13 +419,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73934979215664ED009B2500 /* data.js in Resources */,
 				1A06AA9B1DE9807C001595EE /* injected.js in Resources */,
+				73934977215664D8009B2500 /* dictionary.js in Resources */,
 				1A5D35661DE9756600827D78 /* ToolbarItemIcon.pdf in Resources */,
-				1A06AA971DE9807C001595EE /* commands.js in Resources */,
-				1A06AA9A1DE9807C001595EE /* global.js in Resources */,
+				73934976215664D8009B2500 /* deinflect.js in Resources */,
 				1A5D35611DE9756600827D78 /* SafariExtensionViewController.xib in Resources */,
+				73934978215664D8009B2500 /* romaji.js in Resources */,
 				1A522F061DE9B41D005C3D70 /* style.css in Resources */,
-				1A06AA991DE9807C001595EE /* dictionary.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +437,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				737C485C21563CCB00B16A35 /* JSDictionary.swift in Sources */,
 				1A15B5741DED819300206094 /* DictionaryFileManager.swift in Sources */,
 				1A1206691DF6329100930307 /* Result.swift in Sources */,
 				1AAD85C71DF5964A001A6B1A /* Romaji.swift in Sources */,
