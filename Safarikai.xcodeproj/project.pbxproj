@@ -37,6 +37,8 @@
 		73934977215664D8009B2500 /* dictionary.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA931DE9807C001595EE /* dictionary.js */; };
 		73934978215664D8009B2500 /* romaji.js in Resources */ = {isa = PBXBuildFile; fileRef = 7351682E21562FBF0057F89B /* romaji.js */; };
 		73934979215664ED009B2500 /* data.js in Resources */ = {isa = PBXBuildFile; fileRef = 73516832215633860057F89B /* data.js */; };
+		7393497C21568775009B2500 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7393497A21568775009B2500 /* SettingsManager.swift */; };
+		7393497D21568775009B2500 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7393497A21568775009B2500 /* SettingsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +127,7 @@
 		7351682E21562FBF0057F89B /* romaji.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = romaji.js; sourceTree = "<group>"; };
 		73516832215633860057F89B /* data.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = data.js; sourceTree = "<group>"; };
 		737C485B21563CCB00B16A35 /* JSDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSDictionary.swift; sourceTree = "<group>"; };
+		7393497A21568775009B2500 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +179,7 @@
 				1A1206661DF5636D00930307 /* Dictionary.swift */,
 				1A15B5731DED819300206094 /* DictionaryFileManager.swift */,
 				1A15B56A1DED817E00206094 /* Info.plist */,
+				7393497A21568775009B2500 /* SettingsManager.swift */,
 			);
 			path = SafarikaiEngine;
 			sourceTree = "<group>";
@@ -440,6 +444,7 @@
 				737C485C21563CCB00B16A35 /* JSDictionary.swift in Sources */,
 				1A15B5741DED819300206094 /* DictionaryFileManager.swift in Sources */,
 				1A1206691DF6329100930307 /* Result.swift in Sources */,
+				7393497D21568775009B2500 /* SettingsManager.swift in Sources */,
 				1AAD85C71DF5964A001A6B1A /* Romaji.swift in Sources */,
 				1AAD85AE1DF58771001A6B1A /* Deinflector.swift in Sources */,
 				1A1206671DF5636D00930307 /* Dictionary.swift in Sources */,
@@ -461,6 +466,7 @@
 			files = (
 				1A5D355E1DE9756600827D78 /* SafariExtensionViewController.swift in Sources */,
 				1A5D355C1DE9756600827D78 /* SafariExtensionHandler.swift in Sources */,
+				7393497C21568775009B2500 /* SettingsManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

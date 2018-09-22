@@ -12,7 +12,6 @@ import JavaScriptCore
 public class JSDictionary {
     public static let shared = JSDictionary()
     private let context: JSContext = JSContext()
-    public var isEnabled = true
     
     init() {
         // load japanese-kit
