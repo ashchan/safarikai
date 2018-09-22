@@ -168,9 +168,6 @@
 
     Client.prototype.showResult = function(word, url, result) {
       var htmlRows, left, margin, overflowX, popup, row, top;
-      console.log("---");
-      console.log("Result for " + word);
-      console.log(result);
       this.injectPopup();
       popup = this.getPopup();
       popup.style.display = "block";
