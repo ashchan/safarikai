@@ -86,6 +86,9 @@
         return this.selectionText = ele.alt.trim();
       } else {
         range = this.doc.caretRangeFromPoint(this.clientX, this.clientY);
+        if (!range) {
+          return;
+        }
         container = range.startContainer;
         offset = range.startOffset;
         if (offset === ((ref1 = container.data) != null ? ref1.length : void 0)) {
@@ -168,9 +171,6 @@
       console.log("---");
       console.log("Result for " + word);
       console.log(result);
-      // if (this.window.location.href !== url) {
-      //   return;
-      // }
       this.injectPopup();
       popup = this.getPopup();
       popup.style.display = "block";
