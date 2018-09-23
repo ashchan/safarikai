@@ -10,6 +10,7 @@
             <connections>
                 <outlet property="highlightButton" destination="aS4-um-XK6" id="7Ju-hl-t94"/>
                 <outlet property="lookupButton" destination="DFC-4t-eHX" id="aED-1C-SkR"/>
+                <outlet property="resultLimitPopUp" destination="gG7-U6-dOj" id="N2L-IT-oyZ"/>
                 <outlet property="romajiButton" destination="hcQ-gA-ULX" id="nqb-Oh-th0"/>
                 <outlet property="translationButton" destination="J12-Tw-Ar7" id="yl0-F8-saa"/>
                 <outlet property="view" destination="c22-O7-iKe" id="vwT-Xx-Aiz"/>
@@ -18,11 +19,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="175" height="130"/>
+            <rect key="frame" x="0.0" y="0.0" width="175" height="150"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DFC-4t-eHX">
-                    <rect key="frame" x="12" y="100" width="71" height="18"/>
+                    <rect key="frame" x="12" y="120" width="71" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Enabled" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="U6V-gQ-YDf">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -33,7 +34,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aS4-um-XK6">
-                    <rect key="frame" x="12" y="74" width="77" height="18"/>
+                    <rect key="frame" x="12" y="94" width="77" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Highlight" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="xUi-yA-9ua">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -44,7 +45,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hcQ-gA-ULX">
-                    <rect key="frame" x="12" y="46" width="100" height="18"/>
+                    <rect key="frame" x="12" y="66" width="100" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Show Romaji" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="mf6-Go-sp9">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -55,7 +56,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J12-Tw-Ar7">
-                    <rect key="frame" x="12" y="18" width="126" height="18"/>
+                    <rect key="frame" x="12" y="38" width="126" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Show Translation" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="oPD-k0-x6c">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -65,8 +66,29 @@
                         <action selector="translationTogglePressed:" target="-2" id="XKI-59-8KE"/>
                     </connections>
                 </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eya-Su-NDb">
+                    <rect key="frame" x="12" y="13" width="82" height="17"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Results Limit" id="ikb-Es-zBP">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gG7-U6-dOj">
+                    <rect key="frame" x="98" y="8" width="76" height="26"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="n1O-zD-MZl">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" id="bat-TA-0FB"/>
+                    </popUpButtonCell>
+                    <connections>
+                        <action selector="resultLimitPressed:" target="-2" id="wFC-lx-Rgq"/>
+                    </connections>
+                </popUpButton>
             </subviews>
-            <point key="canvasLocation" x="60.5" y="156"/>
+            <point key="canvasLocation" x="58.5" y="167.5"/>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="MR8-4v-2Ir"/>
     </objects>

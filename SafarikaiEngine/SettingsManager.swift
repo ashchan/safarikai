@@ -17,6 +17,7 @@ class SettingsManager {
     static let shared = SettingsManager()
     private init() {
         isLookupEnabled = sharedUserDefaults.value(forKey: keys.lookupEnabled.rawValue) as? Bool ?? true
+        resultsLimit = sharedUserDefaults.value(forKey: keys.resultsLimit.rawValue) as? Int ?? 5
     }
     
     let sharedUserDefaults = UserDefaults(suiteName: "9A3W22M8YB.group.com.ashchan.Safarikai")!
@@ -38,7 +39,7 @@ class SettingsManager {
         }
     }
     var isHighlightEnabled: Bool {
-        get { return sharedUserDefaults.value(forKey: keys.highlightEnabled.rawValue) as? Bool ?? false }
+        get { return sharedUserDefaults.value(forKey: keys.highlightEnabled.rawValue) as? Bool ?? true }
         set(value) { sharedUserDefaults.set(value, forKey: keys.highlightEnabled.rawValue) }
     }
     var isShowRomaji: Bool {
@@ -49,8 +50,12 @@ class SettingsManager {
         get { return sharedUserDefaults.value(forKey: keys.translationShow.rawValue) as? Bool ?? true }
         set(value) { sharedUserDefaults.set(value, forKey: keys.translationShow.rawValue) }
     }
+    private var _resultsLimit: Int!
     var resultsLimit: Int {
-        get { return sharedUserDefaults.value(forKey: keys.resultsLimit.rawValue) as? Int ?? 5 }
-        set(value) { sharedUserDefaults.set(value, forKey: keys.resultsLimit.rawValue) }
+        get { return _resultsLimit }
+        set(value) {
+            sharedUserDefaults.set(value, forKey: keys.resultsLimit.rawValue)
+            _resultsLimit = value
+        }
     }
 }

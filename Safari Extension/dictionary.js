@@ -122,7 +122,7 @@
       };
     };
 
-    Dictionary.prototype.load = function() {
+    Dictionary.prototype.load = function(loadedDict) {
       this.dict = loadedDict;
       // return readDataFile("data.js", (function(_this) {
       //   return function(data) {
@@ -155,8 +155,8 @@
     return flattened;
   };
 
-  readDataFile = function(file, success) {
-    return success("var loadedDict = {}");
-  };
+  // readDataFile = function(file, success) {
+  //   return success("var loadedDict = {}");
+  // };
 
 // }).call(this);
