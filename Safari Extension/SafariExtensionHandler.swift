@@ -35,7 +35,8 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
             
             let word = userInfo!["word"] as! String
             let url = userInfo!["url"] as! String
-            let (results, match) = SafarikaiEngine.JSDictionary.shared.search(word: word)
+            let limit = SettingsManager.shared.resultsLimit
+            let (results, match) = SafarikaiEngine.JSDictionary.shared.search(word, limit: limit)
             page.dispatchMessageToScript(withName: OutgoingMessage.showResult.rawValue, userInfo:
                 ["word": match ?? "", "url": url, "result": results]
             )

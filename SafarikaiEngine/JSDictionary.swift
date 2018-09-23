@@ -34,8 +34,8 @@ public class JSDictionary {
         context.evaluateScript("this.dict.load( (function() {\(edictSource); return loadedDict;})() )")
     }
     
-    public func search(word: String) -> ([AnyObject], match: String?) {
-        guard let lookup = context.evaluateScript("this.dict.find('\(word)', 5)")!.toDictionary(),
+    public func search(_ word: String, limit: Int) -> ([AnyObject], match: String?) {
+        guard let lookup = context.evaluateScript("this.dict.find( '\(word)', \(limit) )")!.toDictionary(),
             let results = lookup["results"] as? [AnyObject],
             let match = lookup["match"] as? String else {
                 return ([], nil)
