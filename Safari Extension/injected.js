@@ -209,6 +209,9 @@
       if (this.window.location.href !== url) {
         return;
       }
+      if (window.top !== window) {
+        return;
+      }
       this.injectPopup();
       popup = this.getPopup();
       popup.style.display = "block";
