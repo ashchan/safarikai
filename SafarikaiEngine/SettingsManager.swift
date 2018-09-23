@@ -39,7 +39,7 @@ class SettingsManager {
         }
     }
     var isHighlightEnabled: Bool {
-        get { return sharedUserDefaults.value(forKey: keys.highlightEnabled.rawValue) as? Bool ?? false }
+        get { return sharedUserDefaults.value(forKey: keys.highlightEnabled.rawValue) as? Bool ?? true }
         set(value) { sharedUserDefaults.set(value, forKey: keys.highlightEnabled.rawValue) }
     }
     var isShowRomaji: Bool {
