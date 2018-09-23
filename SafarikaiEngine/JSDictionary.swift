@@ -22,17 +22,16 @@ public class JSDictionary {
         let deinflectSource = try! String.init(contentsOfFile: deinflectPath!)
         context.evaluateScript("this.Deinflect=\(deinflectSource)")
         
-        let edictPath = Bundle.main.path(forResource: "data", ofType: "js")
-        let edictSource = try! String.init(contentsOfFile: edictPath!)
-        context.evaluateScript(edictSource)
-        
         let dicPath = Bundle.main.path(forResource: "dictionary", ofType: "js")
         let dicSource = try! String.init(contentsOfFile: dicPath!)
         context.evaluateScript(dicSource)
         
         // prepareDictionary
         context.evaluateScript("this.dict = new Dictionary")
-        context.evaluateScript("this.dict.load()")
+        
+        let edictPath = Bundle.main.path(forResource: "data", ofType: "js")
+        let edictSource = try! String.init(contentsOfFile: edictPath!)
+        context.evaluateScript("this.dict.load( (function() {\(edictSource); return loadedDict;})() )")
     }
     
     public func search(word: String) -> ([AnyObject], match: String?) {
