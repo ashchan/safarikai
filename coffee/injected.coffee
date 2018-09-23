@@ -55,6 +55,8 @@ class Client
       @selectionText = ele.alt.trim()
     else
       range = @doc.caretRangeFromPoint @clientX, @clientY
+      return if not range
+
       container = range.startContainer
       offset = range.startOffset
 

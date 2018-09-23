@@ -24,7 +24,7 @@ class Deinflector {
     /// - Note: Combine rules are not used.
     class func deinflect(_ verb: String) -> [String] {
         var forms = [verb]
-        let verbLength = verb.characters.count
+        let verbLength = verb.count
 
         let keys = rules.keys.filter { $0 <= verbLength }
         for len in keys {

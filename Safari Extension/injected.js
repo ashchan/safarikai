@@ -86,6 +86,9 @@
         return this.selectionText = ele.alt.trim();
       } else {
         range = this.doc.caretRangeFromPoint(this.clientX, this.clientY);
+        if (!range) {
+          return;
+        }
         container = range.startContainer;
         offset = range.startOffset;
         if (offset === ((ref1 = container.data) != null ? ref1.length : void 0)) {
@@ -165,9 +168,6 @@
 
     Client.prototype.showResult = function(word, url, result) {
       var htmlRows, left, margin, overflowX, popup, row, top;
-      console.log("---");
-      console.log("Result for " + word);
-      console.log(result);
       if (this.window.location.href !== url) {
         return;
       }

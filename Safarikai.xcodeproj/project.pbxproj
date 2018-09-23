@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A06AA971DE9807C001595EE /* commands.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA911DE9807B001595EE /* commands.js */; };
-		1A06AA991DE9807C001595EE /* dictionary.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA931DE9807C001595EE /* dictionary.js */; };
-		1A06AA9A1DE9807C001595EE /* global.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA941DE9807C001595EE /* global.js */; };
 		1A06AA9B1DE9807C001595EE /* injected.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA951DE9807C001595EE /* injected.js */; };
 		1A1206671DF5636D00930307 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1206661DF5636D00930307 /* Dictionary.swift */; };
 		1A1206691DF6329100930307 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1206681DF6329100930307 /* Result.swift */; };
@@ -35,6 +32,13 @@
 		1AAD85C71DF5964A001A6B1A /* Romaji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAD85C61DF5964A001A6B1A /* Romaji.swift */; };
 		1AAD85C91DF59F29001A6B1A /* Regex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AAD85C81DF59F29001A6B1A /* Regex.framework */; };
 		1AAD85CA1DF59F36001A6B1A /* Regex.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AAD85C81DF59F29001A6B1A /* Regex.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		737C485C21563CCB00B16A35 /* JSDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737C485B21563CCB00B16A35 /* JSDictionary.swift */; };
+		73934976215664D8009B2500 /* deinflect.js in Resources */ = {isa = PBXBuildFile; fileRef = 7351682C21562FBF0057F89B /* deinflect.js */; };
+		73934977215664D8009B2500 /* dictionary.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA931DE9807C001595EE /* dictionary.js */; };
+		73934978215664D8009B2500 /* romaji.js in Resources */ = {isa = PBXBuildFile; fileRef = 7351682E21562FBF0057F89B /* romaji.js */; };
+		73934979215664ED009B2500 /* data.js in Resources */ = {isa = PBXBuildFile; fileRef = 73516832215633860057F89B /* data.js */; };
+		7393497C21568775009B2500 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7393497A21568775009B2500 /* SettingsManager.swift */; };
+		7393497D21568775009B2500 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7393497A21568775009B2500 /* SettingsManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,9 +95,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1A06AA911DE9807B001595EE /* commands.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = commands.js; sourceTree = "<group>"; };
 		1A06AA931DE9807C001595EE /* dictionary.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dictionary.js; sourceTree = "<group>"; };
-		1A06AA941DE9807C001595EE /* global.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = global.js; sourceTree = "<group>"; };
 		1A06AA951DE9807C001595EE /* injected.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = injected.js; sourceTree = "<group>"; };
 		1A1206661DF5636D00930307 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		1A1206681DF6329100930307 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
@@ -121,6 +123,11 @@
 		1AAD85AD1DF58771001A6B1A /* Deinflector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deinflector.swift; sourceTree = "<group>"; };
 		1AAD85C61DF5964A001A6B1A /* Romaji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Romaji.swift; sourceTree = "<group>"; };
 		1AAD85C81DF59F29001A6B1A /* Regex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Regex.framework; path = Carthage/Build/Mac/Regex.framework; sourceTree = "<group>"; };
+		7351682C21562FBF0057F89B /* deinflect.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = deinflect.js; sourceTree = "<group>"; };
+		7351682E21562FBF0057F89B /* romaji.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = romaji.js; sourceTree = "<group>"; };
+		73516832215633860057F89B /* data.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = data.js; sourceTree = "<group>"; };
+		737C485B21563CCB00B16A35 /* JSDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSDictionary.swift; sourceTree = "<group>"; };
+		7393497A21568775009B2500 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,9 +163,6 @@
 		1A06AA9D1DE98081001595EE /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
-				1A06AA911DE9807B001595EE /* commands.js */,
-				1A06AA931DE9807C001595EE /* dictionary.js */,
-				1A06AA941DE9807C001595EE /* global.js */,
 				1A06AA951DE9807C001595EE /* injected.js */,
 			);
 			name = Scripts;
@@ -171,9 +175,11 @@
 				1AAD85AD1DF58771001A6B1A /* Deinflector.swift */,
 				1AAD85C61DF5964A001A6B1A /* Romaji.swift */,
 				1A1206681DF6329100930307 /* Result.swift */,
+				737C485B21563CCB00B16A35 /* JSDictionary.swift */,
 				1A1206661DF5636D00930307 /* Dictionary.swift */,
 				1A15B5731DED819300206094 /* DictionaryFileManager.swift */,
 				1A15B56A1DED817E00206094 /* Info.plist */,
+				7393497A21568775009B2500 /* SettingsManager.swift */,
 			);
 			path = SafarikaiEngine;
 			sourceTree = "<group>";
@@ -233,6 +239,7 @@
 		1A5D35581DE9756600827D78 /* Safari Extension */ = {
 			isa = PBXGroup;
 			children = (
+				73581780215664A000461622 /* Dictionary */,
 				1A522F041DE9B3D8005C3D70 /* Style sheet */,
 				1A06AA9D1DE98081001595EE /* Scripts */,
 				1A5D355B1DE9756600827D78 /* SafariExtensionHandler.swift */,
@@ -251,6 +258,17 @@
 				1A5D355A1DE9756600827D78 /* Safari_Extension.entitlements */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		73581780215664A000461622 /* Dictionary */ = {
+			isa = PBXGroup;
+			children = (
+				73516832215633860057F89B /* data.js */,
+				7351682C21562FBF0057F89B /* deinflect.js */,
+				1A06AA931DE9807C001595EE /* dictionary.js */,
+				7351682E21562FBF0057F89B /* romaji.js */,
+			);
+			name = Dictionary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -331,19 +349,20 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = ashchan.com;
 				TargetAttributes = {
 					1A15B5661DED817E00206094 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 9A3W22M8YB;
-						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
+						LastSwiftMigration = 1000;
 					};
 					1A5D353D1DE9749600827D78 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 9A3W22M8YB;
 						ProvisioningStyle = Automatic;
+						LastSwiftMigration = 1000;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
 								enabled = 1;
@@ -353,6 +372,7 @@
 					1A5D35531DE9756600827D78 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 9A3W22M8YB;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
@@ -403,13 +423,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73934979215664ED009B2500 /* data.js in Resources */,
 				1A06AA9B1DE9807C001595EE /* injected.js in Resources */,
+				73934977215664D8009B2500 /* dictionary.js in Resources */,
 				1A5D35661DE9756600827D78 /* ToolbarItemIcon.pdf in Resources */,
-				1A06AA971DE9807C001595EE /* commands.js in Resources */,
-				1A06AA9A1DE9807C001595EE /* global.js in Resources */,
+				73934976215664D8009B2500 /* deinflect.js in Resources */,
 				1A5D35611DE9756600827D78 /* SafariExtensionViewController.xib in Resources */,
+				73934978215664D8009B2500 /* romaji.js in Resources */,
 				1A522F061DE9B41D005C3D70 /* style.css in Resources */,
-				1A06AA991DE9807C001595EE /* dictionary.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,8 +441,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				737C485C21563CCB00B16A35 /* JSDictionary.swift in Sources */,
 				1A15B5741DED819300206094 /* DictionaryFileManager.swift in Sources */,
 				1A1206691DF6329100930307 /* Result.swift in Sources */,
+				7393497D21568775009B2500 /* SettingsManager.swift in Sources */,
 				1AAD85C71DF5964A001A6B1A /* Romaji.swift in Sources */,
 				1AAD85AE1DF58771001A6B1A /* Deinflector.swift in Sources */,
 				1A1206671DF5636D00930307 /* Dictionary.swift in Sources */,
@@ -443,6 +466,7 @@
 			files = (
 				1A5D355E1DE9756600827D78 /* SafariExtensionViewController.swift in Sources */,
 				1A5D355C1DE9756600827D78 /* SafariExtensionHandler.swift in Sources */,
+				7393497C21568775009B2500 /* SettingsManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,7 +530,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -536,7 +559,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.ashchan.SafarikaiEngine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -551,15 +573,24 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -582,12 +613,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -600,15 +632,24 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -625,10 +666,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -643,10 +685,8 @@
 				DEVELOPMENT_TEAM = 9A3W22M8YB;
 				INFOPLIST_FILE = Safarikai/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ashchan.Safarikai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -661,10 +701,8 @@
 				DEVELOPMENT_TEAM = 9A3W22M8YB;
 				INFOPLIST_FILE = Safarikai/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ashchan.Safarikai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -680,7 +718,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ashchan.Safarikai.Safari-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -696,7 +733,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ashchan.Safarikai.Safari-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

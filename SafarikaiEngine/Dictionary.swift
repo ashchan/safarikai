@@ -27,7 +27,7 @@ extension Dictionary {
         cachedWords.removeAll()
         var longest: String?
 
-        for len in (1 ... word.characters.count).reversed() {
+        for len in (1 ... word.count).reversed() {
             let w = word.substring(to: len)
             let records = search(w)
             if records.count > 0 && longest == nil {
@@ -64,14 +64,14 @@ extension Dictionary {
     func variants(for word: String) -> [String] {
         var v: [String]
 
-        if word.characters.count > 1 {
+        if word.count > 1 {
             v = Deinflector.deinflect(word)
         } else {
             v = [word]
         }
 
         let hiragana = Romaji.hiragana(from: word).joined()
-        if hiragana != word && hiragana.characters.count > 0 {
+        if hiragana != word && hiragana.count > 0 {
             v.append(hiragana)
         }
 
