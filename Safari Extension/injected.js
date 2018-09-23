@@ -3,6 +3,42 @@
   var Client, client,
     indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
+  /**
+   * Get all of an element's parent elements up the DOM tree
+   * @param  {Node}   elem     The element
+   * @param  {String} selector Selector to match against [optional]
+   * @return {Array}           The parent elements
+   */
+  var getParents = function ( elem, selector ) {
+    // Element.matches() polyfill
+    if (!Element.prototype.matches) {
+      Element.prototype.matches =
+        Element.prototype.matchesSelector ||
+        Element.prototype.mozMatchesSelector ||
+        Element.prototype.msMatchesSelector ||
+        Element.prototype.oMatchesSelector ||
+        Element.prototype.webkitMatchesSelector ||
+        function(s) {
+          var matches = (this.document || this.ownerDocument).querySelectorAll(s),
+            i = matches.length;
+          while (--i >= 0 && matches.item(i) !== this) {}
+          return i > -1;
+        };
+    }
+
+    var parents = [];
+    for ( ; elem && elem !== document; elem = elem.parentNode ) {
+      if ( selector ) {
+        if ( elem.matches( selector ) ) {
+          parents.push( elem );
+        }
+      } else {
+        parents.push( elem );
+      }
+    }
+    return parents;
+  };
+
   Client = (function() {
     function Client(doc, window1) {
       this.doc = doc;
@@ -84,6 +120,8 @@
         return this.selectionText = "";
       } else if (ele.tagName === "IMG") {
         return this.selectionText = ele.alt.trim();
+      } else if (getParents(ele,"[contenteditable]").length) {
+        return this.selectionText = "";
       } else {
         range = this.doc.caretRangeFromPoint(this.clientX, this.clientY);
         if (!range) {
