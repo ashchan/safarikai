@@ -1,0 +1,11 @@
+framework module SQLite {
+  umbrella header "SQLite.h"
+
+  export *
+  module * { export * }
+}
+
+module SQLite.Swift {
+    header "SQLite-Swift.h"
+    requires objc
+}
