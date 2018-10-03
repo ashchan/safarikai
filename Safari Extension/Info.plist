@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>2.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>20181003.18</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSExtension</key>
@@ -55,12 +55,12 @@
 		</dict>
 		<key>SFSafariWebsiteAccess</key>
 		<dict>
-			<key>Level</key>
-			<string>All</string>
 			<key>Allowed Domains</key>
 			<array>
 				<string>*.*</string>
 			</array>
+			<key>Level</key>
+			<string>All</string>
 		</dict>
 	</dict>
 	<key>NSHumanReadableCopyright</key>
