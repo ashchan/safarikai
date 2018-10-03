@@ -329,6 +329,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A5D356A1DE9756600827D78 /* Build configuration list for PBXNativeTarget "Safari Extension" */;
 			buildPhases = (
+				1A9204E521645DB9004B54DC /* Update Release Build Number */,
 				1A5D35501DE9756600827D78 /* Sources */,
 				1A5D35511DE9756600827D78 /* Frameworks */,
 				1A5D35521DE9756600827D78 /* Resources */,
@@ -355,14 +356,14 @@
 					1A15B5661DED817E00206094 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 9A3W22M8YB;
-						ProvisioningStyle = Automatic;
 						LastSwiftMigration = 1000;
+						ProvisioningStyle = Automatic;
 					};
 					1A5D353D1DE9749600827D78 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 9A3W22M8YB;
-						ProvisioningStyle = Automatic;
 						LastSwiftMigration = 1000;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
 								enabled = 1;
@@ -435,6 +436,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1A9204E521645DB9004B54DC /* Update Release Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Update Release Build Number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ $CONFIGURATION == Release ]; then\n    echo \"Bumping build number...\"\n    plist=\"${SRCROOT}/Safarikai/Info.plist\"\n    extplist=\"${SRCROOT}/Safari Extension/Info.plist\"\n\n    buildnum=`date +%Y%m%d.%H`\n    /usr/libexec/Plistbuddy -c \"Set CFBundleVersion $buildnum\" \"${plist}\"\n    /usr/libexec/Plistbuddy -c \"Set CFBundleVersion $buildnum\" \"${extplist}\"\n    echo \"Bumped build number to $buildnum\"\nelse\n    echo $CONFIGURATION \" build - Not bumping build number.\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1A15B5621DED817E00206094 /* Sources */ = {
