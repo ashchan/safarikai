@@ -6,7 +6,7 @@
 	<true/>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.ashchan.Safarikai</string>
+		<string>9A3W22M8YB.group.com.ashchan.Safarikai</string>
 	</array>
 	<key>com.apple.security.files.user-selected.read-only</key>
 	<true/>
