@@ -10,16 +10,15 @@ import Foundation
 
 extension String {
     func substring(from: Int) -> String {
-        return substring(from: index(startIndex, offsetBy: from))
+        return String(dropFirst(from))
     }
 
     func substring(to: Int) -> String {
-        return substring(to: index(startIndex, offsetBy: to))
+        return String(dropLast(count - to))
     }
 }
 
 class Deinflector {
-
     /// - Returns: Possible dictionary forms for a given verb including itself.
     /// - Note: Combine rules are not used.
     class func deinflect(_ verb: String) -> [String] {

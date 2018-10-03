@@ -34,10 +34,8 @@ class ViewController: NSViewController {
         """
         var error: NSDictionary?
         if let scriptObject = NSAppleScript(source: myAppleScript) {
-            if let output: NSAppleEventDescriptor = scriptObject.executeAndReturnError(
-                &error) {
-                print(output.stringValue)
-            } else if (error != nil) {
+            scriptObject.executeAndReturnError(&error)
+            if let error = error {
                 print("error: \(error)")
             }
         }
