@@ -57,6 +57,10 @@
 		<dict>
 			<key>Level</key>
 			<string>All</string>
+			<key>Allowed Domains</key>
+			<array>
+				<string>*.*</string>
+			</array>
 		</dict>
 	</dict>
 	<key>NSHumanReadableCopyright</key>
