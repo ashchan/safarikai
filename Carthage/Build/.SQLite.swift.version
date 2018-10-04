@@ -1,9 +1,0 @@
-{
-  "commitish" : "0.11.5",
-  "Mac" : [
-    {
-      "name" : "SQLite",
-      "hash" : "eec2cb121d8dc979401d1c7a48e7a8026eede2c90ebffdf917622125a5f813f8"
-    }
-  ]
-}
