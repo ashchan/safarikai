@@ -6,21 +6,9 @@
 //  Copyright © 2016 ashchan.com. All rights reserved.
 //
 
-import Foundation
-import SafarikaiEngine
+import Cocoa
 
 class ViewController: NSViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
-    
     @IBAction func openSafariExtPrefsPressed(_ sender: Any) {
         let myAppleScript = """
             tell application "Safari" to activate

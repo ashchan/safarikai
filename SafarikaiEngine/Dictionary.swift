@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import SQLite
 
 public class Dictionary {
     private init() {}
@@ -15,13 +14,11 @@ public class Dictionary {
     public static let extensionInstance: Dictionary = Dictionary()
 
     fileprivate var cachedWords = Set<String>()
-    fileprivate var connection: Connection = try! Connection(DictionaryFileManager.default.dbPath)
-}                                                
+}
 
 extension Dictionary {
 
     /// Search a word.
-    /// - Returns: All matched results limited to number of specified limit and the longest matched word.
     public func search(word: String, limit: Int = 5) -> ([Result], match: String?) {
         var results: [Result] = []
         cachedWords.removeAll()
@@ -42,23 +39,17 @@ extension Dictionary {
 
     /// Search word with all possible variants.
     func search(_ word: String) -> [Result] {
+        /*
         var results: [Result] = []
 
         var entries: [Int64: [String]] = [:]
         let fields = "gloss.entry, kanji.kanji, reading.kana, reading.romaji, gloss.sense, gloss.gloss"
         let tables = "gloss left join reading on reading.entry = gloss.entry left join kanji on kanji.entry = gloss.entry"
         let likeClause = variants(for: word).map { "'" + $0 + "'" }.joined(separator: ", ")
+        //results.append(Result(kana: word, kanji: "漢字", translation: "Gloss \(entry)", romaji: "kana"))
 
-        for row in try! connection.prepare("select \(fields) from \(tables) where kanji in (\(likeClause)) or kana in (\(likeClause))") {
-            let id = row[0] as! Int64
-            if let entry = entries[id] {
-                
-            } else {
-            }
-            //results.append(Result(kana: word, kanji: "漢字", translation: "Gloss \(entry)", romaji: "kana"))
-        }
-
-        return results
+        return results*/
+        return []
     }
 
     func variants(for word: String) -> [String] {
