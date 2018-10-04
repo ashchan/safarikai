@@ -173,8 +173,8 @@
 				737C485B21563CCB00B16A35 /* JSDictionary.swift */,
 				1A1206661DF5636D00930307 /* Dictionary.swift */,
 				1A15B5731DED819300206094 /* DictionaryFileManager.swift */,
-				1A15B56A1DED817E00206094 /* Info.plist */,
 				7393497A21568775009B2500 /* SettingsManager.swift */,
+				1A15B56A1DED817E00206094 /* Info.plist */,
 			);
 			path = SafarikaiEngine;
 			sourceTree = "<group>";
