@@ -7,6 +7,7 @@ Translate Japanese words on web pages. Inspired by rikaichan and rikaikun, with 
 ## How to Use
 
 * Download Safarikai.app from [App Store](https://itunes.apple.com/us/app/safarikai/id1437951175?ls=1&mt=12), run it once to install the extension.
+* Open Safari - Preferences - Extension, make sure Safarikai is checked on the left panel.
 * Hover over Japanese word; if Safarikai finds translation(s) for that word a popup will show.
 
 ## Development Dependencies
