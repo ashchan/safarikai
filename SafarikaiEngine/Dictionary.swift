@@ -36,9 +36,13 @@ extension Dict {
         cachedWords.removeAll()
         var longest: String?
 
+        if word.isEmpty {
+            return (results, nil)
+        }
+
         for len in (1 ... word.count).reversed() {
             let part = word.substring(to: len)
-            let records = search(part)
+            let records = search(word: part)
             if records.count > 0 && longest == nil {
                 longest = part
             }
@@ -53,7 +57,7 @@ extension Dict {
     }
 
     /// Search word with all possible variants.
-    func search(_ word: String) -> [Result] {
+    func search(word: String) -> [Result] {
         var results: [Result] = []
 
         let vars = variants(for: word)
