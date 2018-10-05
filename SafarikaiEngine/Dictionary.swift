@@ -11,15 +11,15 @@ import Regex
 
 public class Dict {
     public static let shared = Dict()
-    private let dictData: DictData
+    private var dictData: DictData?
     private var cachedWords = Set<String>()
 
     private init() {
-        if let dictPath = Bundle(for: type(of: self)).path(forResource: "data", ofType: "json"),
-            let data = try? Data(contentsOf: URL(fileURLWithPath: dictPath), options: .mappedIfSafe) {
-            dictData = try! JSONDecoder().decode(DictData.self, from: data)
-        } else {
-            dictData = DictData(words: [:], indexes: [:])
+        let dictPath = Bundle(for: type(of: self)).path(forResource: "data", ofType: "json")!
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: URL(fileURLWithPath: dictPath), options: .mappedIfSafe) {
+                self?.dictData = try? JSONDecoder().decode(DictData.self, from: data)
+            }
         }
     }
 }
@@ -58,6 +58,10 @@ extension Dict {
 
     /// Search word with all possible variants.
     func search(word: String) -> [Result] {
+        guard let dictData = dictData else {
+            return []
+        }
+
         var results: [Result] = []
 
         let vars = variants(for: word)
@@ -96,7 +100,7 @@ extension Dict {
         }
 
         cachedWords.insert(word)
-        if let records = dictData.words[word] {
+        if let records = dictData!.words[word] {
             records.forEach { record in
                 let pending = parseResult(kanji: word, result: record)
                 if matchedWord == nil || (pending.kana == matchedWord || pending.kanji == matchedWord) {
