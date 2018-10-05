@@ -1,21 +1,52 @@
 //
 //  Dictionary.swift
-//  Safarikai
+//  SafarikaiEngine
 //
-//  Created by James Chen on 2016/12/05.
-//  Copyright © 2016 ashchan.com. All rights reserved.
+//  Created by Aaron Lee on 2018/09/22.
+//  Copyright © 2018 Aaron Lee. All rights reserved.
 //
 
 import Cocoa
+import JavaScriptCore
 
 public class Dictionary {
-    private init() {}
+    public static let shared = Dictionary()
+    private let context: JSContext = JSContext()
+    private var cachedWords = Set<String>()
 
-    public static let extensionInstance: Dictionary = Dictionary()
+    init() {
+        // load japanese-kit
+        let romajiPath = Bundle.main.path(forResource: "romaji", ofType: "js")
+        let romajiSource = try! String.init(contentsOfFile: romajiPath!)
+        context.evaluateScript("\(romajiSource)")
+        let deinflectPath = Bundle.main.path(forResource: "deinflect", ofType: "js")
+        let deinflectSource = try! String.init(contentsOfFile: deinflectPath!)
+        context.evaluateScript("this.Deinflect=\(deinflectSource)")
 
-    fileprivate var cachedWords = Set<String>()
+        let dicPath = Bundle.main.path(forResource: "dictionary", ofType: "js")
+        let dicSource = try! String.init(contentsOfFile: dicPath!)
+        context.evaluateScript(dicSource)
+
+        // prepareDictionary
+        context.evaluateScript("this.dict = new Dictionary")
+
+        let edictPath = Bundle.main.path(forResource: "data", ofType: "js")
+        let edictSource = try! String.init(contentsOfFile: edictPath!)
+        context.evaluateScript("this.dict.load( (function() {\(edictSource); return loadedDict;})() )")
+    }
+
+    public func search(_ word: String, limit: Int) -> ([AnyObject], match: String?) {
+        guard let lookup = context.evaluateScript("this.dict.find( '\(word)', \(limit) )")!.toDictionary(),
+            let results = lookup["results"] as? [AnyObject],
+            let match = lookup["match"] as? String else {
+            return ([], nil)
+        }
+
+        return (results, match)
+    }
 }
 
+// Left for future use
 extension Dictionary {
     /// Search a word.
     public func search(word: String, limit: Int = 5) -> ([Result], match: String?) {
@@ -39,15 +70,15 @@ extension Dictionary {
     /// Search word with all possible variants.
     func search(_ word: String) -> [Result] {
         /*
-        var results: [Result] = []
+         var results: [Result] = []
 
-        var entries: [Int64: [String]] = [:]
-        let fields = "gloss.entry, kanji.kanji, reading.kana, reading.romaji, gloss.sense, gloss.gloss"
-        let tables = "gloss left join reading on reading.entry = gloss.entry left join kanji on kanji.entry = gloss.entry"
-        let likeClause = variants(for: word).map { "'" + $0 + "'" }.joined(separator: ", ")
-        //results.append(Result(kana: word, kanji: "漢字", translation: "Gloss \(entry)", romaji: "kana"))
+         var entries: [Int64: [String]] = [:]
+         let fields = "gloss.entry, kanji.kanji, reading.kana, reading.romaji, gloss.sense, gloss.gloss"
+         let tables = "gloss left join reading on reading.entry = gloss.entry left join kanji on kanji.entry = gloss.entry"
+         let likeClause = variants(for: word).map { "'" + $0 + "'" }.joined(separator: ", ")
+         //results.append(Result(kana: word, kanji: "漢字", translation: "Gloss \(entry)", romaji: "kana"))
 
-        return results*/
+         return results*/
         return []
     }
 
@@ -76,13 +107,13 @@ extension Dictionary {
             //results.push pending for pending in parsed when (not matchedWord) or (pending.kana is matchedWord or pending.kanji is matchedWord)
             /*
              words: {
-                 "×": [
-                     "[ばつ] /(n,uk) x-mark (used to indicate an incorrect answer in a test, etc.)/impossibility/futility/uselessness/",
-                     "[ぺけ] /(n,uk) x-mark (used to indicate an incorrect answer in a test, etc.)/impossibility/futility/uselessness/",
-                     "[ペケ] /(n,uk) x-mark (used to indicate an incorrect answer in a test, etc.)/impossibility/futility/uselessness/"
-                 ]
+             "×": [
+             "[ばつ] /(n,uk) x-mark (used to indicate an incorrect answer in a test, etc.)/impossibility/futility/uselessness/",
+             "[ぺけ] /(n,uk) x-mark (used to indicate an incorrect answer in a test, etc.)/impossibility/futility/uselessness/",
+             "[ペケ] /(n,uk) x-mark (used to indicate an incorrect answer in a test, etc.)/impossibility/futility/uselessness/"
+             ]
              }
- */
+             */
         }
     }
 }
