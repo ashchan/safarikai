@@ -38,7 +38,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
             let limit = SettingsManager.shared.resultsLimit
             let (results, match) = Dict.shared.search(word, limit: limit)
             page.dispatchMessageToScript(withName: OutgoingMessage.showResult.rawValue, userInfo:
-                ["word": match ?? "", "url": url, "result": results]
+                ["word": match ?? "", "url": url, "result": results.map { $0.toJSON() }]
             )
         }
 
