@@ -14,17 +14,17 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
         case queryStatus
         case lookupWord
     }
-    
+
     private enum OutgoingMessage: String {
         case status
         case showResult
     }
-    
-    override func messageReceived(withName messageName: String, from page: SFSafariPage, userInfo: [String : Any]?) {
+
+    override func messageReceived(withName messageName: String, from page: SFSafariPage, userInfo: [String: Any]?) {
         if !SettingsManager.shared.isLookupEnabled {
             return
         }
-        
+
         if messageName == IncomingMessage.lookupWord.rawValue {
             page.dispatchMessageToScript(withName: OutgoingMessage.status.rawValue, userInfo:
                 ["enabled": SettingsManager.shared.isLookupEnabled,
@@ -32,7 +32,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
                  "showRomaji": SettingsManager.shared.isShowRomaji,
                  "showTranslation": SettingsManager.shared.isShowTranslation]
             )
-            
+
             let word = userInfo!["word"] as! String
             let url = userInfo!["url"] as! String
             let limit = SettingsManager.shared.resultsLimit
@@ -50,7 +50,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
             )
         }
     }
-    
+
     override func validateToolbarItem(in window: SFSafariWindow, validationHandler: @escaping ((Bool, String) -> Void)) {
         // This is called when Safari's state changed in some way that would require the extension's toolbar item to be validated again.
         validationHandler(true, "")

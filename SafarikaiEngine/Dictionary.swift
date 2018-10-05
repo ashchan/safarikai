@@ -17,7 +17,6 @@ public class Dictionary {
 }
 
 extension Dictionary {
-
     /// Search a word.
     public func search(word: String, limit: Int = 5) -> ([Result], match: String?) {
         var results: [Result] = []
@@ -25,10 +24,10 @@ extension Dictionary {
         var longest: String?
 
         for len in (1 ... word.count).reversed() {
-            let w = word.substring(to: len)
-            let records = search(w)
+            let part = word.substring(to: len)
+            let records = search(part)
             if records.count > 0 && longest == nil {
-                longest = w
+                longest = part
             }
             results += records
         }
@@ -53,20 +52,20 @@ extension Dictionary {
     }
 
     func variants(for word: String) -> [String] {
-        var v: [String]
+        var results: [String]
 
         if word.count > 1 {
-            v = Deinflector.deinflect(word)
+            results = Deinflector.deinflect(word)
         } else {
-            v = [word]
+            results = [word]
         }
 
         let hiragana = Romaji.hiragana(from: word).joined()
         if hiragana != word && hiragana.count > 0 {
-            v.append(hiragana)
+            results.append(hiragana)
         }
 
-        return v
+        return results
     }
 
     func push(word: String, to results: inout [Result], matchedWord: String? = nil) {
