@@ -9,6 +9,7 @@
 import Foundation
 import Regex
 
+// swiftlint:disable type_body_length
 class Romaji {
     class func romaji(from katakana: String) -> String {
         var values = hiragana(from: katakana).map { return romaji[$0] ?? $0 }.joined()

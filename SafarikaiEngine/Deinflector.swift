@@ -18,6 +18,7 @@ extension String {
     }
 }
 
+// swiftlint:disable type_body_length
 class Deinflector {
     /// - Returns: Possible dictionary forms for a given verb including itself.
     /// - Note: Combine rules are not used.
@@ -233,7 +234,7 @@ class Deinflector {
             "んだら": "む",
             //"んだり": "ぬ",
             //"んだり": "ぶ",
-            "んだり": "む",
+            "んだり": "む"
         ],
         2: [
             "いた": "く",
