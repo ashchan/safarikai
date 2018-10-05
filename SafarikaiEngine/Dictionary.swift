@@ -6,50 +6,32 @@
 //  Copyright © 2018 Aaron Lee. All rights reserved.
 //
 
-import Cocoa
-import JavaScriptCore
+import Foundation
+import Regex
 
-public class Dictionary {
-    public static let shared = Dictionary()
-    private let context: JSContext = JSContext()
+public class Dict {
+    public static let shared = Dict()
+    private let dictData: DictData
     private var cachedWords = Set<String>()
 
-    init() {
-        // load japanese-kit
-        let romajiPath = Bundle.main.path(forResource: "romaji", ofType: "js")
-        let romajiSource = try! String.init(contentsOfFile: romajiPath!)
-        context.evaluateScript("\(romajiSource)")
-        let deinflectPath = Bundle.main.path(forResource: "deinflect", ofType: "js")
-        let deinflectSource = try! String.init(contentsOfFile: deinflectPath!)
-        context.evaluateScript("this.Deinflect=\(deinflectSource)")
-
-        let dicPath = Bundle.main.path(forResource: "dictionary", ofType: "js")
-        let dicSource = try! String.init(contentsOfFile: dicPath!)
-        context.evaluateScript(dicSource)
-
-        // prepareDictionary
-        context.evaluateScript("this.dict = new Dictionary")
-
-        let edictPath = Bundle.main.path(forResource: "data", ofType: "js")
-        let edictSource = try! String.init(contentsOfFile: edictPath!)
-        context.evaluateScript("this.dict.load( (function() {\(edictSource); return loadedDict;})() )")
-    }
-
-    public func search(_ word: String, limit: Int) -> ([AnyObject], match: String?) {
-        guard let lookup = context.evaluateScript("this.dict.find( '\(word)', \(limit) )")!.toDictionary(),
-            let results = lookup["results"] as? [AnyObject],
-            let match = lookup["match"] as? String else {
-            return ([], nil)
+    private init() {
+        if let dictPath = Bundle(for: type(of: self)).path(forResource: "data", ofType: "json"),
+            let data = try? Data(contentsOf: URL(fileURLWithPath: dictPath), options: .mappedIfSafe) {
+            dictData = try! JSONDecoder().decode(DictData.self, from: data)
+        } else {
+            dictData = DictData(words: [:], indexes: [:])
         }
-
-        return (results, match)
     }
 }
 
-// Left for future use
-extension Dictionary {
+struct DictData: Decodable {
+    var words: [String: [String]]
+    var indexes: [String: [String]]
+}
+
+extension Dict {
     /// Search a word.
-    public func search(word: String, limit: Int = 5) -> ([Result], match: String?) {
+    public func search(_ word: String, limit: Int = 5) -> ([Result], match: String?) {
         var results: [Result] = []
         cachedWords.removeAll()
         var longest: String?
@@ -61,25 +43,30 @@ extension Dictionary {
                 longest = part
             }
             results += records
+
+            if results.count >= limit {
+                break
+            }
         }
 
-        // TODO: limit
-        return (results, longest)
+        return ([Result](results.prefix(limit)), longest)
     }
 
     /// Search word with all possible variants.
     func search(_ word: String) -> [Result] {
-        /*
-         var results: [Result] = []
+        var results: [Result] = []
 
-         var entries: [Int64: [String]] = [:]
-         let fields = "gloss.entry, kanji.kanji, reading.kana, reading.romaji, gloss.sense, gloss.gloss"
-         let tables = "gloss left join reading on reading.entry = gloss.entry left join kanji on kanji.entry = gloss.entry"
-         let likeClause = variants(for: word).map { "'" + $0 + "'" }.joined(separator: ", ")
-         //results.append(Result(kana: word, kanji: "漢字", translation: "Gloss \(entry)", romaji: "kana"))
+        let vars = variants(for: word)
+        vars.forEach { push(word: $0, to: &results) }
+        vars.forEach { variant in
+            if let indexes = dictData.indexes[variant] {
+                indexes.forEach({ index in
+                    push(word: index, to: &results, matchedWord: variant)
+                })
+            }
+        }
 
-         return results*/
-        return []
+        return results
     }
 
     func variants(for word: String) -> [String] {
@@ -100,20 +87,38 @@ extension Dictionary {
     }
 
     func push(word: String, to results: inout [Result], matchedWord: String? = nil) {
-        if !cachedWords.contains(word) {
-            cachedWords.insert(word)
-            //if record = @dict.words[word]
-            //parsed = (@parseResult word, item for item in record)
-            //results.push pending for pending in parsed when (not matchedWord) or (pending.kana is matchedWord or pending.kanji is matchedWord)
-            /*
-             words: {
-             "×": [
-             "[ばつ] /(n,uk) x-mark (used to indicate an incorrect answer in a test, etc.)/impossibility/futility/uselessness/",
-             "[ぺけ] /(n,uk) x-mark (used to indicate an incorrect answer in a test, etc.)/impossibility/futility/uselessness/",
-             "[ペケ] /(n,uk) x-mark (used to indicate an incorrect answer in a test, etc.)/impossibility/futility/uselessness/"
-             ]
-             }
-             */
+        if cachedWords.contains(word) {
+            return
         }
+
+        cachedWords.insert(word)
+        if let records = dictData.words[word] {
+            records.forEach { record in
+                let pending = parseResult(kanji: word, result: record)
+                if matchedWord == nil || (pending.kana == matchedWord || pending.kanji == matchedWord) {
+                    results.append(pending)
+                }
+            }
+        }
+    }
+
+    func parseResult(kanji: String, result: String) -> Result {
+        var kana, translation: String
+        if result.first == "[" {
+            let parts = result.split(separator: "]")
+            kana = String(parts.first!.dropFirst()) // Remove first "["
+            translation = String(parts.last!)
+        } else {
+            kana = kanji
+            translation = result
+        }
+
+        translation.replaceAll(matching: Regex("^ \\/\\(\\S+\\) "), with: "")
+        translation = translation.replacingOccurrences(of: "/(P)/", with: "")
+        translation = translation.split(separator: "/")
+            .filter({ !$0.isEmpty })
+            .joined(separator: "; ")
+
+        return Result(kana: kana, kanji: kanji, translation: translation, romaji: Romaji.romaji(from: kana))
     }
 }
