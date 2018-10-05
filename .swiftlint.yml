@@ -1,0 +1,17 @@
+disabled_rules:
+  - force_cast
+  - force_try
+
+excluded:
+  - Carthage
+
+type_body_length:
+  - 150 # warning
+  - 200 # error
+
+function_parameter_count: 6
+
+line_length:
+  warning: 140
+  error: 240
+  ignores_comments: true
