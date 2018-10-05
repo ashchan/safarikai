@@ -1,54 +1,80 @@
 //
 //  Dictionary.swift
-//  Safarikai
+//  SafarikaiEngine
 //
-//  Created by James Chen on 2016/12/05.
-//  Copyright © 2016 ashchan.com. All rights reserved.
+//  Created by Aaron Lee on 2018/09/22.
+//  Copyright © 2018 Aaron Lee. All rights reserved.
 //
 
-import Cocoa
+import Foundation
+import Regex
 
-public class Dictionary {
-    private init() {}
+public class Dict {
+    public static let shared = Dict()
+    private var dictData: DictData?
+    private var cachedWords = Set<String>()
 
-    public static let extensionInstance: Dictionary = Dictionary()
-
-    fileprivate var cachedWords = Set<String>()
+    private init() {
+        let dictPath = Bundle(for: type(of: self)).path(forResource: "data", ofType: "json")!
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: URL(fileURLWithPath: dictPath), options: .mappedIfSafe) {
+                self?.dictData = try? JSONDecoder().decode(DictData.self, from: data)
+            }
+        }
+    }
 }
 
-extension Dictionary {
+struct DictData: Decodable {
+    var words: [String: [String]]
+    var indexes: [String: [String]]
+}
+
+extension Dict {
     /// Search a word.
-    public func search(word: String, limit: Int = 5) -> ([Result], match: String?) {
+    public func search(_ word: String, limit: Int = 5) -> ([Result], match: String?) {
         var results: [Result] = []
         cachedWords.removeAll()
         var longest: String?
 
+        if word.isEmpty {
+            return (results, nil)
+        }
+
         for len in (1 ... word.count).reversed() {
             let part = word.substring(to: len)
-            let records = search(part)
+            let records = search(word: part)
             if records.count > 0 && longest == nil {
                 longest = part
             }
             results += records
+
+            if results.count >= limit {
+                break
+            }
         }
 
-        // TODO: limit
-        return (results, longest)
+        return ([Result](results.prefix(limit)), longest)
     }
 
     /// Search word with all possible variants.
-    func search(_ word: String) -> [Result] {
-        /*
+    func search(word: String) -> [Result] {
+        guard let dictData = dictData else {
+            return []
+        }
+
         var results: [Result] = []
 
-        var entries: [Int64: [String]] = [:]
-        let fields = "gloss.entry, kanji.kanji, reading.kana, reading.romaji, gloss.sense, gloss.gloss"
-        let tables = "gloss left join reading on reading.entry = gloss.entry left join kanji on kanji.entry = gloss.entry"
-        let likeClause = variants(for: word).map { "'" + $0 + "'" }.joined(separator: ", ")
-        //results.append(Result(kana: word, kanji: "漢字", translation: "Gloss \(entry)", romaji: "kana"))
+        let vars = variants(for: word)
+        vars.forEach { push(word: $0, to: &results) }
+        vars.forEach { variant in
+            if let indexes = dictData.indexes[variant] {
+                indexes.forEach({ index in
+                    push(word: index, to: &results, matchedWord: variant)
+                })
+            }
+        }
 
-        return results*/
-        return []
+        return results
     }
 
     func variants(for word: String) -> [String] {
@@ -69,20 +95,38 @@ extension Dictionary {
     }
 
     func push(word: String, to results: inout [Result], matchedWord: String? = nil) {
-        if !cachedWords.contains(word) {
-            cachedWords.insert(word)
-            //if record = @dict.words[word]
-            //parsed = (@parseResult word, item for item in record)
-            //results.push pending for pending in parsed when (not matchedWord) or (pending.kana is matchedWord or pending.kanji is matchedWord)
-            /*
-             words: {
-                 "×": [
-                     "[ばつ] /(n,uk) x-mark (used to indicate an incorrect answer in a test, etc.)/impossibility/futility/uselessness/",
-                     "[ぺけ] /(n,uk) x-mark (used to indicate an incorrect answer in a test, etc.)/impossibility/futility/uselessness/",
-                     "[ペケ] /(n,uk) x-mark (used to indicate an incorrect answer in a test, etc.)/impossibility/futility/uselessness/"
-                 ]
-             }
- */
+        if cachedWords.contains(word) {
+            return
         }
+
+        cachedWords.insert(word)
+        if let records = dictData!.words[word] {
+            records.forEach { record in
+                let pending = parseResult(kanji: word, result: record)
+                if matchedWord == nil || (pending.kana == matchedWord || pending.kanji == matchedWord) {
+                    results.append(pending)
+                }
+            }
+        }
+    }
+
+    func parseResult(kanji: String, result: String) -> Result {
+        var kana, translation: String
+        if result.first == "[" {
+            let parts = result.split(separator: "]")
+            kana = String(parts.first!.dropFirst()) // Remove first "["
+            translation = String(parts.last!)
+        } else {
+            kana = kanji
+            translation = result
+        }
+
+        translation.replaceAll(matching: Regex("^ \\/\\(\\S+\\) "), with: "")
+        translation = translation.replacingOccurrences(of: "/(P)/", with: "")
+        translation = translation.split(separator: "/")
+            .filter({ !$0.isEmpty })
+            .joined(separator: "; ")
+
+        return Result(kana: kana, kanji: kanji, translation: translation, romaji: Romaji.romaji(from: kana))
     }
 }

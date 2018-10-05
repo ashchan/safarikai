@@ -8,12 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1A06AA9B1DE9807C001595EE /* injected.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA951DE9807C001595EE /* injected.js */; };
-		1A1206671DF5636D00930307 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1206661DF5636D00930307 /* Dictionary.swift */; };
 		1A1206691DF6329100930307 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A1206681DF6329100930307 /* Result.swift */; };
 		1A15B56B1DED817E00206094 /* SafarikaiEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A15B5691DED817E00206094 /* SafarikaiEngine.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A15B56E1DED817E00206094 /* SafarikaiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A15B5671DED817E00206094 /* SafarikaiEngine.framework */; };
 		1A15B56F1DED817E00206094 /* SafarikaiEngine.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1A15B5671DED817E00206094 /* SafarikaiEngine.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1A15B5741DED819300206094 /* DictionaryFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A15B5731DED819300206094 /* DictionaryFileManager.swift */; };
 		1A15B5751DED844300206094 /* SafarikaiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A15B5671DED817E00206094 /* SafarikaiEngine.framework */; };
 		1A522F061DE9B41D005C3D70 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 1A522F051DE9B41D005C3D70 /* style.css */; };
 		1A5D35421DE9749600827D78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5D35411DE9749600827D78 /* AppDelegate.swift */; };
@@ -30,11 +28,10 @@
 		1AAD85C71DF5964A001A6B1A /* Romaji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAD85C61DF5964A001A6B1A /* Romaji.swift */; };
 		1AAD85C91DF59F29001A6B1A /* Regex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AAD85C81DF59F29001A6B1A /* Regex.framework */; };
 		1AAD85CA1DF59F36001A6B1A /* Regex.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AAD85C81DF59F29001A6B1A /* Regex.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		737C485C21563CCB00B16A35 /* JSDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737C485B21563CCB00B16A35 /* JSDictionary.swift */; };
-		73934976215664D8009B2500 /* deinflect.js in Resources */ = {isa = PBXBuildFile; fileRef = 7351682C21562FBF0057F89B /* deinflect.js */; };
-		73934977215664D8009B2500 /* dictionary.js in Resources */ = {isa = PBXBuildFile; fileRef = 1A06AA931DE9807C001595EE /* dictionary.js */; };
-		73934978215664D8009B2500 /* romaji.js in Resources */ = {isa = PBXBuildFile; fileRef = 7351682E21562FBF0057F89B /* romaji.js */; };
-		73934979215664ED009B2500 /* data.js in Resources */ = {isa = PBXBuildFile; fileRef = 73516832215633860057F89B /* data.js */; };
+		1AF01BE1216752520004E75E /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AF01BE0216752510004E75E /* data.json */; };
+		1AF01BE921675B2B0004E75E /* SafarikaiEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF01BE821675B2B0004E75E /* SafarikaiEngineTests.swift */; };
+		1AF01BEB21675B2B0004E75E /* SafarikaiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A15B5671DED817E00206094 /* SafarikaiEngine.framework */; };
+		737C485C21563CCB00B16A35 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737C485B21563CCB00B16A35 /* Dictionary.swift */; };
 		7393497C21568775009B2500 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7393497A21568775009B2500 /* SettingsManager.swift */; };
 		7393497D21568775009B2500 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7393497A21568775009B2500 /* SettingsManager.swift */; };
 /* End PBXBuildFile section */
@@ -53,6 +50,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1A5D35531DE9756600827D78;
 			remoteInfo = "Safari Extension";
+		};
+		1AF01BEC21675B2B0004E75E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A5D35361DE9749600827D78 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1A15B5661DED817E00206094;
+			remoteInfo = SafarikaiEngine;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -92,15 +96,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1A06AA931DE9807C001595EE /* dictionary.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = dictionary.js; sourceTree = "<group>"; };
 		1A06AA951DE9807C001595EE /* injected.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = injected.js; sourceTree = "<group>"; };
-		1A1206661DF5636D00930307 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		1A1206681DF6329100930307 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		1A15B54D1DED7DB400206094 /* Safarikai.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Safarikai.entitlements; sourceTree = "<group>"; };
 		1A15B5671DED817E00206094 /* SafarikaiEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SafarikaiEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A15B5691DED817E00206094 /* SafarikaiEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SafarikaiEngine.h; sourceTree = "<group>"; };
 		1A15B56A1DED817E00206094 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1A15B5731DED819300206094 /* DictionaryFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryFileManager.swift; sourceTree = "<group>"; };
 		1A522F051DE9B41D005C3D70 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		1A5D353E1DE9749600827D78 /* Safarikai.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Safarikai.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A5D35411DE9749600827D78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -119,10 +120,11 @@
 		1AAD85AD1DF58771001A6B1A /* Deinflector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deinflector.swift; sourceTree = "<group>"; };
 		1AAD85C61DF5964A001A6B1A /* Romaji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Romaji.swift; sourceTree = "<group>"; };
 		1AAD85C81DF59F29001A6B1A /* Regex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Regex.framework; path = Carthage/Build/Mac/Regex.framework; sourceTree = "<group>"; };
-		7351682C21562FBF0057F89B /* deinflect.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = deinflect.js; sourceTree = "<group>"; };
-		7351682E21562FBF0057F89B /* romaji.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = romaji.js; sourceTree = "<group>"; };
-		73516832215633860057F89B /* data.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = data.js; sourceTree = "<group>"; };
-		737C485B21563CCB00B16A35 /* JSDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSDictionary.swift; sourceTree = "<group>"; };
+		1AF01BE0216752510004E75E /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		1AF01BE621675B2B0004E75E /* SafarikaiEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafarikaiEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1AF01BE821675B2B0004E75E /* SafarikaiEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafarikaiEngineTests.swift; sourceTree = "<group>"; };
+		1AF01BEA21675B2B0004E75E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		737C485B21563CCB00B16A35 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		7393497A21568775009B2500 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +154,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1AF01BE321675B2B0004E75E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AF01BEB21675B2B0004E75E /* SafarikaiEngine.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -170,10 +180,9 @@
 				1AAD85AD1DF58771001A6B1A /* Deinflector.swift */,
 				1AAD85C61DF5964A001A6B1A /* Romaji.swift */,
 				1A1206681DF6329100930307 /* Result.swift */,
-				737C485B21563CCB00B16A35 /* JSDictionary.swift */,
-				1A1206661DF5636D00930307 /* Dictionary.swift */,
-				1A15B5731DED819300206094 /* DictionaryFileManager.swift */,
+				737C485B21563CCB00B16A35 /* Dictionary.swift */,
 				7393497A21568775009B2500 /* SettingsManager.swift */,
+				1AF01BE0216752510004E75E /* data.json */,
 				1A15B56A1DED817E00206094 /* Info.plist */,
 			);
 			path = SafarikaiEngine;
@@ -191,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				1A15B5681DED817E00206094 /* SafarikaiEngine */,
+				1AF01BE721675B2B0004E75E /* SafarikaiEngineTests */,
 				1A5D35401DE9749600827D78 /* Safarikai */,
 				1A5D35581DE9756600827D78 /* Safari Extension */,
 				1A5D35551DE9756600827D78 /* Frameworks */,
@@ -204,6 +214,7 @@
 				1A5D353E1DE9749600827D78 /* Safarikai.app */,
 				1A5D35541DE9756600827D78 /* Safari Extension.appex */,
 				1A15B5671DED817E00206094 /* SafarikaiEngine.framework */,
+				1AF01BE621675B2B0004E75E /* SafarikaiEngineTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -233,7 +244,6 @@
 		1A5D35581DE9756600827D78 /* Safari Extension */ = {
 			isa = PBXGroup;
 			children = (
-				73581780215664A000461622 /* Dictionary */,
 				1A522F041DE9B3D8005C3D70 /* Style sheet */,
 				1A06AA9D1DE98081001595EE /* Scripts */,
 				1A5D355B1DE9756600827D78 /* SafariExtensionHandler.swift */,
@@ -254,15 +264,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		73581780215664A000461622 /* Dictionary */ = {
+		1AF01BE721675B2B0004E75E /* SafarikaiEngineTests */ = {
 			isa = PBXGroup;
 			children = (
-				73516832215633860057F89B /* data.js */,
-				7351682C21562FBF0057F89B /* deinflect.js */,
-				1A06AA931DE9807C001595EE /* dictionary.js */,
-				7351682E21562FBF0057F89B /* romaji.js */,
+				1AF01BE821675B2B0004E75E /* SafarikaiEngineTests.swift */,
+				1AF01BEA21675B2B0004E75E /* Info.plist */,
 			);
-			name = Dictionary;
+			path = SafarikaiEngineTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,13 +346,31 @@
 			productReference = 1A5D35541DE9756600827D78 /* Safari Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		1AF01BE521675B2B0004E75E /* SafarikaiEngineTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1AF01BEE21675B2B0004E75E /* Build configuration list for PBXNativeTarget "SafarikaiEngineTests" */;
+			buildPhases = (
+				1AF01BE221675B2B0004E75E /* Sources */,
+				1AF01BE321675B2B0004E75E /* Frameworks */,
+				1AF01BE421675B2B0004E75E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1AF01BED21675B2B0004E75E /* PBXTargetDependency */,
+			);
+			name = SafarikaiEngineTests;
+			productName = SafarikaiEngineTests;
+			productReference = 1AF01BE621675B2B0004E75E /* SafarikaiEngineTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		1A5D35361DE9749600827D78 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0810;
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = ashchan.com;
 				TargetAttributes = {
@@ -382,6 +408,10 @@
 							};
 						};
 					};
+					1AF01BE521675B2B0004E75E = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 1A5D35391DE9749600827D78 /* Build configuration list for PBXProject "Safarikai" */;
@@ -400,6 +430,7 @@
 				1A5D353D1DE9749600827D78 /* Safarikai */,
 				1A5D35531DE9756600827D78 /* Safari Extension */,
 				1A15B5661DED817E00206094 /* SafarikaiEngine */,
+				1AF01BE521675B2B0004E75E /* SafarikaiEngineTests */,
 			);
 		};
 /* End PBXProject section */
@@ -409,6 +440,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AF01BE1216752520004E75E /* data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,14 +457,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73934979215664ED009B2500 /* data.js in Resources */,
 				1A06AA9B1DE9807C001595EE /* injected.js in Resources */,
-				73934977215664D8009B2500 /* dictionary.js in Resources */,
 				1A5D35661DE9756600827D78 /* ToolbarItemIcon.pdf in Resources */,
-				73934976215664D8009B2500 /* deinflect.js in Resources */,
 				1A5D35611DE9756600827D78 /* SafariExtensionViewController.xib in Resources */,
-				73934978215664D8009B2500 /* romaji.js in Resources */,
 				1A522F061DE9B41D005C3D70 /* style.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1AF01BE421675B2B0004E75E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,13 +517,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				737C485C21563CCB00B16A35 /* JSDictionary.swift in Sources */,
-				1A15B5741DED819300206094 /* DictionaryFileManager.swift in Sources */,
+				737C485C21563CCB00B16A35 /* Dictionary.swift in Sources */,
 				1A1206691DF6329100930307 /* Result.swift in Sources */,
 				7393497D21568775009B2500 /* SettingsManager.swift in Sources */,
 				1AAD85C71DF5964A001A6B1A /* Romaji.swift in Sources */,
 				1AAD85AE1DF58771001A6B1A /* Deinflector.swift in Sources */,
-				1A1206671DF5636D00930307 /* Dictionary.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +544,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1AF01BE221675B2B0004E75E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AF01BE921675B2B0004E75E /* SafarikaiEngineTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -523,6 +564,11 @@
 			isa = PBXTargetDependency;
 			target = 1A5D35531DE9756600827D78 /* Safari Extension */;
 			targetProxy = 1A5D35671DE9756600827D78 /* PBXContainerItemProxy */;
+		};
+		1AF01BED21675B2B0004E75E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1A15B5661DED817E00206094 /* SafarikaiEngine */;
+			targetProxy = 1AF01BEC21675B2B0004E75E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -777,6 +823,47 @@
 			};
 			name = Release;
 		};
+		1AF01BEF21675B2B0004E75E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = SafarikaiEngineTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ashchan.SafarikaiEngineTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		1AF01BF021675B2B0004E75E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = SafarikaiEngineTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ashchan.SafarikaiEngineTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -812,6 +899,15 @@
 			buildConfigurations = (
 				1A5D356B1DE9756600827D78 /* Debug */,
 				1A5D356C1DE9756600827D78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1AF01BEE21675B2B0004E75E /* Build configuration list for PBXNativeTarget "SafarikaiEngineTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1AF01BEF21675B2B0004E75E /* Debug */,
+				1AF01BF021675B2B0004E75E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

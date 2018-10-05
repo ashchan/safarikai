@@ -36,11 +36,12 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
             let word = userInfo!["word"] as! String
             let url = userInfo!["url"] as! String
             let limit = SettingsManager.shared.resultsLimit
-            let (results, match) = SafarikaiEngine.JSDictionary.shared.search(word, limit: limit)
+            let (results, match) = Dict.shared.search(word, limit: limit)
             page.dispatchMessageToScript(withName: OutgoingMessage.showResult.rawValue, userInfo:
-                ["word": match ?? "", "url": url, "result": results]
+                ["word": match ?? "", "url": url, "result": results.map { $0.toJSON() }]
             )
         }
+
         if messageName == IncomingMessage.queryStatus.rawValue {
             page.dispatchMessageToScript(withName: OutgoingMessage.status.rawValue, userInfo:
                 ["enabled": SettingsManager.shared.isLookupEnabled,
