@@ -686,11 +686,11 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Safarikai" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="182"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="224"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="qLK-VL-DKN">
-                                <rect key="frame" x="18" y="20" width="444" height="102"/>
+                                <rect key="frame" x="18" y="62" width="444" height="102"/>
                                 <textFieldCell key="cell" id="nRy-H7-9Lq">
                                     <font key="font" metaFont="system"/>
                                     <string key="title">1. Open Safari and choose Safari &gt; Preferences.
@@ -703,7 +703,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kvu-tk-ln5">
-                                <rect key="frame" x="18" y="142" width="444" height="20"/>
+                                <rect key="frame" x="18" y="184" width="444" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="gLJ-Ie-1uy"/>
                                 </constraints>
@@ -713,15 +713,31 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PyK-m3-tRq">
+                                <rect key="frame" x="14" y="13" width="452" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="KXP-Nc-AsD"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Open Safari Preferences" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BFF-E9-nm1">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="openSafariPreferences:" target="XfG-lQ-9wD" id="tgZ-Gf-nqH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="qLK-VL-DKN" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="4u4-Ab-L8H"/>
+                            <constraint firstItem="PyK-m3-tRq" firstAttribute="top" secondItem="qLK-VL-DKN" secondAttribute="bottom" constant="20" id="5E3-Lc-Lxt"/>
                             <constraint firstItem="qLK-VL-DKN" firstAttribute="top" secondItem="kvu-tk-ln5" secondAttribute="bottom" constant="20" id="Bac-c0-VrY"/>
                             <constraint firstItem="kvu-tk-ln5" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="OLM-jx-dVs"/>
+                            <constraint firstAttribute="trailing" secondItem="PyK-m3-tRq" secondAttribute="trailing" constant="20" id="Pjc-Ow-xlc"/>
                             <constraint firstAttribute="trailing" secondItem="kvu-tk-ln5" secondAttribute="trailing" constant="20" id="Q8y-x6-rSV"/>
-                            <constraint firstAttribute="bottom" secondItem="qLK-VL-DKN" secondAttribute="bottom" constant="20" id="dyz-Jb-XDQ"/>
+                            <constraint firstAttribute="bottom" secondItem="PyK-m3-tRq" secondAttribute="bottom" constant="20" id="RIu-hv-kAq"/>
                             <constraint firstAttribute="trailing" secondItem="qLK-VL-DKN" secondAttribute="trailing" constant="20" id="eyM-TL-JXg"/>
                             <constraint firstItem="kvu-tk-ln5" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="ktL-wJ-iWX"/>
+                            <constraint firstItem="PyK-m3-tRq" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="rLA-aG-yxF"/>
                         </constraints>
                     </view>
                 </viewController>
