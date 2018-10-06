@@ -20,6 +20,12 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
         case showResult
     }
 
+    override func beginRequest(with context: NSExtensionContext) {
+        super.beginRequest(with: context)
+
+        Dict.shared.load()
+    }
+
     override func messageReceived(withName messageName: String, from page: SFSafariPage, userInfo: [String: Any]?) {
         if !SettingsManager.shared.isLookupEnabled {
             return

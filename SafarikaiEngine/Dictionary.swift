@@ -11,15 +11,38 @@ import Regex
 
 public class Dict {
     public static let shared = Dict()
-    private var dictData: DictData?
+    private var dictData: DictData!
     private var cachedWords = Set<String>()
 
-    private init() {
+    internal init() {}
+
+    var isLoaded: Bool {
+        return dictData != nil
+    }
+
+    var isLoading = false
+
+    public func load(async: Bool = true) {
+        if isLoading || isLoaded {
+            return
+        }
+
+        isLoading = true
+
         let dictPath = Bundle(for: type(of: self)).path(forResource: "data", ofType: "json")!
-        DispatchQueue.global().async { [weak self] in
+        let loading = { [weak self] in
             if let data = try? Data(contentsOf: URL(fileURLWithPath: dictPath), options: .mappedIfSafe) {
                 self?.dictData = try? JSONDecoder().decode(DictData.self, from: data)
             }
+            self?.isLoading = true
+        }
+
+        if async {
+            DispatchQueue.global().async {
+                loading()
+            }
+        } else {
+            loading()
         }
     }
 }
@@ -58,7 +81,7 @@ extension Dict {
 
     /// Search word with all possible variants.
     func search(word: String) -> [Result] {
-        guard let dictData = dictData else {
+        guard isLoaded else {
             return []
         }
 
