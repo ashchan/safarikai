@@ -7,6 +7,10 @@
 //
 
 import Cocoa
+import SafariServices
 
 class ViewController: NSViewController {
+    @IBAction func openSafariPreferences(_ sender: Any) {
+        SFSafariApplication.showPreferencesForExtension(withIdentifier: "com.ashchan.Safarikai.Safari-Extension")
+    }
 }
