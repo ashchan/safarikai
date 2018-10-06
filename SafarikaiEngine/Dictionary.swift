@@ -47,11 +47,6 @@ public class Dict {
     }
 }
 
-struct DictData: Decodable {
-    var words: [String: [String]]
-    var indexes: [String: [String]]
-}
-
 extension Dict {
     /// Search a word.
     public func search(_ word: String, limit: Int = 5) -> ([Result], match: String?) {
