@@ -32,7 +32,10 @@ public class Dict {
         let dictPath = Bundle(for: type(of: self)).path(forResource: "data", ofType: "json")!
         let loading = { [weak self] in
             if let data = try? Data(contentsOf: URL(fileURLWithPath: dictPath), options: .mappedIfSafe) {
-                self?.dictData = try? JSONDecoder().decode(DictData.self, from: data)
+                // self?.dictData = try? JSONDecoder().decode(DictData.self, from: data)
+                // JSONSerialization is 65% faster
+                let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
+                self?.dictData = DictData(json: json)
             }
             self?.isLoading = true
         }

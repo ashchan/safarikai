@@ -22,4 +22,13 @@ struct DictData: Decodable {
         words = (try? values.decode([String: [String]].self, forKey: .words)) ?? [:]
         indexes = (try? values.decode([String: [String]].self, forKey: .indexes)) ?? [:]
     }
+
+    init(json: [String: Any]) {
+        guard let words = json["words"] as? [String: [String]], let indexes = json["indexes"] as? [String: [String]] else {
+            fatalError("Parse json fail")
+        }
+
+        self.words = words
+        self.indexes = indexes
+    }
 }
