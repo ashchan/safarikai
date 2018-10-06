@@ -24,6 +24,7 @@
 		1A5D35611DE9756600827D78 /* SafariExtensionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A5D355F1DE9756600827D78 /* SafariExtensionViewController.xib */; };
 		1A5D35661DE9756600827D78 /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 1A5D35651DE9756600827D78 /* ToolbarItemIcon.pdf */; };
 		1A5D35691DE9756600827D78 /* Safari Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1A5D35541DE9756600827D78 /* Safari Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1A9AAE032168BA1500A6FE0A /* DictData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AAE022168BA1500A6FE0A /* DictData.swift */; };
 		1AAD85AE1DF58771001A6B1A /* Deinflector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAD85AD1DF58771001A6B1A /* Deinflector.swift */; };
 		1AAD85C71DF5964A001A6B1A /* Romaji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAD85C61DF5964A001A6B1A /* Romaji.swift */; };
 		1AAD85C91DF59F29001A6B1A /* Regex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AAD85C81DF59F29001A6B1A /* Regex.framework */; };
@@ -117,6 +118,7 @@
 		1A5D35601DE9756600827D78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SafariExtensionViewController.xib; sourceTree = "<group>"; };
 		1A5D35621DE9756600827D78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A5D35651DE9756600827D78 /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
+		1A9AAE022168BA1500A6FE0A /* DictData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictData.swift; sourceTree = "<group>"; };
 		1AAD85AD1DF58771001A6B1A /* Deinflector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deinflector.swift; sourceTree = "<group>"; };
 		1AAD85C61DF5964A001A6B1A /* Romaji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Romaji.swift; sourceTree = "<group>"; };
 		1AAD85C81DF59F29001A6B1A /* Regex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Regex.framework; path = Carthage/Build/Mac/Regex.framework; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				1AAD85AD1DF58771001A6B1A /* Deinflector.swift */,
 				1AAD85C61DF5964A001A6B1A /* Romaji.swift */,
 				1A1206681DF6329100930307 /* Result.swift */,
+				1A9AAE022168BA1500A6FE0A /* DictData.swift */,
 				737C485B21563CCB00B16A35 /* Dictionary.swift */,
 				7393497A21568775009B2500 /* SettingsManager.swift */,
 				1AF01BE0216752510004E75E /* data.json */,
@@ -518,6 +521,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				737C485C21563CCB00B16A35 /* Dictionary.swift in Sources */,
+				1A9AAE032168BA1500A6FE0A /* DictData.swift in Sources */,
 				1A1206691DF6329100930307 /* Result.swift in Sources */,
 				7393497D21568775009B2500 /* SettingsManager.swift in Sources */,
 				1AAD85C71DF5964A001A6B1A /* Romaji.swift in Sources */,
