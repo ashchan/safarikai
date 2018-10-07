@@ -12,7 +12,7 @@ import Regex
 public class Dict {
     public static let shared = Dict()
     private var dictData: DictData!
-    private var cachedWords = Set<String>()
+    private var cachedIndexes = Set<Int>()
 
     internal init() {}
 
@@ -32,8 +32,6 @@ public class Dict {
         let dictPath = Bundle(for: type(of: self)).path(forResource: "data", ofType: "json")!
         let loading = { [weak self] in
             if let data = try? Data(contentsOf: URL(fileURLWithPath: dictPath), options: .mappedIfSafe) {
-                // self?.dictData = try? JSONDecoder().decode(DictData.self, from: data)
-                // JSONSerialization is 200% faster
                 let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 self?.dictData = DictData(json: json)
             }
@@ -47,13 +45,28 @@ public class Dict {
             loading()
         }
     }
+
+    static func convertEdict2() {
+        guard let data = try? String(contentsOfFile: "/tmp/edict2u") else {
+            fatalError("/tmp/edict2u not found!")
+        }
+        let dictData = DictData(string: data)
+
+        do {
+            let path = "/tmp/data.json"
+            let data = try JSONEncoder().encode(dictData)
+            FileManager.default.createFile(atPath: path, contents: data, attributes: nil)
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
 }
 
 extension Dict {
     /// Search a word.
     public func search(_ word: String, limit: Int = 5) -> ([Result], match: String?) {
         var results: [Result] = []
-        cachedWords.removeAll()
+        cachedIndexes.removeAll()
         var longest: String?
 
         if word.isEmpty {
@@ -84,13 +97,11 @@ extension Dict {
 
         var results: [Result] = []
 
-        let vars = variants(for: word)
-        vars.forEach { push(word: $0, to: &results) }
-        vars.forEach { variant in
-            if let indexes = dictData.indexes[variant] {
-                indexes.forEach({ index in
-                    push(word: index, to: &results, matchedWord: variant)
-                })
+        variants(for: word).forEach { variant in
+            if let index = dictData.indexes[variant] {
+                index.forEach { idx in
+                    push(index: idx, to: &results, matchedWord: variant)
+                }
             }
         }
 
@@ -114,39 +125,19 @@ extension Dict {
         return results
     }
 
-    func push(word: String, to results: inout [Result], matchedWord: String? = nil) {
-        if cachedWords.contains(word) {
+    func push(index: Int, to results: inout [Result], matchedWord: String) {
+        if cachedIndexes.contains(index) {
             return
         }
 
-        cachedWords.insert(word)
-        if let records = dictData!.words[word] {
-            records.forEach { record in
-                let pending = parseResult(kanji: word, result: record)
-                if matchedWord == nil || (pending.kana == matchedWord || pending.kanji == matchedWord) {
-                    results.append(pending)
-                }
-            }
+        cachedIndexes.insert(index)
+
+        let item = dictData!.items[index]
+        let kana = item[0]
+        let gloss = item[1]
+        if !gloss.isEmpty {
+            let pending = Result(kana: kana, kanji: matchedWord, translation: item[1], romaji: Romaji.romaji(from: kana))
+            results.append(pending)
         }
-    }
-
-    func parseResult(kanji: String, result: String) -> Result {
-        var kana, translation: String
-        if result.first == "[" {
-            let parts = result.split(separator: "]")
-            kana = String(parts.first!.dropFirst()) // Remove first "["
-            translation = String(parts.last!)
-        } else {
-            kana = kanji
-            translation = result
-        }
-
-        translation.replaceAll(matching: Regex("^ \\/\\(\\S+\\) "), with: "")
-        translation = translation.replacingOccurrences(of: "/(P)/", with: "")
-        translation = translation.split(separator: "/")
-            .filter({ !$0.isEmpty })
-            .joined(separator: "; ")
-
-        return Result(kana: kana, kanji: kanji, translation: translation, romaji: Romaji.romaji(from: kana))
     }
 }
