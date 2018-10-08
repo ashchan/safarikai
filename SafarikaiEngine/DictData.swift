@@ -9,50 +9,64 @@
 import Foundation
 
 struct DictData: Codable {
-    var items: [[String]] // kana, gloss
-    var indexes: [String: [Int]] // word: [index in words]
+    var entries: [String] // Plain gloss
+    var hiragana: [String: [[String]]] // Key: hiragana, value: [String(entry index), kanji1, kanji2, ...]
+    var kanji: [String: [[String]]] // Key: kanji, value: [String(entry index), kana]
 
     enum CodingKeys: String, CodingKey {
-        case items
-        case indexes
+        case entries, hiragana, kanji
     }
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        items = (try? values.decode([[String]].self, forKey: .items)) ?? []
-        indexes = (try? values.decode([String: [Int]].self, forKey: .indexes)) ?? [:]
+        entries = (try? values.decode([String].self, forKey: .entries)) ?? []
+        hiragana = (try? values.decode([String: [[String]]].self, forKey: .hiragana)) ?? [:]
+        kanji = (try? values.decode([String: [[String]]].self, forKey: .kanji)) ?? [:]
     }
 
     init(json: [String: Any]) {
-        guard let items = json["items"] as? [[String]], let indexes = json["indexes"] as? [String: [Int]] else {
-            fatalError("Parse json fail")
+        guard let entries = json["entries"] as? [String],
+            let hiragana = json["hiragana"] as? [String: [[String]]],
+            let kanji = json["kanji"] as? [String: [[String]]] else {
+            fatalError("Parse JSON fail")
         }
 
-        self.items = items
-        self.indexes = indexes
+        self.entries = entries
+        self.hiragana = hiragana
+        self.kanji = kanji
     }
 }
 
 extension DictData {
     // Load from edict2 format, the first line of which is description.
     init(string: String) {
-        items = []
-        indexes = [:]
+        entries = []
+        hiragana = [:]
+        kanji = [:]
 
         for (index, line) in string.components(separatedBy: "\n").dropFirst().enumerated() {
-            let (words, gloss) = parse(line: line)
-            items.append([words[0], gloss])
-            words.forEach { word in
-                if let existing = indexes[word] {
-                    indexes[word] = existing + [index]
+            let (kanaItems, kanjiItems, gloss) = parse(line: line)
+            entries.append(gloss)
+            kanaItems.forEach { kn in
+                let kanaMapping = [String(index)] + kanjiItems
+                if let kanaItem = hiragana[kn] {
+                    hiragana[kn] = kanaItem + [kanaMapping]
                 } else {
-                    indexes[word] = [index]
+                    hiragana[kn] = [kanaMapping]
+                }
+            }
+            kanjiItems.forEach { kj in
+                let kanjiMapping = [String(index), kanaItems[0]]
+                if let kanjiItem = kanji[kj] {
+                    kanji[kj] = kanjiItem + [kanjiMapping]
+                } else {
+                    kanji[kj] = [kanjiMapping]
                 }
             }
         }
     }
 
-    // Parse line and return ([word], gloss), first of [word] is kana.
+    // Parse line and return ([kana], [kanji], gloss).
     // Line format:
     //   KANJI-1;KANJI-2 [KANA-1;KANA-2] /(general information) (see xxxx) gloss/gloss/.../
     //   The sample entry (linked above) appears as follows in the EDICT2 format:
@@ -65,22 +79,28 @@ extension DictData {
     // More examples:
     //   うつ病(P);鬱病(P);ウツ病;欝病 [うつびょう(うつ病,鬱病,欝病)(P);ウツびょう(ウツ病)] /(n) {med} depression/(P)/EntL1568440X/
     //   うっかり(P);ウッカリ /(adv,adv-to,vs) (on-mim) carelessly/thoughtlessly/inadvertently/(P)/EntL1001010X/
-    func parse(line: String) -> ([String], String) {
+    func parse(line: String) -> ([String], [String], String) {
         let parts = line.components(separatedBy: " /")
-        let words = parse(words: parts.first!)
-        let gloss = parts.last!.split(separator: "/").dropLast(2).filter({ $0 != "(P)" }).joined(separator: "; ")
-        return (words, gloss)
+        let (kana, kanji) = parse(words: parts.first!)
+        let gloss = parts.last!.split(separator: "/").dropLast().filter({ $0 != "(P)" }).joined(separator: "; ")
+        return (kana, kanji, gloss)
     }
 
-    // Parse words. The first word is always kana.
-    func parse(words: String) -> [String] {
-        let results: [String]
+    // Parse words. Return kana and kanji.
+    func parse(words: String) -> ([String], [String]) {
+        let kana: [String]
+        let kanji: [String]
         let parts = words.components(separatedBy: " [")
         if parts.count == 1 {
-            results = parts[0].components(separatedBy: ";")
+            kana = parts[0].components(separatedBy: ";")
+            kanji = []
         } else {
-            results = parts[1].replacingOccurrences(of: "]", with: "").components(separatedBy: ";") + parts[0].components(separatedBy: ";")
+            kana = parts[1].replacingOccurrences(of: "]", with: "").components(separatedBy: ";")
+            kanji = parts[0].components(separatedBy: ";")
         }
-        return results.map { $0.replacingOccurrences(of: "(P)", with: "") }
+        return (
+            kana.map { $0.replacingOccurrences(of: "(P)", with: "") },
+            kanji.map { $0.replacingOccurrences(of: "(P)", with: "") }
+        )
     }
 }

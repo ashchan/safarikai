@@ -20,7 +20,7 @@ Translate Japanese words on web pages. Inspired by rikaichan and rikaikun, with 
 
 * [Aaron Lee](https://github.com/apparition47): An iOS developer who helped migrate to V2.0 (App Store).
 * Rachel Young: An Interface Designer. Made beautiful icons for Safarikai.
-* [yaku](https://code.google.com/p/yaku/): A project of Bryan McKelvey which has dict data as JavaScript files. I took them with some modifications for the initial setup.
+* [yaku](https://code.google.com/p/yaku/): A project of Bryan McKelvey.
 * [Rikaichan](http://www.polarcloud.com/rikaichan/): A popup Japanese-English/German/French/Russian dictionary tool for Firefox, Thunderbird and Seamonkey.
 * [rikaikun](https://github.com/melink14/rikaikun): A port of rikaichan for chrome. Translate Japanese by hovering over words.
 * [Electronic Dictionary Research and Development Group](http://www.edrdg.org): The home of the "EDICT Project" which has led to the compilation of a number of major Japanese-English dictionary files. Dictionary files used in Safarikai were converted from [EDICT](http://www.edrdg.org/jmdict/edict_doc.html), [ENAMDICT](http://www.edrdg.org/enamdict/enamdict_doc.html) and others.

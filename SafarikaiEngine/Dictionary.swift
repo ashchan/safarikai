@@ -98,9 +98,21 @@ extension Dict {
         var results: [Result] = []
 
         variants(for: word).forEach { variant in
-            if let index = dictData.indexes[variant] {
+            if let index = dictData.kanji[variant] {
                 index.forEach { idx in
-                    push(index: idx, to: &results, matchedWord: variant)
+                    push(index: Int(idx[0])!, kana: idx[1], kanji: variant, to: &results, matchedWord: variant)
+                }
+            } else {
+                if let index = dictData.hiragana[variant] {
+                    index.forEach { idx in
+                        push(
+                            index: Int(idx[0])!,
+                            kana: variant,
+                            kanji: idx.count > 1 ? idx[1] : variant,
+                            to: &results,
+                            matchedWord: variant
+                        )
+                    }
                 }
             }
         }
@@ -125,19 +137,14 @@ extension Dict {
         return results
     }
 
-    func push(index: Int, to results: inout [Result], matchedWord: String) {
+    func push(index: Int, kana: String, kanji: String, to results: inout [Result], matchedWord: String) {
         if cachedIndexes.contains(index) {
             return
         }
 
         cachedIndexes.insert(index)
 
-        let item = dictData!.items[index]
-        let kana = item[0]
-        let gloss = item[1]
-        if !gloss.isEmpty {
-            let pending = Result(kana: kana, kanji: matchedWord, translation: item[1], romaji: Romaji.romaji(from: kana))
-            results.append(pending)
-        }
+        let pending = Result(kana: kana, kanji: kanji, translation: dictData.entries[index], romaji: Romaji.romaji(from: kana))
+        results.append(pending)
     }
 }
