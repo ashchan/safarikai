@@ -35,6 +35,8 @@ class SafarikaiEngineTests: XCTestCase {
         XCTAssertNil(match)
         (results, match) = dict.search("高さ")
         XCTAssertTrue(results.count > 0)
+        (results, match) = dict.search("寿司")
+        XCTAssertTrue(results.count > 1)
     }
 
     func testConvertEdict2u() {

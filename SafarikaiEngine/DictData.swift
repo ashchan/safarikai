@@ -96,7 +96,7 @@ extension DictData {
             kanji = []
         } else {
             kana = parts[1].replacingOccurrences(of: "]", with: "").components(separatedBy: ";")
-            kanji = parts[0].components(separatedBy: ";")
+            kanji = parts[0].components(separatedBy: ";").map { $0.components(separatedBy: "(")[0] }
         }
         return (
             kana.map { $0.replacingOccurrences(of: "(P)", with: "") },
