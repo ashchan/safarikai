@@ -12,7 +12,7 @@ import Regex
 public class Dict {
     public static let shared = Dict()
     private var dictData: DictData!
-    private var cachedWords = Set<String>()
+    private var cachedIndexes = Set<Int>()
 
     internal init() {}
 
@@ -29,14 +29,14 @@ public class Dict {
 
         isLoading = true
 
-        let dictPath = Bundle(for: type(of: self)).path(forResource: "data", ofType: "json")!
+        let entriesPath = Bundle(for: type(of: self)).path(forResource: "entries", ofType: "json")!
+        let indexesPath = Bundle(for: type(of: self)).path(forResource: "indexes", ofType: "json")!
         let loading = { [weak self] in
-            if let data = try? Data(contentsOf: URL(fileURLWithPath: dictPath), options: .mappedIfSafe) {
-                // self?.dictData = try? JSONDecoder().decode(DictData.self, from: data)
-                // JSONSerialization is 200% faster
-                let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                self?.dictData = DictData(json: json)
-            }
+            let entriesData = try! Data(contentsOf: URL(fileURLWithPath: entriesPath), options: .mappedIfSafe)
+            let indexesData = try! Data(contentsOf: URL(fileURLWithPath: indexesPath), options: .mappedIfSafe)
+            let entries = try! JSONSerialization.jsonObject(with: entriesData, options: []) as! Entries
+            let indexes = try! JSONSerialization.jsonObject(with: indexesData, options: []) as! Indexes
+            self?.dictData = DictData(entries: entries, indexes: indexes)
         }
 
         if async {
@@ -47,13 +47,32 @@ public class Dict {
             loading()
         }
     }
+
+    static func convertEdict2() {
+        guard let data = try? String(contentsOfFile: "/tmp/edict2u") else {
+            fatalError("/tmp/edict2u not found!")
+        }
+        let dictData = DictData(string: data)
+
+        do {
+            let entriesPath = "/tmp/entries.json"
+            let entriesData = try JSONEncoder().encode(dictData.entries)
+            FileManager.default.createFile(atPath: entriesPath, contents: entriesData, attributes: nil)
+
+            let indexesPath = "/tmp/indexes.json"
+            let indexesData = try JSONEncoder().encode(dictData.indexes)
+            FileManager.default.createFile(atPath: indexesPath, contents: indexesData, attributes: nil)
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
 }
 
 extension Dict {
     /// Search a word.
     public func search(_ word: String, limit: Int = 5) -> ([Result], match: String?) {
         var results: [Result] = []
-        cachedWords.removeAll()
+        cachedIndexes.removeAll()
         var longest: String?
 
         if word.isEmpty {
@@ -84,13 +103,18 @@ extension Dict {
 
         var results: [Result] = []
 
-        let vars = variants(for: word)
-        vars.forEach { push(word: $0, to: &results) }
-        vars.forEach { variant in
-            if let indexes = dictData.indexes[variant] {
-                indexes.forEach({ index in
-                    push(word: index, to: &results, matchedWord: variant)
-                })
+        variants(for: word).forEach { variant in
+            if let index = dictData.indexes[variant] {
+                index.forEach { idx in
+                    let entryIndex = Int(idx[0])!
+                    push(
+                        index: abs(entryIndex),
+                        kana: entryIndex < 0 ? variant : idx[1],
+                        kanji: entryIndex < 0 ? idx[1] : variant,
+                        to: &results,
+                        matchedWord: variant
+                    )
+                }
             }
         }
 
@@ -114,39 +138,14 @@ extension Dict {
         return results
     }
 
-    func push(word: String, to results: inout [Result], matchedWord: String? = nil) {
-        if cachedWords.contains(word) {
+    func push(index: Int, kana: String, kanji: String, to results: inout [Result], matchedWord: String) {
+        if cachedIndexes.contains(index) {
             return
         }
 
-        cachedWords.insert(word)
-        if let records = dictData!.words[word] {
-            records.forEach { record in
-                let pending = parseResult(kanji: word, result: record)
-                if matchedWord == nil || (pending.kana == matchedWord || pending.kanji == matchedWord) {
-                    results.append(pending)
-                }
-            }
-        }
-    }
+        cachedIndexes.insert(index)
 
-    func parseResult(kanji: String, result: String) -> Result {
-        var kana, translation: String
-        if result.first == "[" {
-            let parts = result.split(separator: "]")
-            kana = String(parts.first!.dropFirst()) // Remove first "["
-            translation = String(parts.last!)
-        } else {
-            kana = kanji
-            translation = result
-        }
-
-        translation.replaceAll(matching: Regex("^ \\/\\(\\S+\\) "), with: "")
-        translation = translation.replacingOccurrences(of: "/(P)/", with: "")
-        translation = translation.split(separator: "/")
-            .filter({ !$0.isEmpty })
-            .joined(separator: "; ")
-
-        return Result(kana: kana, kanji: kanji, translation: translation, romaji: Romaji.romaji(from: kana))
+        let pending = Result(kana: kana, kanji: kanji, translation: dictData.entries[index], romaji: Romaji.romaji(from: kana))
+        results.append(pending)
     }
 }

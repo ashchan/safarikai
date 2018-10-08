@@ -19,3 +19,5 @@ line_length:
   warning: 140
   error: 240
   ignores_comments: true
+
+large_tuple: 3
