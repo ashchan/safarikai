@@ -8,32 +8,35 @@
 
 import Foundation
 
+typealias Entries = [String] // Plain gloss
+typealias Indexes = [String: [[String]]] // Key: kanji (or hiragana, if entry index is negative), value: [String(entry index), kana]
+
 struct DictData: Codable {
-    var entries: [String] // Plain gloss
-    var hiragana: [String: [[String]]] // Key: hiragana, value: [String(entry index), kanji1, kanji2, ...]
-    var kanji: [String: [[String]]] // Key: kanji, value: [String(entry index), kana]
+    var entries: Entries
+    var indexes: Indexes
 
     enum CodingKeys: String, CodingKey {
-        case entries, hiragana, kanji
+        case entries, indexes
     }
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        entries = (try? values.decode([String].self, forKey: .entries)) ?? []
-        hiragana = (try? values.decode([String: [[String]]].self, forKey: .hiragana)) ?? [:]
-        kanji = (try? values.decode([String: [[String]]].self, forKey: .kanji)) ?? [:]
+        entries = (try? values.decode(Entries.self, forKey: .entries)) ?? []
+        indexes = (try? values.decode(Indexes.self, forKey: .indexes)) ?? [:]
     }
 
     init(json: [String: Any]) {
-        guard let entries = json["entries"] as? [String],
-            let hiragana = json["hiragana"] as? [String: [[String]]],
-            let kanji = json["kanji"] as? [String: [[String]]] else {
+        guard let entries = json["entries"] as? Entries, let indexes = json["indexes"] as? Indexes else {
             fatalError("Parse JSON fail")
         }
 
         self.entries = entries
-        self.hiragana = hiragana
-        self.kanji = kanji
+        self.indexes = indexes
+    }
+
+    init(entries: Entries, indexes: Indexes) {
+        self.entries = entries
+        self.indexes = indexes
     }
 }
 
@@ -41,26 +44,26 @@ extension DictData {
     // Load from edict2 format, the first line of which is description.
     init(string: String) {
         entries = []
-        hiragana = [:]
-        kanji = [:]
+        indexes = [:]
 
         for (index, line) in string.components(separatedBy: "\n").dropFirst().enumerated() {
             let (kanaItems, kanjiItems, gloss) = parse(line: line)
             entries.append(gloss)
-            kanaItems.forEach { kn in
-                let kanaMapping = [String(index)] + kanjiItems
-                if let kanaItem = hiragana[kn] {
-                    hiragana[kn] = kanaItem + [kanaMapping]
-                } else {
-                    hiragana[kn] = [kanaMapping]
-                }
-            }
             kanjiItems.forEach { kj in
                 let kanjiMapping = [String(index), kanaItems[0]]
-                if let kanjiItem = kanji[kj] {
-                    kanji[kj] = kanjiItem + [kanjiMapping]
+                if let kanjiItem = indexes[kj] {
+                    indexes[kj] = kanjiItem + [kanjiMapping]
                 } else {
-                    kanji[kj] = [kanjiMapping]
+                    indexes[kj] = [kanjiMapping]
+                }
+            }
+            let kanjiItem = kanjiItems.first
+            kanaItems.forEach { kn in
+                let kanaMapping = [String(-index)] + [kanjiItem ?? kn]
+                if let kanaItem = indexes[kn] {
+                    indexes[kn] = kanaItem + [kanaMapping]
+                } else {
+                    indexes[kn] = [kanaMapping]
                 }
             }
         }
@@ -90,12 +93,12 @@ extension DictData {
     func parse(words: String) -> ([String], [String]) {
         let kana: [String]
         let kanji: [String]
-        let parts = words.components(separatedBy: " [")
+        let parts = words.components(separatedBy: " [").map { $0.components(separatedBy: "(")[0] }
         if parts.count == 1 {
             kana = parts[0].components(separatedBy: ";")
             kanji = []
         } else {
-            kana = parts[1].replacingOccurrences(of: "]", with: "").components(separatedBy: ";")
+            kana = parts[1].replacingOccurrences(of: "]", with: "").components(separatedBy: ";").map { $0.components(separatedBy: "(")[0] }
             kanji = parts[0].components(separatedBy: ";").map { $0.components(separatedBy: "(")[0] }
         }
         return (

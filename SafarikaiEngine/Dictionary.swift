@@ -29,12 +29,14 @@ public class Dict {
 
         isLoading = true
 
-        let dictPath = Bundle(for: type(of: self)).path(forResource: "data", ofType: "json")!
+        let entriesPath = Bundle(for: type(of: self)).path(forResource: "entries", ofType: "json")!
+        let indexesPath = Bundle(for: type(of: self)).path(forResource: "indexes", ofType: "json")!
         let loading = { [weak self] in
-            if let data = try? Data(contentsOf: URL(fileURLWithPath: dictPath), options: .mappedIfSafe) {
-                let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                self?.dictData = DictData(json: json)
-            }
+            let entriesData = try! Data(contentsOf: URL(fileURLWithPath: entriesPath), options: .mappedIfSafe)
+            let indexesData = try! Data(contentsOf: URL(fileURLWithPath: indexesPath), options: .mappedIfSafe)
+            let entries = try! JSONSerialization.jsonObject(with: entriesData, options: []) as! Entries
+            let indexes = try! JSONSerialization.jsonObject(with: indexesData, options: []) as! Indexes
+            self?.dictData = DictData(entries: entries, indexes: indexes)
         }
 
         if async {
@@ -53,9 +55,13 @@ public class Dict {
         let dictData = DictData(string: data)
 
         do {
-            let path = "/tmp/data.json"
-            let data = try JSONEncoder().encode(dictData)
-            FileManager.default.createFile(atPath: path, contents: data, attributes: nil)
+            let entriesPath = "/tmp/entries.json"
+            let entriesData = try JSONEncoder().encode(dictData.entries)
+            FileManager.default.createFile(atPath: entriesPath, contents: entriesData, attributes: nil)
+
+            let indexesPath = "/tmp/indexes.json"
+            let indexesData = try JSONEncoder().encode(dictData.indexes)
+            FileManager.default.createFile(atPath: indexesPath, contents: indexesData, attributes: nil)
         } catch {
             fatalError(error.localizedDescription)
         }
@@ -98,21 +104,16 @@ extension Dict {
         var results: [Result] = []
 
         variants(for: word).forEach { variant in
-            if let index = dictData.kanji[variant] {
+            if let index = dictData.indexes[variant] {
                 index.forEach { idx in
-                    push(index: Int(idx[0])!, kana: idx[1], kanji: variant, to: &results, matchedWord: variant)
-                }
-            } else {
-                if let index = dictData.hiragana[variant] {
-                    index.forEach { idx in
-                        push(
-                            index: Int(idx[0])!,
-                            kana: variant,
-                            kanji: idx.count > 1 ? idx[1] : variant,
-                            to: &results,
-                            matchedWord: variant
-                        )
-                    }
+                    let entryIndex = Int(idx[0])!
+                    push(
+                        index: abs(entryIndex),
+                        kana: entryIndex < 0 ? variant : idx[1],
+                        kanji: entryIndex < 0 ? idx[1] : variant,
+                        to: &results,
+                        matchedWord: variant
+                    )
                 }
             }
         }
