@@ -28,6 +28,7 @@ class SafarikaiEngineTests: XCTestCase {
         var (results, match) = dict.search("台風")
         (results, match) = dict.search("呼びかけています")
         (results, match) = dict.search("あわせて読みたい")
+        (results, match) = dict.search("せんげんてきさんだんろんぽう")
         (results, match) = dict.search("いずれも")
         (results, match) = dict.search("に")
         (results, match) = dict.search("いつか")

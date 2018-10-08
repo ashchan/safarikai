@@ -80,7 +80,7 @@ class Client {
       }
 
       range.setStart(container, offset);
-      range.setEnd(container, Math.min(container.data != null ? container.data.length : undefined, offset + 12));
+      range.setEnd(container, Math.min(container.data != null ? container.data.length : undefined, offset + 20));
 
       const text = range.toString();
       if (text !== this.selectionText) {
