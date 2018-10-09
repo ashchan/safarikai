@@ -32,6 +32,7 @@ class SafarikaiEngineTests: XCTestCase {
         (results, match) = dict.search("いずれも")
         (results, match) = dict.search("に")
         (results, match) = dict.search("いつか")
+        (results, match) = dict.search("午后")
         (results, match) = dict.search("")
         XCTAssertTrue(results.count == 0)
         XCTAssertNil(match)

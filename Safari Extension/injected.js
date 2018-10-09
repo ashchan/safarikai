@@ -83,11 +83,9 @@ class Client {
       range.setEnd(container, Math.min(container.data != null ? container.data.length : undefined, offset + 20));
 
       const text = range.toString();
-      if (text !== this.selectionText) {
-        this.range = range;
-        this.rangeOffset = offset;
-        return this.selectionText = text;
-      }
+      this.range = range;
+      this.rangeOffset = offset;
+      this.selectionText = text;
     }
   }
 
@@ -120,7 +118,7 @@ class Client {
     if (this.getPopup()) { return; }
 
     const popup = this.doc.createElement("div");
-    popup.id = "safarikai-popup";
+    popup.id = this.popupTagId;
     return this.doc.body.appendChild(popup);
   }
 
