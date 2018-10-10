@@ -93,17 +93,14 @@ extension DictData {
     func parse(words: String) -> ([String], [String]) {
         let kana: [String]
         let kanji: [String]
-        let parts = words.components(separatedBy: " [").map { $0.components(separatedBy: "(")[0] }
+        let parts = words.replacingOccurrences(of: "]", with: "").components(separatedBy: " [")
         if parts.count == 1 {
-            kana = parts[0].components(separatedBy: ";")
+            kana = parts[0].components(separatedBy: ";").map { $0.components(separatedBy: "(")[0] }
             kanji = []
         } else {
-            kana = parts[1].replacingOccurrences(of: "]", with: "").components(separatedBy: ";").map { $0.components(separatedBy: "(")[0] }
+            kana = parts[1].components(separatedBy: ";").map { $0.components(separatedBy: "(")[0] }
             kanji = parts[0].components(separatedBy: ";").map { $0.components(separatedBy: "(")[0] }
         }
-        return (
-            kana.map { $0.replacingOccurrences(of: "(P)", with: "") },
-            kanji.map { $0.replacingOccurrences(of: "(P)", with: "") }
-        )
+        return (kana, kanji)
     }
 }
