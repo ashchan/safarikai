@@ -24,6 +24,7 @@ Translate Japanese words on web pages. Inspired by rikaichan and rikaikun, with 
 * [Rikaichan](http://www.polarcloud.com/rikaichan/): A popup Japanese-English/German/French/Russian dictionary tool for Firefox, Thunderbird and Seamonkey.
 * [rikaikun](https://github.com/melink14/rikaikun): A port of rikaichan for chrome. Translate Japanese by hovering over words.
 * [Electronic Dictionary Research and Development Group](http://www.edrdg.org): The home of the "EDICT Project" which has led to the compilation of a number of major Japanese-English dictionary files. Dictionary files used in Safarikai were converted from [EDICT](http://www.edrdg.org/jmdict/edict_doc.html), [ENAMDICT](http://www.edrdg.org/enamdict/enamdict_doc.html) and others.
+* Chris Ferdinandi: MIT Licensed [Climbing up and down the DOM tree with vanilla JavaScript](https://gomakethings.com/climbing-up-and-down-the-dom-tree-with-vanilla-javascript/)
 
 ## License
 

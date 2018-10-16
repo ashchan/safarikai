@@ -65,6 +65,8 @@ class Client {
       return this.selectionText = "";
     } else if (ele.tagName === "IMG") {
       return this.selectionText = ele.alt.trim();
+    } else if (this.getParents(ele, "[contenteditable]").length) {
+      return this.selectionText = "";
     } else {
       const range = this.doc.caretRangeFromPoint(this.clientX, this.clientY);
       if (!range) { return; }
@@ -140,7 +142,7 @@ class Client {
 
   showResult(word, url, result) {
     if (this.window.location.href !== url) { return; }
-
+    if (window.top !== window) { return; }
     this.injectPopup();
     const popup = this.getPopup();
     popup.style.display = "block";
@@ -178,6 +180,26 @@ class Client {
     const display = this.doc.defaultView.getComputedStyle(node, null).getPropertyValue("display");
     return (display === "inline") || (display === "inline-block");
   }
+
+  /**
+   * Get all of an element's parent elements up the DOM tree
+   * @param  {Node}   elem     The element
+   * @param  {String} selector Selector to match against [optional]
+   * @return {Array}           The parent elements
+   */
+  getParents( elem, selector ) {
+    var parents = [];
+    for ( ; elem && elem !== document; elem = elem.parentNode ) {
+      if ( selector ) {
+        if ( elem.matches( selector ) ) {
+          parents.push( elem );
+        }
+      } else {
+        parents.push( elem );
+      }
+    }
+    return parents;
+  };
 }
 
 const client = new Client(document, window);
