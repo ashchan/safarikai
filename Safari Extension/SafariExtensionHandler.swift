@@ -72,7 +72,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
         let normalImg = NSImage(named: "ToolbarItemIcon.pdf")!
         let disabledImg = NSImage(size: normalImg.size)
         disabledImg.lockFocus()
-        normalImg.draw(at: NSZeroPoint, from: NSZeroRect, operation: .sourceOver, fraction: 0.4)
+        normalImg.draw(at: NSZeroPoint, from: NSZeroRect, operation: .sourceOver, fraction: 0.25)
         disabledImg.unlockFocus()
         return disabledImg
     }()
