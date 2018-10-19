@@ -60,9 +60,27 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
 
     override func validateToolbarItem(in window: SFSafariWindow, validationHandler: @escaping ((Bool, String) -> Void)) {
         validationHandler(true, "")
+        refreshToolbarIcon(in: window)
     }
-
-    override func popoverViewController() -> SFSafariExtensionViewController {
-        return SafariExtensionViewController.shared
+    
+    override func toolbarItemClicked(in window: SFSafariWindow) {
+        SettingsManager.shared.isLookupEnabled = !SettingsManager.shared.isLookupEnabled
+        refreshToolbarIcon(in: window)
+    }
+    
+    private let disabledIconImage: NSImage = {
+        let normalImg = NSImage(named: "ToolbarItemIcon.pdf")!
+        let disabledImg = NSImage(size: normalImg.size)
+        disabledImg.lockFocus()
+        normalImg.draw(at: NSZeroPoint, from: NSZeroRect, operation: .sourceOver, fraction: 0.25)
+        disabledImg.unlockFocus()
+        return disabledImg
+    }()
+    
+    private func refreshToolbarIcon(in window: SFSafariWindow) {
+        window.getToolbarItem { toolbarItem in
+            let normalImg = NSImage(named: "ToolbarItemIcon.pdf")!
+            toolbarItem?.setImage(SettingsManager.shared.isLookupEnabled ? normalImg : self.disabledIconImage)
+        }
     }
 }
