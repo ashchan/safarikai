@@ -31,30 +31,26 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
             return
         }
 
+        let statusInfo: [String: Any] = [
+            "enabled": SettingsManager.shared.isLookupEnabled,
+            "highlightText": SettingsManager.shared.isHighlightEnabled,
+            "showRomaji": SettingsManager.shared.isShowRomaji,
+            "showTranslation": SettingsManager.shared.isShowTranslation
+        ]
+
         if messageName == IncomingMessage.lookupWord.rawValue {
-            page.dispatchMessageToScript(withName: OutgoingMessage.status.rawValue, userInfo:
-                ["enabled": SettingsManager.shared.isLookupEnabled,
-                 "highlightText": SettingsManager.shared.isHighlightEnabled,
-                 "showRomaji": SettingsManager.shared.isShowRomaji,
-                 "showTranslation": SettingsManager.shared.isShowTranslation]
-            )
+            page.dispatchMessageToScript(withName: OutgoingMessage.status.rawValue, userInfo: statusInfo)
 
             let word = userInfo!["word"] as! String
             let url = userInfo!["url"] as! String
-            let limit = SettingsManager.shared.resultsLimit
-            let (results, match) = Dict.shared.search(word, limit: limit)
+            let (results, match) = Dict.shared.search(word, limit: SettingsManager.shared.resultsLimit)
             page.dispatchMessageToScript(withName: OutgoingMessage.showResult.rawValue, userInfo:
                 ["word": match ?? "", "url": url, "result": results.map { $0.toJSON() }]
             )
         }
 
         if messageName == IncomingMessage.queryStatus.rawValue {
-            page.dispatchMessageToScript(withName: OutgoingMessage.status.rawValue, userInfo:
-                ["enabled": SettingsManager.shared.isLookupEnabled,
-                 "highlightText": SettingsManager.shared.isHighlightEnabled,
-                 "showRomaji": SettingsManager.shared.isShowRomaji,
-                 "showTranslation": SettingsManager.shared.isShowTranslation]
-            )
+            page.dispatchMessageToScript(withName: OutgoingMessage.status.rawValue, userInfo: statusInfo)
         }
     }
 

@@ -10,10 +10,6 @@ import Foundation
 
 class SettingsManager {
     static let shared = SettingsManager()
-    private init() {
-        isLookupEnabled = sharedUserDefaults.value(forKey: Keys.lookupEnabled.rawValue) as? Bool ?? true
-        resultsLimit = sharedUserDefaults.value(forKey: Keys.resultsLimit.rawValue) as? Int ?? 5
-    }
 
     let sharedUserDefaults = UserDefaults(suiteName: "9A3W22M8YB.group.com.ashchan.Safarikai")!
 
@@ -25,13 +21,9 @@ class SettingsManager {
         case resultsLimit
     }
 
-    private var _isLookupEnabled: Bool!
     var isLookupEnabled: Bool {
-        get { return _isLookupEnabled }
-        set(value) {
-            sharedUserDefaults.set(value, forKey: Keys.lookupEnabled.rawValue)
-            _isLookupEnabled = value
-        }
+        get { return sharedUserDefaults.value(forKey: Keys.lookupEnabled.rawValue) as? Bool ?? true }
+        set(value) { sharedUserDefaults.set(value, forKey: Keys.lookupEnabled.rawValue) }
     }
 
     var isHighlightEnabled: Bool {
@@ -49,12 +41,8 @@ class SettingsManager {
         set(value) { sharedUserDefaults.set(value, forKey: Keys.translationShow.rawValue) }
     }
 
-    private var _resultsLimit: Int!
     var resultsLimit: Int {
-        get { return _resultsLimit }
-        set(value) {
-            sharedUserDefaults.set(value, forKey: Keys.resultsLimit.rawValue)
-            _resultsLimit = value
-        }
+        get { return max(3, sharedUserDefaults.integer(forKey: Keys.resultsLimit.rawValue)) }
+        set(value) { sharedUserDefaults.set(value, forKey: Keys.resultsLimit.rawValue) }
     }
 }
