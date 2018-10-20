@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>XPC!</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.3</string>
+	<string>2.4</string>
 	<key>CFBundleVersion</key>
-	<string>20181018.08</string>
+	<string>20181020.10</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSExtension</key>
@@ -64,7 +64,7 @@
 		</dict>
 	</dict>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2018 ashchan.com. All rights reserved.</string>
+	<string>Copyright © James Chen. All rights reserved.</string>
 	<key>NSHumanReadableDescription</key>
 	<string>Translate Japanese words on web pages.</string>
 </dict>
