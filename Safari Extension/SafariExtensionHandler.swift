@@ -64,7 +64,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     }
     
     override func toolbarItemClicked(in window: SFSafariWindow) {
-        SettingsManager.shared.isLookupEnabled = !SettingsManager.shared.isLookupEnabled
+        SettingsManager.shared.isLookupEnabled.toggle()
         refreshToolbarIcon(in: window)
     }
     
