@@ -13,36 +13,36 @@ class SettingsManager {
 
     let sharedUserDefaults = UserDefaults(suiteName: "9A3W22M8YB.group.com.ashchan.Safarikai")!
 
-    enum Keys: String {
-        case lookupEnabled
-        case highlightEnabled
-        case romajiShow
-        case translationShow
-        case resultsLimit
+    struct Keys {
+        static let lookupEnabled = "lookupEnabled"
+        static let highlightEnabled = "highlightEnabled"
+        static let romajiShow = "romajiShow"
+        static let translationShow = "translationShow"
+        static let resultsLimit = "resultsLimit"
     }
 
     var isLookupEnabled: Bool {
-        get { return sharedUserDefaults.value(forKey: Keys.lookupEnabled.rawValue) as? Bool ?? true }
-        set(value) { sharedUserDefaults.set(value, forKey: Keys.lookupEnabled.rawValue) }
+        get { return sharedUserDefaults.value(forKey: Keys.lookupEnabled) as? Bool ?? true }
+        set(value) { sharedUserDefaults.set(value, forKey: Keys.lookupEnabled) }
     }
 
     var isHighlightEnabled: Bool {
-        get { return sharedUserDefaults.value(forKey: Keys.highlightEnabled.rawValue) as? Bool ?? true }
-        set(value) { sharedUserDefaults.set(value, forKey: Keys.highlightEnabled.rawValue) }
+        get { return sharedUserDefaults.value(forKey: Keys.highlightEnabled) as? Bool ?? true }
+        set(value) { sharedUserDefaults.set(value, forKey: Keys.highlightEnabled) }
     }
 
     var isShowRomaji: Bool {
-        get { return sharedUserDefaults.value(forKey: Keys.romajiShow.rawValue) as? Bool ?? true }
-        set(value) { sharedUserDefaults.set(value, forKey: Keys.romajiShow.rawValue) }
+        get { return sharedUserDefaults.value(forKey: Keys.romajiShow) as? Bool ?? true }
+        set(value) { sharedUserDefaults.set(value, forKey: Keys.romajiShow) }
     }
 
     var isShowTranslation: Bool {
-        get { return sharedUserDefaults.value(forKey: Keys.translationShow.rawValue) as? Bool ?? true }
-        set(value) { sharedUserDefaults.set(value, forKey: Keys.translationShow.rawValue) }
+        get { return sharedUserDefaults.value(forKey: Keys.translationShow) as? Bool ?? true }
+        set(value) { sharedUserDefaults.set(value, forKey: Keys.translationShow) }
     }
 
     var resultsLimit: Int {
-        get { return max(3, sharedUserDefaults.integer(forKey: Keys.resultsLimit.rawValue)) }
-        set(value) { sharedUserDefaults.set(value, forKey: Keys.resultsLimit.rawValue) }
+        get { return max(3, sharedUserDefaults.integer(forKey: Keys.resultsLimit)) }
+        set(value) { sharedUserDefaults.set(value, forKey: Keys.resultsLimit) }
     }
 }
