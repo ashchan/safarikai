@@ -1,9 +1,31 @@
 {
-  "commitish" : "1.1.0",
   "Mac" : [
     {
       "name" : "Regex",
-      "hash" : "68a924d20ee35ec97b827ae69df996fe505f6856abb93c4d7392670c6917d146"
+      "hash" : "b8fbf94c8dc039fc3668907790029b96cdc7d7df048192c23dbf0f0de0be8284",
+      "swiftToolchainVersion" : "5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)"
+    }
+  ],
+  "watchOS" : [
+    {
+      "name" : "Regex",
+      "hash" : "dc8dc4897c6c65895f38a1ab827c3bebe4a10efedc0647d5b871872a5bd99e19",
+      "swiftToolchainVersion" : "5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)"
+    }
+  ],
+  "tvOS" : [
+    {
+      "name" : "Regex",
+      "hash" : "862dd2751ef2a28d5b8a6ab52bfde4faa01caf4b27d1addb56c4444ddea0e77b",
+      "swiftToolchainVersion" : "5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)"
+    }
+  ],
+  "commitish" : "2.1.1",
+  "iOS" : [
+    {
+      "name" : "Regex",
+      "hash" : "fe7d810be2adaae5b7dcd177704630711fdf0d9c7e33d687f12981676d2f101c",
+      "swiftToolchainVersion" : "5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)"
     }
   ]
 }
