@@ -61,10 +61,8 @@ class Client {
     this.clientY = e.clientY;
     const ele = this.doc.elementFromPoint(this.clientX, this.clientY);
     this.range = null;
-    if (["TEXTAREA", "INPUT"].includes(ele.tagName)) {
+    if (["TEXTAREA", "INPUT", "IMG"].includes(ele.tagName)) {
       return this.selectionText = "";
-    } else if (ele.tagName === "IMG") {
-      return this.selectionText = ele.alt.trim();
     } else if (this.getParents(ele, "[contenteditable]").length) {
       return this.selectionText = "";
     } else {
