@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,8 +25,7 @@
 		1A9AAE032168BA1500A6FE0A /* DictData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9AAE022168BA1500A6FE0A /* DictData.swift */; };
 		1AAD85AE1DF58771001A6B1A /* Deinflector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAD85AD1DF58771001A6B1A /* Deinflector.swift */; };
 		1AAD85C71DF5964A001A6B1A /* Romaji.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAD85C61DF5964A001A6B1A /* Romaji.swift */; };
-		1AAD85C91DF59F29001A6B1A /* Regex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AAD85C81DF59F29001A6B1A /* Regex.framework */; };
-		1AAD85CA1DF59F36001A6B1A /* Regex.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1AAD85C81DF59F29001A6B1A /* Regex.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1AD2C4D724B53BE500351435 /* Regex in Frameworks */ = {isa = PBXBuildFile; productRef = 1AD2C4D624B53BE500351435 /* Regex */; };
 		1AF01BE921675B2B0004E75E /* SafarikaiEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF01BE821675B2B0004E75E /* SafarikaiEngineTests.swift */; };
 		1AF01BEB21675B2B0004E75E /* SafarikaiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A15B5671DED817E00206094 /* SafarikaiEngine.framework */; };
 		1AF50759216B745500FE4878 /* indexes.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AF50757216B745500FE4878 /* indexes.json */; };
@@ -84,16 +83,6 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1A7BED3D1DF5604D00A80095 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				1AAD85CA1DF59F36001A6B1A /* Regex.framework in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -119,7 +108,6 @@
 		1A9AAE022168BA1500A6FE0A /* DictData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictData.swift; sourceTree = "<group>"; };
 		1AAD85AD1DF58771001A6B1A /* Deinflector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deinflector.swift; sourceTree = "<group>"; };
 		1AAD85C61DF5964A001A6B1A /* Romaji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Romaji.swift; sourceTree = "<group>"; };
-		1AAD85C81DF59F29001A6B1A /* Regex.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Regex.framework; path = Carthage/Build/Mac/Regex.framework; sourceTree = "<group>"; };
 		1AF01BE621675B2B0004E75E /* SafarikaiEngineTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SafarikaiEngineTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AF01BE821675B2B0004E75E /* SafarikaiEngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafarikaiEngineTests.swift; sourceTree = "<group>"; };
 		1AF01BEA21675B2B0004E75E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -134,7 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1AAD85C91DF59F29001A6B1A /* Regex.framework in Frameworks */,
+				1AD2C4D724B53BE500351435 /* Regex in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,7 +225,6 @@
 		1A5D35551DE9756600827D78 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1AAD85C81DF59F29001A6B1A /* Regex.framework */,
 				1A5D35561DE9756600827D78 /* Cocoa.framework */,
 			);
 			name = Frameworks;
@@ -304,13 +291,15 @@
 				1A15B5631DED817E00206094 /* Frameworks */,
 				1A15B5641DED817E00206094 /* Headers */,
 				1A15B5651DED817E00206094 /* Resources */,
-				1A7BED3D1DF5604D00A80095 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = SafarikaiEngine;
+			packageProductDependencies = (
+				1AD2C4D624B53BE500351435 /* Regex */,
+			);
 			productName = SafarikaiEngine;
 			productReference = 1A15B5671DED817E00206094 /* SafarikaiEngine.framework */;
 			productType = "com.apple.product-type.framework";
@@ -428,10 +417,14 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
 			mainGroup = 1A5D35351DE9749600827D78;
+			packageReferences = (
+				1AD2C4D524B53BE500351435 /* XCRemoteSwiftPackageReference "Regex" */,
+			);
 			productRefGroup = 1A5D353F1DE9749600827D78 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -607,14 +600,15 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = SafarikaiEngine/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ashchan.SafarikaiEngine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -637,14 +631,15 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = SafarikaiEngine/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ashchan.SafarikaiEngine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -758,7 +753,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
@@ -773,7 +769,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 9A3W22M8YB;
 				INFOPLIST_FILE = Safarikai/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ashchan.Safarikai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -789,7 +788,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 9A3W22M8YB;
 				INFOPLIST_FILE = Safarikai/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ashchan.Safarikai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -803,7 +805,11 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				DEVELOPMENT_TEAM = 9A3W22M8YB;
 				INFOPLIST_FILE = "Safari Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ashchan.Safarikai.Safari-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -818,7 +824,11 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				DEVELOPMENT_TEAM = 9A3W22M8YB;
 				INFOPLIST_FILE = "Safari Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ashchan.Safarikai.Safari-Extension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -836,7 +846,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = SafarikaiEngineTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -857,7 +871,11 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = SafarikaiEngineTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ashchan.SafarikaiEngineTests;
@@ -915,6 +933,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1AD2C4D524B53BE500351435 /* XCRemoteSwiftPackageReference "Regex" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sharplet/Regex";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1AD2C4D624B53BE500351435 /* Regex */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1AD2C4D524B53BE500351435 /* XCRemoteSwiftPackageReference "Regex" */;
+			productName = Regex;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1A5D35361DE9749600827D78 /* Project object */;
 }
