@@ -11,6 +11,8 @@ class Client {
     this.highlightText   = true;
     this.showRomaji      = true;
     this.showTranslation = true;
+    this.lookupOnlyOnHotkey = false;
+    this.lookupImgAlt = false;
     this.rangeOffset   = 0;
 
     this.doc.onmousemove = e => {
@@ -42,6 +44,18 @@ class Client {
       }
       return true;
     };
+      
+    this.doc.onkeydown = event => {
+        if (this.lookupOnlyOnHotkey && event.key === "Alt") {
+            this.mouseDown = false;
+        }
+    };
+    this.doc.onkeyup = event => {
+        if (this.lookupOnlyOnHotkey && event.key === "Alt") {
+            this.mouseDown = true;
+            this.clearHighlight();
+        }
+    };
 
     safari.self.addEventListener("message", e => {
       const messageData = e.message;
@@ -61,8 +75,10 @@ class Client {
     this.clientY = e.clientY;
     const ele = this.doc.elementFromPoint(this.clientX, this.clientY);
     this.range = null;
-    if (["TEXTAREA", "INPUT", "IMG"].includes(ele.tagName)) {
+    if (["TEXTAREA", "INPUT"].includes(ele.tagName)) {
       return this.selectionText = "";
+    } else if (this.lookupImgAlt && ele.tagName === "IMG") {
+       return this.selectionText = ele.alt.trim();
     } else if (this.getParents(ele, "[contenteditable]").length) {
       return this.selectionText = "";
     } else {
@@ -170,6 +186,8 @@ class Client {
     this.highlightText   = status.highlightText;
     this.showRomaji      = status.showRomaji;
     this.showTranslation = status.showTranslation;
+    this.lookupOnlyOnHotkey = status.lookupOnlyOnHotkey;
+    this.lookupImgAlt = status.lookupImgAlt;
     if (!this.enabled) { return this.hidePopup(); }
   }
 

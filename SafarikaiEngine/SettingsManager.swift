@@ -18,6 +18,8 @@ class SettingsManager {
         static let highlightEnabled = "highlightEnabled"
         static let romajiShow = "romajiShow"
         static let translationShow = "translationShow"
+        static let shouldLookupOnlyOnHotkey = "lookupOnlyOnHotkey"
+        static let shouldLookupImgAlt = "lookupImgAlt"
         static let resultsLimit = "resultsLimit"
     }
 
@@ -39,6 +41,16 @@ class SettingsManager {
     var isShowTranslation: Bool {
         get { return sharedUserDefaults.value(forKey: Keys.translationShow) as? Bool ?? true }
         set(value) { sharedUserDefaults.set(value, forKey: Keys.translationShow) }
+    }
+
+    var shouldLookupOnlyOnHotkey: Bool {
+        get { sharedUserDefaults.value(forKey: Keys.shouldLookupOnlyOnHotkey) as? Bool ?? true }
+        set(value) { sharedUserDefaults.set(value, forKey: Keys.shouldLookupOnlyOnHotkey) }
+    }
+
+    var shouldLookupImgAlt: Bool {
+        get { sharedUserDefaults.value(forKey: Keys.shouldLookupImgAlt) as? Bool ?? true }
+        set(value) { sharedUserDefaults.set(value, forKey: Keys.shouldLookupImgAlt) }
     }
 
     var resultsLimit: Int {
