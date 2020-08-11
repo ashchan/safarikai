@@ -44,7 +44,7 @@ class SettingsManager {
     }
 
     var shouldLookupOnlyOnHotkey: Bool {
-        get { sharedUserDefaults.value(forKey: Keys.shouldLookupOnlyOnHotkey) as? Bool ?? true }
+        get { sharedUserDefaults.bool(forKey: Keys.shouldLookupOnlyOnHotkey) }
         set(value) { sharedUserDefaults.set(value, forKey: Keys.shouldLookupOnlyOnHotkey) }
     }
 
