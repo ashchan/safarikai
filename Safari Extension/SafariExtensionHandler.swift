@@ -35,7 +35,9 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
             "enabled": SettingsManager.shared.isLookupEnabled,
             "highlightText": SettingsManager.shared.isHighlightEnabled,
             "showRomaji": SettingsManager.shared.isShowRomaji,
-            "showTranslation": SettingsManager.shared.isShowTranslation
+            "showTranslation": SettingsManager.shared.isShowTranslation,
+            "lookupOnlyOnHotkey": SettingsManager.shared.shouldLookupOnlyOnHotkey,
+            "lookupImgAlt": SettingsManager.shared.shouldLookupImgAlt
         ]
 
         if messageName == IncomingMessage.lookupWord.rawValue {

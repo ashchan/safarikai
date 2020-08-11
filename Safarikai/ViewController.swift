@@ -13,6 +13,8 @@ class ViewController: NSViewController {
     @IBOutlet weak var highlightButton: NSButton!
     @IBOutlet weak var romajiButton: NSButton!
     @IBOutlet weak var translationButton: NSButton!
+    @IBOutlet weak var lookupOnlyOnHotkeyButton: NSButton!
+    @IBOutlet weak var lookupImgAltButton: NSButton!
     @IBOutlet weak var resultLimitPopup: NSPopUpButton!
 
     private let resultOptions = Array(3...8)
@@ -23,6 +25,8 @@ class ViewController: NSViewController {
         highlightButton.state = SettingsManager.shared.isHighlightEnabled ? .on : .off
         romajiButton.state = SettingsManager.shared.isShowRomaji ? .on : .off
         translationButton.state = SettingsManager.shared.isShowTranslation ? .on : .off
+        lookupOnlyOnHotkeyButton.state = SettingsManager.shared.shouldLookupOnlyOnHotkey ? .on : .off
+        lookupImgAltButton.state = SettingsManager.shared.shouldLookupImgAlt ? .on : .off
         resultLimitPopup.addItems(withTitles: resultOptions.map {"\($0)"})
         resultLimitPopup.selectItem(withTitle: "\(SettingsManager.shared.resultsLimit)")
     }
@@ -43,6 +47,14 @@ class ViewController: NSViewController {
 
     @IBAction func translationTogglePressed(_ sender: NSButton) {
         SettingsManager.shared.isShowTranslation = sender.state == .on
+    }
+
+    @IBAction func lookupOnlyOnHotkeyTogglePressed(_ sender: NSButton) {
+        SettingsManager.shared.shouldLookupOnlyOnHotkey = sender.state == .on
+    }
+
+    @IBAction func lookupImgAltTogglePressed(_ sender: NSButton) {
+        SettingsManager.shared.shouldLookupImgAlt = sender.state == .on
     }
 
     @IBAction func resultLimitPressed(_ sender: NSPopUpButton) {
