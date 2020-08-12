@@ -12,15 +12,20 @@ class Client {
     this.showRomaji      = true;
     this.showTranslation = true;
     this.lookupOnlyOnHotkey = false;
-    this.lookupImgAlt = false;
+    this.lookupImgAlt  = false;
     this.rangeOffset   = 0;
+    this.altPressed    = false;
 
     this.doc.onmousemove = e => {
-      if (!this.enabled || !!this.mouseDown) {
+      if (!this.enabled || this.mouseDown) {
         this.hidePopup();
       } else {
+        let shouldLookup = true;
+        if (this.lookupOnlyOnHotkey) {
+          shouldLookup = this.altPressed;
+        }
         this.createRange(e);
-        if ((this.selectionText != null ? this.selectionText.length : undefined) > 0) {
+        if (shouldLookup && (this.selectionText != null ? this.selectionText.length : undefined) > 0) {
           safari.extension.dispatchMessage("lookupWord", {word: this.selectionText, url: this.window.location.href});
         } else {
           this.clearHighlight();
@@ -44,17 +49,14 @@ class Client {
       }
       return true;
     };
-      
+
     this.doc.onkeydown = event => {
-        if (this.lookupOnlyOnHotkey && event.key === "Alt") {
-            this.mouseDown = false;
-        }
+      if (event.key === "Alt") {
+        this.altPressed = true;
+      }
     };
     this.doc.onkeyup = event => {
-        if (this.lookupOnlyOnHotkey && event.key === "Alt") {
-            this.mouseDown = true;
-            this.clearHighlight();
-        }
+      this.altPressed = false;
     };
 
     safari.self.addEventListener("message", e => {
