@@ -12,7 +12,7 @@ Translate Japanese words on web pages. Inspired by rikaichan and rikaikun, with 
 
 ## Development Dependencies
 
-* [Carthage](https://github.com/Carthage/Carthage)
+* ~[Carthage](https://github.com/Carthage/Carthage)~
 * ~[CoffeeScript](https://coffeescript.org)~
 * ~[japanese-kit](https://github.com/ashchan/japanese-coffee-kit)~
 
