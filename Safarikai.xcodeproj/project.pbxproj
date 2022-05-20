@@ -30,6 +30,7 @@
 		1AF01BEB21675B2B0004E75E /* SafarikaiEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A15B5671DED817E00206094 /* SafarikaiEngine.framework */; };
 		1AF50759216B745500FE4878 /* indexes.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AF50757216B745500FE4878 /* indexes.json */; };
 		1AF5075A216B745500FE4878 /* entries.json in Resources */ = {isa = PBXBuildFile; fileRef = 1AF50758216B745500FE4878 /* entries.json */; };
+		3AC1E17C28376D4E00A7DD37 /* ToolbarItemIconDisabled.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 3AC1E17B28376D4E00A7DD37 /* ToolbarItemIconDisabled.pdf */; };
 		737C485C21563CCB00B16A35 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737C485B21563CCB00B16A35 /* Dictionary.swift */; };
 		7393497C21568775009B2500 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7393497A21568775009B2500 /* SettingsManager.swift */; };
 		7393497D21568775009B2500 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7393497A21568775009B2500 /* SettingsManager.swift */; };
@@ -113,6 +114,7 @@
 		1AF01BEA21675B2B0004E75E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1AF50757216B745500FE4878 /* indexes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = indexes.json; sourceTree = "<group>"; };
 		1AF50758216B745500FE4878 /* entries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = entries.json; sourceTree = "<group>"; };
+		3AC1E17B28376D4E00A7DD37 /* ToolbarItemIconDisabled.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIconDisabled.pdf; sourceTree = "<group>"; };
 		737C485B21563CCB00B16A35 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		7393497A21568775009B2500 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -238,6 +240,7 @@
 				1A5D355B1DE9756600827D78 /* SafariExtensionHandler.swift */,
 				1A5D35621DE9756600827D78 /* Info.plist */,
 				1A5D35651DE9756600827D78 /* ToolbarItemIcon.pdf */,
+				3AC1E17B28376D4E00A7DD37 /* ToolbarItemIconDisabled.pdf */,
 				1A5D35591DE9756600827D78 /* Supporting Files */,
 			);
 			path = "Safari Extension";
@@ -461,6 +464,7 @@
 			files = (
 				1A06AA9B1DE9807C001595EE /* injected.js in Resources */,
 				1A5D35661DE9756600827D78 /* ToolbarItemIcon.pdf in Resources */,
+				3AC1E17C28376D4E00A7DD37 /* ToolbarItemIconDisabled.pdf in Resources */,
 				1A522F061DE9B41D005C3D70 /* style.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

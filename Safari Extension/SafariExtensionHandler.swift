@@ -65,20 +65,13 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
         SettingsManager.shared.isLookupEnabled.toggle()
         refreshToolbarIcon(in: window)
     }
-
-    private let disabledIconImage: NSImage = {
-        let normalImg = NSImage(named: "ToolbarItemIcon.pdf")!
-        let disabledImg = NSImage(size: normalImg.size)
-        disabledImg.lockFocus()
-        normalImg.draw(at: .zero, from: .zero, operation: .sourceOver, fraction: 0.25)
-        disabledImg.unlockFocus()
-        return disabledImg
-    }()
+    
+    private static let enabledIcon = NSImage(named: "ToolbarItemIcon.pdf")!
+    private static let disabledIcon = NSImage(named: "ToolbarItemIconDisabled.pdf")!
 
     private func refreshToolbarIcon(in window: SFSafariWindow) {
         window.getToolbarItem { toolbarItem in
-            let normalImg = NSImage(named: "ToolbarItemIcon.pdf")!
-            toolbarItem?.setImage(SettingsManager.shared.isLookupEnabled ? normalImg : self.disabledIconImage)
+            toolbarItem?.setImage(SettingsManager.shared.isLookupEnabled ? Self.enabledIcon : Self.disabledIcon)
         }
     }
 }
